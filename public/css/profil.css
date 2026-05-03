@@ -1,0 +1,565 @@
+:root {
+    --c1: #9a3f3f; /* merah tua */
+    --c2: #c1856d; /* coklat muda */
+    --c3: #e6cfa9; /* pastel kuning */
+    --c4: #fbf9d1; /* pastel krem */
+
+    --card-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    --muted: #666666;
+    --radius: 14px;
+}
+
+/* Reset / body adjustments (hanya jika diperlukan) */
+body {
+    font-family:
+        "Inter",
+        system-ui,
+        -apple-system,
+        "Segoe UI",
+        Roboto,
+        "Helvetica Neue",
+        Arial;
+    color: var(--muted);
+    background: var(--c4); /* keseluruhan area halaman */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Wrapper (jika ingin menimpa nilai inline) */
+.dashboard-wrapper {
+    background: transparent; /* mempertahankan background kontainer parent */
+    border-radius: var(--radius);
+}
+
+/* Judul utama halaman */
+.main-content > h1 {
+    color: var(--c1);
+    letter-spacing: 0.6px;
+}
+
+/* Kartu sisi kiri (profil) */
+/* ----- canonical .profile-card (gunakan hanya 1x di file) ----- */
+.profile-card {
+    background: #ffffff;
+    border-radius: var(--radius);
+    box-shadow: var(--card-shadow);
+    padding: 20px;
+    position: relative; /* untuk edit icon */
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto; /* penting: biarkan mengisi kolom flex parent */
+    min-height: 0; /* agar flex children tidak overflow */
+    height: auto !important; /* override rule yang memaksa 100% */
+}
+
+/* Foto profil */
+.profile-photo {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid var(--c1); /* warna merah tua */
+    display: block; /* supaya bisa di-center */
+    margin-left: auto; /* center */
+    margin-right: auto; /* center */
+}
+
+.profile-names {
+    color: #9a3f3f;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+/* Tombol edit kecil di bawah foto */
+.profile-card .btn-warning {
+    background: var(--c2);
+    border-color: rgba(0, 0, 0, 0.06);
+    color: #fff;
+    font-weight: 600;
+}
+
+/* Biodata text */
+.profile-card p {
+    margin-bottom: 6px;
+    color: #444;
+}
+.profile-card strong {
+    color: var(--c1);
+}
+
+/* Kartu progress materi (kanan atas) */
+.progress-card {
+    background: #ffffff;
+    border-radius: var(--radius);
+    box-shadow: var(--card-shadow);
+    padding: 18px;
+}
+
+/* Placeholder diagram lingkaran */
+.diagram-circle {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 8px solid var(--c2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.6),
+        rgba(230, 207, 169, 0.05)
+    );
+    color: var(--c1);
+    font-weight: 700;
+    box-shadow: 0 10px 30px rgba(193, 133, 109, 0.06) inset;
+}
+
+/* Judul kecil di dalam kartus */
+.progress-card h4,
+.scores-card h4 {
+    color: var(--c1);
+    font-weight: 700;
+}
+
+/* Riwayat penilaian (kartu bawah kanan) */
+.scores-card {
+    background: #ffffff;
+    border-radius: var(--radius);
+    box-shadow: var(--card-shadow);
+    padding: 18px;
+    /* margin-top: 2px; */
+    margin-bottom: 25px;
+}
+
+/* Masing-masing kotak nilai */
+.score-item {
+    background: linear-gradient(180deg, var(--c4), #fff);
+    border: 1px solid rgba(154, 63, 63, 0.06);
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+    min-height: 86px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+}
+
+/* Label nilai (badge) */
+.score-item .badge {
+    background: var(--c2);
+    color: #fff;
+    font-weight: 600;
+    margin-top: 8px;
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-size: 0.9rem;
+}
+
+/* Spacing antar grid score (mempermudah ketika responsif) */
+.row.g-3 > .col-4 {
+    display: flex;
+    align-items: stretch;
+}
+
+/* Pastikan score-item mengisi tinggi kolom */
+.row.g-3 .score-item {
+    width: 100%;
+}
+
+/* Tombol Kembali (di kanan) */
+.btn-kembali {
+    float: left; /* POSISI DI KANAN */
+    background: #f7c94b;
+    color: #000;
+    font-weight: bold;
+    padding: 8px 18px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    transition: 0.2s;
+    margin-top: 20px;
+    margin-bottom: 15px; /* jarak bawah */
+}
+
+.btn-kembali:hover {
+    background: #f5bf2a;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+    transform: translateY(-2px);
+}
+
+.btn-kembali i {
+    margin-right: 6px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 767px) {
+    .diagram-circle {
+        width: 150px;
+        height: 150px;
+    }
+    .profile-photo {
+        width: 110px;
+        height: 110px;
+    }
+}
+
+.sketch-preview {
+    width: 100%;
+    height: 260px;
+    border-radius: 12px;
+    background-image: url("/mnt/data/46f956a4-2e89-4b81-9a28-8b3990f0f37b.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    margin-bottom: 12px;
+}
+
+/* Membuat row merenggang agar kolom kiri & kanan sama tinggi */
+.same-height {
+    display: flex;
+    align-items: stretch;
+}
+
+/* Kolom harus flex agar child di dalamnya ikut merenggang */
+.same-height > [class*="col-"] {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Icon edit di pojok kanan atas */
+.edit-icon {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: transparent;
+    border: none;
+    color: var(--c1);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 4px;
+}
+.edit-icon:hover {
+    color: var(--c2);
+}
+
+.progress-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* vertikal center */
+    align-items: center; /* horizontal center */
+}
+
+/* Header Judul Halaman Informasi Media (diletakkan di dalam .main-content) */
+.info-media-header {
+    background: var(--c3); /* e6cfa9 */
+    padding: 15px 20px;
+    border-left: 10px solid var(--c1); /* 9a3f3f */
+    border-radius: 10px;
+    margin-bottom: 35px; /* berjarak dari wrapper di bawahnya */
+    /* jangan pakai margin-left/right besar yang membuat elemen jadi kolom tersendiri */
+}
+
+.info-media-header h1 {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--c1);
+}
+
+/* ============================
+   MODAL EDIT PROFIL
+============================ */
+/* ============================
+   MODAL EDIT PROFIL (diperbaiki)
+============================ */
+.edit-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(4px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.edit-overlay.show {
+    display: flex;
+}
+
+/* MODAL BOX */
+.edit-modal {
+    width: 95%;
+    max-width: 500px;
+    background: linear-gradient(145deg, var(--c2), var(--c4), var(--c3));
+    border-radius: 16px;
+    /* NOTE: don't clip the icon by overflow:hidden on parent */
+    overflow: visible;
+    animation: fadeUp 0.25s ease-out;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* HEADER (lebih cerah & sesuai palet) */
+.edit-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px;
+    background: linear-gradient(
+        135deg,
+        var(--c3) 0%,
+        /* pastel kuning */ var(--c4) 100% /* pastel krem */
+    );
+    border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+}
+
+.edit-header h3 {
+    margin: 0;
+    font-weight: 700;
+    color: var(--c1); /* merah tua agar kontras */
+}
+
+.edit-back {
+    width: 38px;
+    height: 38px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    border: 0;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--c1);
+    transition: 0.18s ease;
+}
+
+/* .edit-back:hover {
+    background: var(--c3);
+    color: white;
+} */
+
+/* BODY */
+.edit-body {
+    padding: 24px;
+    background: linear-gradient(
+        to bottom,
+        var(--c4),
+        var(--c3),
+        var(--c2),
+        var(--c1)
+    );
+}
+
+/* --- Avatar wrapper: allow visible overflow so icon can sit outside the circle --- */
+.edit-avatar {
+    width: 120px;
+    height: 120px;
+    margin: 10px auto 20px;
+    position: relative;
+    /* enable children to extend outside the avatar container */
+    overflow: visible;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* inner element that *actually clips* the image to a circle */
+.edit-avatar__image,
+.edit-avatar img {
+    width: 120px;
+    height: 120px;
+    border-radius: 999px;
+    overflow: hidden; /* clip the image itself */
+    display: block;
+    object-fit: cover;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+    border: 4px solid #9a3f3f;
+}
+
+/* if you didn't add .edit-avatar__image wrapper, this still applies to img */
+.edit-avatar img {
+    display: block;
+}
+
+/* edit icon (positioned relative to the avatar wrapper) */
+.edit-change-photo {
+    position: absolute;
+    /* place icon slightly outside the lower-right of the avatar */
+    right: -10px;
+    bottom: -10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #fff;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    border: 2px solid var(--c2);
+    z-index: 999; /* ensure it's above image and modal */
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+    transition:
+        transform 0.12s ease,
+        box-shadow 0.12s ease;
+}
+
+/* slightly larger tap target for accessibility (label contains hidden input) */
+.edit-change-photo input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* icon style */
+.edit-change-photo i,
+.edit-change-photo svg {
+    font-size: 18px;
+    color: var(--c1);
+    pointer-events: none; /* icon shouldn't intercept clicks */
+}
+
+/* focus state (keyboard accessible) */
+.edit-change-photo:focus,
+.edit-change-photo:focus-visible {
+    outline: 3px solid rgba(154, 63, 63, 0.18);
+    transform: translateY(-2px) scale(1.03);
+}
+
+/* FORM */
+.edit-form label {
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.edit-form input,
+.edit-form select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+}
+
+/* FOOTER */
+.edit-footer {
+    padding: 16px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    background: linear-gradient(
+        135deg,
+        var(--c3) 0%,
+        /* pastel kuning */ var(--c4) 100% /* pastel krem */
+    );
+}
+
+.btn-cancel,
+.btn-save {
+    padding: 10px 18px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* BUTTON COLORS */
+.btn-cancel {
+    background: rgba(255, 255, 255, 0.8);
+}
+.btn-save {
+    background: var(--c1);
+    color: white;
+}
+
+/* HOVER EFFECT */
+button:hover,
+.edit-icon:hover,
+.edit-change-photo:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+    transition: 0.15s ease;
+}
+
+button:active,
+.edit-icon:active,
+.edit-change-photo:active {
+    transform: translateY(0);
+}
+
+/* small screens tweak */
+@media (max-width: 480px) {
+    .edit-modal {
+        max-width: 92%;
+    }
+    .edit-avatar,
+    .edit-avatar img,
+    .edit-avatar__image {
+        width: 100px;
+        height: 100px;
+    }
+    .edit-change-photo {
+        width: 36px;
+        height: 36px;
+        right: -8px;
+        bottom: -8px;
+    }
+}
+
+.score-item {
+    background: linear-gradient(to bottom, #f2edc9, #f7f2d8);
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    transition: 0.2s ease;
+}
+
+.score-item:hover {
+    transform: translateY(-3px);
+}
+
+.score-item .badge {
+    display: block;
+    margin-top: 12px;
+    background: #c1856d;
+    color: white;
+    padding: 6px 0;
+    border-radius: 20px;
+    font-weight: bold;
+}
+.score-item {
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .score-item {
+        font-size: 13px;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .score-item {
+        font-size: 12px;
+        padding: 10px;
+    }
+}

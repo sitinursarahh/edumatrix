@@ -1,0 +1,2941 @@
+/* ---------- Main Content (penyesuaian margin ketika sidebar collapsed) ---------- */
+.main-content {
+    transition: margin-left 0.22s ease;
+    margin-left: var(--sidebar-width);
+    padding: 1rem;
+}
+
+/* jika body diberi kelas sidebar-collapsed oleh script */
+body.sidebar-collapsed .main-content {
+    margin-left: var(--sidebar-collapsed-width) !important;
+}
+
+/* safety: kalau ada aturan global .sidebar.collapsed, override untuk #sidebar_materi */
+body.sidebar-collapsed #sidebar_materi {
+    width: var(--sidebar-collapsed-width) !important;
+    overflow: hidden !important;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+    #sidebar_materi {
+        width: var(--sidebar-width);
+        position: fixed;
+        top: var(--navbar-height);
+        height: calc(100vh - var(--navbar-height));
+    }
+    .main-content {
+        margin-left: 0;
+    }
+}
+
+/* ---------- Small utility tweak to ensure toggle never overlapped by content ---------- */
+#sidebar_materi {
+    pointer-events: auto;
+}
+#sidebar_materi .btn-toggle {
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+/*dashboard*/
+.dashboard-wrapper {
+    background: #fff9d5;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Header Judul Halaman Informasi Media (diletakkan di dalam .main-content) */
+.pengenalan-matriks-header {
+    background: var(--c3); /* e6cfa9 */
+    padding: 15px 20px;
+    border-left: 10px solid var(--c1); /* 9a3f3f */
+    border-radius: 10px;
+    margin-bottom: 35px; /* berjarak dari wrapper di bawahnya */
+    /* jangan pakai margin-left/right besar yang membuat elemen jadi kolom tersendiri */
+}
+
+.pengenalan-matriks-header h1 {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--c1);
+}
+
+.tujuan-box {
+    background-color: var(--c4);
+    box-shadow: 0 4px 12px rgba(154, 63, 63, 0.6);
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.tujuan-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.tujuan-list {
+    margin-left: 20px;
+    line-height: 1.6;
+}
+
+.materi-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 20px;
+}
+
+/* Foto berada di tengah */
+.image-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.image-container img {
+    max-width: 400px; /* sesuaikan jika ingin lebih besar */
+    width: 100%;
+    border-radius: 6px;
+}
+
+.image-caption {
+    margin-top: 6px;
+    font-size: 14px;
+    color: #555; /* warna caption abu-abu */
+    font-style: italic;
+    text-align: center;
+}
+
+/* Paragraf materi */
+
+.paragraf-indent {
+    text-indent: 40px; /* boleh ubah sesuai selera, ex: 2em, 50px */
+    text-align: justify; /* agar paragraf rapi kiri–kanan */
+    line-height: 1.7;
+}
+
+.materi-paragraf p {
+    margin-bottom: 14px;
+    line-height: 1.7;
+    text-align: justify;
+}
+
+.box_contoh_soal {
+    border: 2px solid #c1856d; /* biru sesuai contoh */
+    background: #fbf9d1; /* latar putih */
+    padding: 12px 16px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+
+    text-align: justify;
+    line-height: 1.7;
+
+    /* efek tampilan agar lebih mirip buku */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.alternatif_penyelesaian {
+    color: #c1856d;
+    font-weight: bold;
+}
+
+.tabel-matriks {
+    width: 320px; /* 🔥 tambahin lebar */
+    margin: 15px auto; /* ⬅️ jangan auto biar tetap kiri */
+    border-collapse: collapse;
+    font-size: 16px;
+}
+
+.tabel-matriks th,
+.tabel-matriks td {
+    border: 1px solid #000;
+    padding: 8px 20px; /* kasih ruang biar rapi */
+    text-align: center;
+}
+
+.tabel-matriks th {
+    font-weight: 700;
+}
+
+.tabel-matriks-kiri {
+    margin: 15px 0;
+}
+
+.math-matrix {
+    margin: 10px 0 20px 0;
+    font-size: 20px;
+}
+
+/* KUIS */
+
+/* WRAPPER biar tetap di tengah halaman */
+.quiz-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+}
+
+/* KOTAK UTAMA */
+.quiz-container {
+    position: relative; /* WAJIB */
+    width: 650px;
+    padding: 40px 32px 28px;
+    border-radius: 20px;
+    border: 2px solid #9a3f3f;
+    background-color: #fff7f2;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    font-family: Arial, sans-serif;
+}
+
+/* JUDUL MENEMPEL DI ATAS KOTAK */
+.quiz-header {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    padding: 10px 40px;
+    background-color: #9a3f3f;
+    color: #ffffff;
+    border-radius: 999px;
+
+    font-weight: bold;
+    font-size: 20px;
+
+    display: flex; /* 🔥 ini kunci */
+    align-items: center; /* 🔥 center vertikal */
+    justify-content: center; /* 🔥 center horizontal */
+    text-align: center; /* 🔥 jaga kalau 2 baris */
+}
+
+/* PERTANYAANNNNNNNNNNNNNNNNNNNNNNNNN */
+.quiz-question {
+    font-size: 16px;
+}
+
+/* INPUT */
+.quiz-input {
+    width: 70%;
+    max-width: 420px;
+    padding: 8px 12px;
+    margin-top: 10px;
+
+    background-color: #c1856d;
+    color: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #9a3f3f;
+    outline: none;
+}
+
+.quiz-input::placeholder {
+    color: #f5dcd0;
+}
+
+/* TOMBOLLLLLLLLLLLLLLLLLLLLLLLLLLL */
+.quiz-buttons {
+    margin-top: 24px;
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+}
+
+.quiz-buttons button {
+    min-width: 160px;
+    padding: 8px 16px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+/* Biru */
+.quiz-buttons button#btn-periksa {
+    background-color: #0d6efd;
+}
+
+/* Merah */
+.quiz-buttons button#btn-reset {
+    background-color: #dc3545;
+}
+
+/* TRANSISI UMUM */
+.quiz-buttons button {
+    transition:
+        background-color 0.25s ease,
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.quiz-buttons button#btn-periksa:hover {
+    background-color: #0b5ed7;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(13, 110, 253, 0.35);
+}
+.quiz-buttons button#btn-reset:hover {
+    background-color: #b02a37;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(220, 53, 69, 0.35);
+}
+.quiz-buttons button:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* NAV (Sebelumnya / Berikutnya) */
+.quiz-nav {
+    margin-top: 18px;
+    display: flex;
+    justify-content: space-between; /* <-- kunci: space-between */
+    align-items: center;
+    gap: 12px;
+}
+
+#btn-prev {
+    visibility: hidden; /* default: sembunyikan, JS akan atur tampil/sekilas */
+}
+
+.quiz-nav button {
+    min-width: 120px;
+    padding: 8px 14px;
+    border-radius: 10px;
+    border: 2px solid #9a3f3f;
+    cursor: pointer;
+    font-weight: 600;
+    background: #fff;
+    color: #9a3f3f;
+}
+.quiz-nav button:hover {
+    background: #e3ae9a;
+    transform: translateY(-2px);
+}
+
+/* hasil jawaban */
+#hasil-jawaban {
+    margin-top: 12px;
+    font-weight: 700;
+}
+
+/* ===== DRAG & DROP styling ===== */
+/* ===== DRAG & DROP styling (diperbarui agar gambar menutupi slot) ===== */
+
+.source-images {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+/* wrapper di sumber: berikan margin agar gallery rapi */
+.drag-item {
+    cursor: grab;
+    user-select: none;
+    margin: 8px;
+}
+
+/* gambar di sumber: ukuran sama dg slot supaya preview konsisten */
+.drag-item img {
+    width: 160px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 6px;
+    display: block;
+}
+
+/* caption di wrapper (akan disembunyikan ketika dipindah ke slot) */
+.drag-item .caption {
+    margin-top: 6px;
+    text-align: center;
+    font-size: 12px;
+    color: #444;
+}
+
+/* slot drop — PENTING: overflow hidden, padding 0 */
+.drop-slot {
+    width: 160px;
+    height: 110px;
+    border: 2px dashed rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 6px;
+    background: #f3f7ff;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* jika slot berisi wrapper, sembunyikan caption dan atur margin wrapper */
+.drop-slot.occupied .caption {
+    display: none !important;
+}
+.drop-slot.occupied .drag-item {
+    margin: 0 !important;
+}
+
+/* gambar yang berada di dalam slot mengisi penuh slot */
+.drop-slot img {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    margin: 0 !important;
+    border-radius: 0; /* kalau mau rounding, gunakan border-radius pada slot */
+}
+
+.drop-area > div {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 16px;
+    flex-wrap: nowrap !important; /* PENTING: cegah turun ke bawah */
+    width: 100%;
+}
+
+/* responsive (jika perlu) */
+@media (max-width: 720px) {
+    .drag-item img {
+        width: 100px;
+        height: 70px;
+    }
+    .drop-slot {
+        width: 100px;
+        height: 70px;
+    }
+}
+
+/* sembunyikan placeholder small ketika slot berisi img (fallback) */
+.drop-slot.occupied small {
+    display: none !important;
+}
+
+/* Table bergaris (ganti top table dengan yang bergaris) */
+.quiz-question table.matrix-source {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 520px;
+    margin: 6px 0 12px 0;
+    font-size: 14px;
+}
+
+.quiz-question table.matrix-source,
+.quiz-question table.matrix-source th,
+.quiz-question table.matrix-source td {
+    border: 1px solid #333;
+}
+
+.quiz-question table.matrix-source th {
+    background: #f2f2f2;
+    font-weight: 700;
+    padding: 8px 10px;
+    text-align: center;
+}
+
+.quiz-question table.matrix-source td {
+    padding: 8px 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* =========================================
+   KURUNG SIKU MARI MENCOBA 1
+   DISAMAKAN DENGAN MARI MENCOBA 2
+========================================= */
+
+/* wrapper tetap */
+.matrix-bracket {
+    display: flex;
+    align-items: stretch; /* ⬅️ penting */
+    gap: 12px;
+    margin-top: 18px;
+}
+
+/* span .bracket JANGAN pakai font */
+.matrix-bracket .bracket {
+    width: 12px;
+    position: relative;
+    color: transparent; /* ⬅️ sembunyikan karakter [ ] */
+    font-size: 0;
+    padding: 0;
+    height: auto;
+    transform: translateY(6px); /* ⬅️ UBAH ANGKA INI */
+}
+
+/* kiri */
+.matrix-bracket .bracket.left {
+    border-left: 3px solid #555;
+}
+
+/* kanan */
+.matrix-bracket .bracket.right {
+    border-right: 3px solid #555;
+}
+
+/* ujung atas & bawah */
+.matrix-bracket .bracket::before,
+.matrix-bracket .bracket::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 3px;
+    background: #555;
+}
+
+/* kiri */
+.matrix-bracket .bracket.left::before {
+    top: 0;
+    left: 0;
+}
+.matrix-bracket .bracket.left::after {
+    bottom: 0;
+    left: 0;
+}
+
+/* kanan */
+.matrix-bracket .bracket.right::before {
+    top: 0;
+    right: 0;
+}
+.matrix-bracket .bracket.right::after {
+    bottom: 0;
+    right: 0;
+}
+
+/* wrapper grid input (kotak input di dalam) */
+.matrix-grid {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+/* setiap baris input */
+.matrix-row {
+    display: flex;
+    gap: 12px;
+    /* margin-top: 10px; */
+}
+
+/* style input sel matriks — lebih tinggi agar bracket muat */
+/* KOTAK JAWABAN MATRICS — DIPERKECIL */
+/* .matrix-cell {
+    width: 80px;
+    height: 40px;
+    padding: 6px 8px;
+    border-radius: 6px;
+    border: 2px solid #9a3f3f;
+    background: #fff;
+    text-align: center;
+    font-weight: 600;
+    font-size: 14px;
+    box-sizing: border-box;
+} */
+
+/* responsive: kecilkan bracket dan input di layar sempit */
+@media (max-width: 520px) {
+    .matrix-bracket .bracket {
+        font-size: 64px;
+        height: 88px;
+    }
+    .matrix-cell {
+        width: 88px;
+        height: 44px;
+        font-size: 14px;
+    }
+    .quiz-question table.matrix-source {
+        max-width: 100%;
+        font-size: 13px;
+    }
+}
+
+/* Supaya anchor scroll berhenti DI BAWAH HEADER */
+.page-section {
+    scroll-margin-top: 100px; /* sesuaikan tinggi header */
+}
+
+#pengertian-matriks {
+    scroll-margin-top: 90px;
+}
+
+/* ===============================
+   FIX SIDEBAR: TEKS TERPOTONG,
+   CHEVRON, DAN SCROLL BAWAH
+   =============================== */
+
+/* 1. Sidebar JANGAN potong konten horizontal */
+#sidebar_materi {
+    overflow-x: visible !important;
+}
+
+/* 2. Area scroll: beri ruang bawah agar menu terakhir terlihat */
+#sidebar_materi .sidebar-scroll {
+    padding-bottom: 40px !important; /* supaya "Uji Kompetensi" aman */
+}
+
+/* 3. Sidebar link: izinkan teks multi-baris & tinggi aman */
+#sidebar_materi .sidebar-link {
+    align-items: flex-start; /* teks sejajar atas */
+    line-height: 1.5; /* 🔥 kunci huruf g/y/p tidak terpotong */
+    min-height: auto;
+}
+
+/* 4. Label menu: BOLEH turun baris */
+#sidebar_materi .sidebar-label {
+    white-space: normal !important; /* boleh 2 baris */
+    overflow: visible !important;
+    line-height: 1.5;
+    flex: 1 1 auto; /* ambil sisa ruang */
+}
+
+/* 5. Chevron (ikon panah): pastikan selalu terlihat */
+#sidebar_materi .chev {
+    margin-left: 8px;
+    flex-shrink: 0; /* jangan dipaksa mengecil */
+    align-self: center;
+}
+
+/* 6. Pastikan ikon chevron tidak ikut terpotong */
+#sidebar_materi .sidebar-link.has-sub {
+    overflow: visible;
+}
+
+/* 7. Submenu item: konsisten dan rapi */
+#sidebar_materi .sidebar-sublink {
+    line-height: 1.4;
+    white-space: normal;
+}
+
+/* 8. Mode collapsed tetap aman */
+#sidebar_materi.collapsed .sidebar-label {
+    white-space: nowrap !important;
+}
+
+/* 9. Hindari clipping akibat font descendant */
+#sidebar_materi .sidebar-link,
+#sidebar_materi .sidebar-sublink {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+/* ===== Tutorial Matriks (BERSIH & RAPI) ===== */
+
+/* Stack vertikal: baris di atas, kolom di bawah */
+.matrix-tutorial-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    margin: 30px 0;
+}
+
+/* Satu baris tutorial (tabel + info kanan) */
+.matrix-tutorial-box {
+    display: flex;
+    align-items: center; /* KUNCI: sejajarkan vertikal */
+    gap: 24px;
+}
+
+/* Tabel matriks */
+.matrix-html {
+    border-collapse: collapse;
+}
+
+/* Hilangkan garis tabel */
+.matrix-html.no-border td {
+    padding: 4px 10px; /* 🔽 lebih kecil */
+    font-size: 21px; /* samakan dengan MathJax */
+    line-height: 1.4; /* penting untuk tinggi baris */
+    text-align: center;
+    cursor: pointer;
+}
+
+/* Spasi sel agar mirip MathJax */
+.matrix-html td {
+    padding: 4px 10px;
+    font-size: 21px;
+    text-align: center;
+}
+
+/* Highlight baris */
+.matrix-html tr.active {
+    background-color: #d1f2eb;
+    /* outline: 3px solid #c1856d; */
+    outline-offset: -2px;
+}
+
+/* === BOLD ANGKA SAAT BARIS AKTIF (SAMAKAN DENGAN KOLOM) === */
+.matrix-html tr.active td {
+    font-weight: 700;
+    animation: matrixActiveFocus 0.4s ease-out;
+}
+
+/* Highlight kolom */
+.column-tutorial td.active-col {
+    background-color: #ffff00;
+    outline-offset: -2px;
+
+    animation: matrixActiveFocus 0.4s ease-out;
+    font-weight: 700;
+}
+/* Highlight baris */
+.matrix-html-transpos tr.active {
+    background-color: #d1f2eb;
+    /* outline: 3px solid #c1856d; */
+    outline-offset: -2px;
+}
+
+.matrix-html-transpos {
+    border-collapse: collapse;
+}
+
+/* Hilangkan garis tabel */
+.matrix-html-transpos.no-border td {
+    padding: 4px 10px; /* 🔽 lebih kecil */
+    font-size: 21px; /* samakan dengan MathJax */
+    line-height: 1.4; /* penting untuk tinggi baris */
+    text-align: center;
+    cursor: pointer;
+}
+
+/* Spasi sel agar mirip MathJax */
+.matrix-html-transpos td {
+    padding: 4px 10px;
+    font-size: 21px;
+    text-align: center;
+}
+
+/* Kotak info (KANAN) */
+.row-info {
+    min-width: 140px; /* ⬅️ ini penting agar sejajar */
+    min-height: 44px;
+    background: #e6cfa9;
+    border-left: 6px solid #9a3f3f;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-weight: 700;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===== Elemen-elemen Matriks ===== */
+.elemen-matriks-box {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin: 20px 0;
+}
+
+.elemen-matriks-box ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin: 0;
+}
+
+.elemen-matriks-box li {
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+/* ===== Elemen Matriks Interaktif ===== */
+.matrix-interactive-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin: 30px 0;
+}
+
+/* MathJax tetap rapi */
+.mathjax-matrix {
+    font-size: 22px;
+}
+
+/* Overlay transparan */
+.matrix-click-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-collapse: collapse;
+    pointer-events: auto;
+}
+
+.matrix-click-overlay td {
+    padding: 6px 14px; /* 🔥 IKUTI spacing MathJax */
+    text-align: center;
+    cursor: pointer;
+    color: transparent; /* angka tidak terlihat */
+    line-height: 1.4; /* 🔥 SAMA dengan MathJax */
+}
+
+.matrix-click-overlay td:hover,
+.matrix-click-overlay td.active {
+    background: rgba(255, 193, 7, 0.35);
+    border-radius: 6px;
+    animation: matrixActiveFocus 0.4s ease-out;
+}
+
+/* Kotak info */
+.matrix-info-box {
+    margin: 15px auto;
+    width: fit-content;
+    padding: 10px 16px;
+    background: #fbf9d1;
+    border-left: 6px solid #9a3f3f;
+    border-radius: 6px;
+    font-weight: 700;
+    color: #9a3f3f;
+    text-align: center;
+}
+
+.matrix-interactive-box {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+.matrix-bracket {
+    font-size: 80px;
+    line-height: 1;
+    user-select: none;
+}
+
+.matrix-interactive {
+    border-collapse: collapse;
+}
+
+.matrix-interactive td {
+    /* PERKECIL */
+    border: none; /* ⛔ hilangkan garis kotak */
+    padding: 4px 10px; /* 🔽 lebih kecil */
+    font-size: 21px; /* samakan dengan MathJax */
+    line-height: 1.4; /* penting untuk tinggi baris */
+    text-align: center;
+    cursor: pointer;
+}
+
+.matrix-interactive td.active {
+    background-color: #e6cfa9;
+    outline: 3px solid #9a3f3f;
+    outline-offset: -3px;
+
+    animation: matrixActiveFocus 0.4s ease-out; /* ⬅️ DIPERLAMBAT */
+    font-weight: 700;
+}
+
+.matrix-info {
+    background: #e6cfa9;
+    border-left: 6px solid #9a3f3f;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-weight: 700;
+    min-width: 210px;
+    margin-left: 12px;
+}
+
+.matrix-hybrid-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.math-bracket {
+    font-size: 86px; /* konsisten */
+    line-height: 1;
+    margin: 0 -10px; /* ⬅️ Rapat ke matriks */
+    user-select: none;
+}
+
+.matrix-instruction {
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #6b4b3e;
+}
+
+.matrix-label {
+    font-size: 22px;
+    font-weight: 700;
+    margin-right: 6px; /* ⬅️ SATU-SATUNYA jarak */
+    display: flex;
+    align-items: center;
+    user-select: none;
+}
+
+.mathjax-label {
+    font-size: 22px; /* samakan dengan ukuran matriks */
+    margin-right: 4px; /* jarak dekat ke kurung siku */
+    display: flex;
+    align-items: center;
+}
+
+.matrix-frame {
+    display: inline-flex;
+    align-items: center;
+    gap: 0; /* ⬅️ JANGAN pakai gap */
+}
+
+.matrix-html,
+.matrix-interactive {
+    border-collapse: collapse;
+}
+
+.matrix-html td,
+.matrix-interactive td {
+    padding: 4px 10px;
+    font-size: 21px;
+    line-height: 1.35;
+    text-align: center;
+    border: none;
+}
+/* =================================================
+   MARI MENCOBA 2 (FINAL & BERSIH)
+================================================= */
+
+/* Container sebagai acuan posisi judul */
+#mari-mencoba-2 .quiz-container {
+    position: relative;
+}
+
+/* Area soal */
+#mari-mencoba-2 .quiz-question {
+    margin-top: 18px;
+}
+
+/* ================= INPUT ================= */
+
+/* input panjang */
+/* input default (pendek) */
+#mari-mencoba-2 .quiz-input {
+    width: 140px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    background: #c98c7b;
+    color: #2b1d18;
+    font-size: 15px;
+    border: 1px solid #9a3f3f;
+}
+
+/* input kecil (ordo) */
+#mari-mencoba-2 .quiz-input.small {
+    width: 70px;
+    text-align: center;
+    padding: 6px 8px;
+}
+
+/* wrapper ordo */
+#mari-mencoba-2 .ordo-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 12px 0;
+}
+
+/* ================= TOMBOL ================= */
+
+/* tombol periksa & reset */
+#mari-mencoba-2 .quiz-buttons button {
+    font-family: inherit;
+    /* font-size: 15px; */
+    font-weight: 600;
+    letter-spacing: 0.2px;
+
+    padding: 8px 16px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+
+    transition:
+        background-color 0.25s ease,
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+/* periksa */
+#btn-periksa-2 {
+    background-color: #4e73df;
+    color: #fff;
+}
+#btn-periksa-2:hover {
+    background-color: #375ac8;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(13, 110, 253, 0.35);
+}
+
+/* reset */
+#btn-reset-2 {
+    background-color: #dc3545;
+    color: #fff;
+}
+#btn-reset-2:hover {
+    background-color: #b02a37;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(220, 53, 69, 0.35);
+}
+
+/* ================= NAV ================= */
+
+/* tombol berikutnya (kanan) */
+#mari-mencoba-2 .quiz-nav {
+    margin-top: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#mari-mencoba-2 .quiz-nav button {
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+
+    min-width: 120px;
+    padding: 8px 14px;
+    border-radius: 10px;
+    border: 2px solid #9a3f3f;
+    background: #fff;
+    color: #9a3f3f;
+    cursor: pointer;
+}
+
+#mari-mencoba-2 .quiz-nav button:hover {
+    background: #e3ae9a;
+    transform: translateY(-2px);
+}
+
+#hasil-jawaban-2 {
+    margin-top: 12px;
+    font-weight: 700;
+}
+
+/* ===== TABEL DATA SISWA (PUTIH & TENGAH) ===== */
+#mari-mencoba-2 table.data-siswa {
+    border-collapse: collapse;
+    margin: 16px auto; /* ⬅️ TENGAH */
+    background: #ffffff;
+    width: 480px; /* ⬅️ FIX WIDTH */
+    table-layout: fixed; /* ⬅️ KUNCI kolom sama */
+}
+
+#mari-mencoba-2 table.data-siswa th,
+#mari-mencoba-2 table.data-siswa td {
+    border: 1px solid #333;
+    padding: 8px 12px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 14px;
+    width: 33.33%;
+}
+
+#mari-mencoba-2 table.data-siswa th {
+    font-weight: 700;
+}
+
+/* ================= INPUT MATRIX (SAMA DENGAN SOAL 3) ================= */
+
+#mari-mencoba-2 .matrix-input {
+    display: inline-flex;
+    align-items: stretch; /* ⬅️ WAJIB agar kurung ikut tinggi grid */
+    gap: 6px;
+    margin: 10px 0;
+}
+
+/* GRID MATRIX */
+#mari-mencoba-2 .matrix-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 56px);
+    gap: 8px;
+}
+
+/* INPUT */
+#mari-mencoba-2 .matrix-grid input {
+    width: 56px;
+    height: 32px;
+    text-align: center;
+    border-radius: 6px;
+    border: 1px solid #9a3f3f;
+    font-size: 14px;
+    padding: 0;
+}
+
+/* ================= KURUNG MATRIX ================= */
+
+#mari-mencoba-2 .matrix-bracket {
+    width: 10px;
+    position: relative;
+}
+
+/* KIRI */
+#mari-mencoba-2 .matrix-bracket.left {
+    border-left: 3px solid #2b1d18;
+}
+
+/* KANAN */
+#mari-mencoba-2 .matrix-bracket.right {
+    border-right: 3px solid #2b1d18;
+}
+
+/* UJUNG ATAS & BAWAH */
+#mari-mencoba-2 .matrix-bracket::before,
+#mari-mencoba-2 .matrix-bracket::after {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 3px;
+    background: #2b1d18;
+}
+
+/* kiri */
+#mari-mencoba-2 .matrix-bracket.left::before {
+    top: 0;
+    left: 0;
+}
+#mari-mencoba-2 .matrix-bracket.left::after {
+    bottom: 0;
+    left: 0;
+}
+
+/* kanan */
+#mari-mencoba-2 .matrix-bracket.right::before {
+    top: 0;
+    right: 0;
+}
+#mari-mencoba-2 .matrix-bracket.right::after {
+    bottom: 0;
+    right: 0;
+}
+
+.tabel-soal {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 6px 0;
+}
+
+.tabel-soal th,
+.tabel-soal td {
+    border: 1px solid #333;
+    padding: 6px 8px; /* ⬅️ tambah dikit */
+    text-align: center;
+    line-height: 1.3; /* ⬅️ lebih lega */
+    font-size: 14px; /* ⬅️ naik sedikit */
+}
+
+/* .drop-box {
+    min-width: 80px;
+    min-height: 28px;
+    border: 2px dashed #555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+} */
+
+.opsi-jawaban {
+    display: flex;
+    gap: 14px;
+    margin-top: 10px;
+}
+
+/* kotak hijau */
+.opsi {
+    width: 60px;
+    height: 32px;
+    background: #5aa14f;
+    color: #fff;
+    border-radius: 6px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 700;
+    cursor: grab;
+    user-select: none;
+}
+
+/* drop box (SAMA UKURAN) */
+.drop-box {
+    width: 60px;
+    height: 32px;
+    border: 2px dashed #555;
+    border-radius: 6px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 700;
+}
+
+.drop-box {
+    width: 60px;
+    height: 32px;
+    border: 2px dashed #555;
+    border-radius: 6px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.drop-box .opsi {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+/* tengah-kan isi kolom jawaban */
+.tabel-soal td:last-child {
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* drop-box tetap rapi di tengah */
+.drop-box {
+    margin: 0 auto;
+}
+
+.drop-box {
+    width: 70px;
+    height: 36px;
+    border: 2px dashed #999;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.opsi {
+    background: #5cb85c;
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: grab;
+    user-select: none;
+}
+
+/* ===== PROGRESS BAR QUIZ ===== */
+.quiz-progress-wrapper {
+    margin-top: 20px; /* ⬅️ JARAK KE ATAS (HEADER "Mari Mencoba") */
+    margin-bottom: 10px; /* ⬅️ JARAK KE BAWAH (ke soal) */
+}
+
+.quiz-progress-text {
+    margin-top: 25px; /* ⬅️ IDEAL */
+    font-weight: 600;
+    margin-bottom: 30px;
+    font-size: 13px;
+    color: #555;
+    text-align: left;
+}
+
+/* bar utama */
+.quiz-progress-bar {
+    width: 100%;
+    height: 10px;
+    background-color: #e6e6e6;
+    border-radius: 6px;
+    overflow: visible;
+    position: relative;
+}
+
+/* bagian terisi */
+.quiz-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #4facfe, #00f2fe);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 6px;
+    transition: width 0.4s ease;
+}
+
+/* bintang di dalam bar */
+.progress-star {
+    font-size: 20px;
+    line-height: 1;
+    filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.25));
+}
+
+/* ⭐ BINTANG */
+.quiz-progress-star {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    transform: translate(-50%, -50%); /* ⬅️ TENGAH BENAR */
+    font-size: 22px;
+    z-index: 5;
+    pointer-events: none;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+    transition: left 0.4s ease;
+}
+
+/* ===============================
+   OPSI JAWABAN (DRAG & DROP)
+================================ */
+
+.opsi-jawaban-1 {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap; /* biar turun ke baris bawah */
+    justify-content: center; /* rapi di tengah */
+}
+
+.opsi1 {
+    min-width: 180px;
+    padding: 10px 18px;
+
+    text-align: center;
+    font-size: 14px;
+    white-space: nowrap;
+
+    background: #16a34a;
+    color: #fff;
+    border-radius: 10px;
+    cursor: grab;
+}
+
+/* ===============================
+   DROP BOX (FIX LEBAR)
+================================ */
+
+.drop-box1 {
+    display: inline-flex;
+    width: 185px; /* ⬅️ UKURAN FINAL */
+    height: 45px;
+
+    padding: 3px;
+    box-sizing: border-box;
+
+    border: 2px dashed #94a3b8;
+    border-radius: 8px;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #fff;
+}
+
+/* OPSI SAAT SUDAH MASUK DROP-BOX */
+.drop-box1 .opsi1 {
+    min-width: 180px; /* ⬅️ JANGAN auto */
+    width: 180px; /* ⬅️ KUNCI RINGAN */
+    padding: 10px 14px; /* supaya pas kotak opsinya saat diletakkan */
+
+    font-size: 13px;
+    cursor: default;
+}
+
+/* ===============================
+   TEKS PETUNJUK DI DROP-BOX
+================================ */
+
+/* teks default */
+.drop-box1::before {
+    content: "Tarik jawaban ke sini";
+    font-size: 12px;
+    color: #94a3b8;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+/* saat sudah ada opsi di dalam drop-box */
+.drop-box1:has(.opsi1)::before {
+    content: "";
+}
+
+/* Wrapper */
+.quiz-link-wrapper {
+    max-width: 860px;
+    margin: 40px auto;
+}
+
+/* Card utama (klik-able) */
+.quiz-link-card {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    background: linear-gradient(135deg, var(--c2), var(--c3));
+    border-radius: 60px;
+    padding: 14px 28px 14px 14px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    transition: all 0.3s ease;
+    border: 2px solid var(--c1);
+}
+
+/* Hover efek */
+.quiz-link-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.18);
+    background: linear-gradient(135deg, var(--c3), var(--c4));
+}
+
+/* Ikon bulat kiri */
+.quiz-link-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--c1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--c4);
+    font-size: 1.5rem;
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+/* Teks */
+.quiz-link-text {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fbf9d1; /* warna awal */
+    letter-spacing: 0.3px;
+    transition: color 0.3s ease;
+}
+
+.quiz-link-card:hover .quiz-link-text {
+    color: #9a3f3f; /* warna saat hover */
+}
+
+/* Responsif */
+@media (max-width: 576px) {
+    .quiz-link-text {
+        font-size: 1rem;
+    }
+}
+
+.refleksi-hint {
+    color: #9a3f3f;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.materi-slide {
+    display: none;
+    animation: fadeSlide 0.4s ease;
+}
+
+.materi-slide.active {
+    display: block;
+}
+
+@keyframes fadeSlide {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.page-section {
+    display: none;
+}
+
+/* ===== MODE SLIDE (WAJIB) ===== */
+#materi-slide-wrapper {
+    min-height: 100vh;
+}
+
+/* hanya slide yang boleh tampil */
+.materi-slide {
+    display: none;
+}
+
+.materi-slide.active {
+    display: block;
+}
+
+/* NONAKTIFKAN SCROLL KONTEN */
+.main-content {
+    overflow: hidden;
+}
+
+.slide-nav {
+    display: flex;
+    justify-content: space-between; /* kiri & kanan */
+    align-items: center;
+    padding: 0 8px;
+}
+
+/* ===== SLIDE INDICATOR ===== */
+.slide-indicator-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+.slide-indicator {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap; /* supaya turun baris */
+    justify-content: center; /* tetap di tengah */
+    max-width: 100%;
+}
+
+.slide-indicator span {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: #e8e1c7;
+    color: #333;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.slide-indicator span:hover {
+    background: #d6c89a;
+}
+
+.slide-indicator span.active {
+    background: #0d6efd;
+    color: #fff;
+}
+
+@keyframes matrixActiveFocus {
+    0% {
+        transform: scale(0.98);
+        opacity: 0.85;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.matrix-html td,
+.column-tutorial td,
+.matrix-click-overlay td,
+.matrix-interactive td {
+    transition:
+        background-color 0.3s ease,
+        outline 0.3s ease,
+        transform 0.3s ease,
+        opacity 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .matrix-interactive td.active,
+    .column-tutorial td.active-col,
+    .matrix-click-overlay td.active {
+        animation: none;
+    }
+}
+
+/* =====================================================
+   FIX INPUT TERLALU PANJANG — MARI MENCOBA 2 (FINAL FIX)
+===================================================== */
+
+/* input default */
+[data-section="mari-mencoba-2"] .quiz-input {
+    width: auto !important;
+    max-width: none !important;
+    min-width: unset !important;
+
+    display: inline-block !important;
+    vertical-align: middle;
+}
+
+/* input kecil (ordo & elemen matriks) */
+[data-section="mari-mencoba-2"] .quiz-input.small {
+    width: 70px !important;
+    min-width: 70px !important;
+    max-width: 70px !important;
+
+    padding: 6px 8px;
+    text-align: center;
+}
+
+/* hanya baris ordo (BUKAN semua div!) */
+[data-section="mari-mencoba-2"] .ordo-input {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* =====================================================
+   TABEL DATA SISWA — MARI MENCOBA NO 2 (CENTERED)
+===================================================== */
+
+[data-section="mari-mencoba-2"] .data-siswa {
+    border-collapse: collapse;
+    margin: 14px auto 16px auto; /* ⬅️ INI KUNCI */
+    width: fit-content;
+    background: #fffdf6;
+    font-size: 15px;
+}
+
+[data-section="mari-mencoba-2"] .data-siswa th,
+[data-section="mari-mencoba-2"] .data-siswa td {
+    border: 1.5px solid #c9b9a6;
+    padding: 8px 14px;
+    text-align: center;
+}
+
+[data-section="mari-mencoba-2"] .data-siswa th {
+    background-color: #f3e6cf;
+    font-weight: 700;
+}
+
+[data-section="mari-mencoba-2"] .data-siswa td:first-child {
+    font-weight: 600;
+    background-color: #faf3e3;
+}
+
+/* =====================================================
+   MATRIX INPUT — MARI MENCOBA 2 NO 2 (GRID 3x2)
+===================================================== */
+
+[data-section="mari-mencoba-2"] .matrix-input-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 14px 0 18px;
+}
+
+[data-section="mari-mencoba-2"] .matrix-bracket {
+    font-size: 28px;
+    font-weight: 700;
+    color: #9a3f3f;
+}
+
+[data-section="mari-mencoba-2"] .matrix-grid-3x2 {
+    display: grid;
+    grid-template-columns: repeat(2, 60px);
+    grid-template-rows: repeat(3, 46px);
+    gap: 8px;
+}
+
+[data-section="mari-mencoba-2"] .matrix-grid-3x2 input {
+    width: 60px;
+    height: 46px;
+    border-radius: 8px;
+    border: 1.5px solid #9a3f3f;
+    background: #fffdf6;
+    text-align: center;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+/* =====================================================
+   🔥 FIX TOTAL MATRIX INPUT — MARI MENCOBA 2
+   (ANTI BENTROK DENGAN CSS LAIN)
+===================================================== */
+
+[data-section="mari-mencoba-2"] .matrix-input {
+    display: inline-flex;
+    align-items: stretch;
+    gap: 6px;
+    margin: 14px 0;
+}
+
+/* GRID 3x2 */
+[data-section="mari-mencoba-2"] .matrix-input .matrix-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 56px);
+    gap: 8px;
+}
+
+/* INPUT */
+[data-section="mari-mencoba-2"] .matrix-input .matrix-grid input {
+    width: 56px;
+    height: 32px;
+    text-align: center;
+    border-radius: 6px;
+    border: 1px solid #9a3f3f;
+    font-size: 14px;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== KURUNG MATRIX (PAKSA OVERRIDE) ===== */
+[data-section="mari-mencoba-2"] .matrix-input .matrix-bracket {
+    width: 10px !important;
+    font-size: 0 !important; /* ⬅️ MATIKAN MODE FONT */
+    line-height: 0 !important;
+    position: relative !important;
+}
+
+/* kiri */
+[data-section="mari-mencoba-2"] .matrix-input .matrix-bracket.left {
+    border-left: 3px solid #2b1d18;
+}
+
+/* kanan */
+[data-section="mari-mencoba-2"] .matrix-input .matrix-bracket.right {
+    border-right: 3px solid #2b1d18;
+}
+
+/* ujung atas & bawah */
+[data-section="mari-mencoba-2"] .matrix-input .matrix-bracket::before,
+[data-section="mari-mencoba-2"] .matrix-input .matrix-bracket::after {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 3px;
+    background: #2b1d18;
+}
+
+/* kiri */
+[data-section="mari-mencoba-2"] .matrix-input .matrix-bracket.left::before {
+    top: 0;
+    left: 0;
+}
+[data-section="mari-mencoba-2"] .matrix-input .matrix-bracket.left::after {
+    bottom: 0;
+    left: 0;
+}
+
+/* kanan */
+[data-section="mari-mencoba-2"] .matrix-input .matrix-bracket.right::before {
+    top: 0;
+    right: 0;
+}
+[data-section="mari-mencoba-2"] .matrix-input .matrix-bracket.right::after {
+    bottom: 0;
+    right: 0;
+}
+/* =====================================================
+   MATRIX DI TENGAH — ORDO TETAP DI BAWAH
+===================================================== */
+
+/* wrapper utama tetap kolom */
+[data-section="mari-mencoba-2"] {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* teks & ordo tetap kiri */
+}
+
+[data-section="mari-mencoba-2"] .matrix-input {
+    display: inline-flex; /* biarkan */
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* ordo tetap normal di bawah */
+[data-section="mari-mencoba-2"] .ordo-input {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* =====================================================
+   🔥 CENTER MATRIX INPUT (FIX STRUKTURAL)
+===================================================== */
+
+/* quiz-question jadi konteks center */
+
+/* matrix tetap inline */
+[data-section="mari-mencoba-2"] .matrix-input {
+    display: inline-flex;
+}
+
+/* ordo KEMBALIKAN ke kiri */
+[data-section="mari-mencoba-2"] .ordo-input {
+    text-align: left;
+    justify-content: flex-start;
+}
+
+/* =====================================================
+   🔥 CENTER MATRIX — FINAL, ANTI KONFLIK
+===================================================== */
+
+/* jadikan area soal sebagai acuan posisi */
+#mari-mencoba-2 .quiz-question {
+    position: relative;
+}
+
+#mari-mencoba-2 .matrix-input {
+    display: block !important; /* ⬅️ UBAH DARI inline-flex */
+    width: fit-content !important; /* lebar mengikuti isi */
+    margin: 16px auto !important; /* ⬅️ CENTER SECARA SAH */
+}
+
+/* =================================
+   MATRIX CENTER — FINAL FIX
+================================= */
+
+.matrix-center {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 16px 0;
+}
+
+.matrix-center .matrix-input {
+    display: inline-flex;
+}
+
+/* ⛔ SEMBUNYIKAN SEMUA QUIZ SECARA GLOBAL */
+.quiz-wrapper {
+    display: none !important;
+}
+
+/* ✅ TAMPILKAN QUIZ HANYA SAAT SLIDE AKTIF */
+.materi-slide.active .quiz-wrapper {
+    display: flex !important;
+}
+
+/* =====================================================
+   FIX DOUBLE TOMBOL NAVIGASI SLIDE (FINAL)
+===================================================== */
+
+/* ❌ SEMBUNYIKAN SEMUA slide-nav SECARA GLOBAL */
+.slide-nav {
+    display: none !important;
+}
+
+/* ✅ TAMPILKAN slide-nav HANYA YANG ADA DI DALAM SLIDE AKTIF */
+.materi-slide.active .slide-nav {
+    display: flex !important;
+}
+.materi-slide:first-child .slide-nav button:first-child {
+    display: none !important;
+}
+.matrix-cell-wrapper {
+    position: relative;
+}
+
+.matrix-cell-wrapper .math-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    font-size: 14px;
+    color: #6b4b3e;
+    transition: opacity 0.2s ease;
+}
+
+/* 🔥 HILANG SAAT ADA ISI */
+.matrix-cell-wrapper input:not(:placeholder-shown) ~ .math-label {
+    opacity: 0;
+}
+
+/* ================= POPUP QUIZ (ENHANCED) ================= */
+.quiz-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.quiz-modal.hidden {
+    display: none;
+    pointer-events: none;
+}
+
+/* CARD */
+.quiz-modal-box {
+    background: linear-gradient(145deg, #ffffff, #f8fafc);
+    padding: 28px 30px 26px;
+    border-radius: 18px;
+    max-width: 420px;
+    width: 92%;
+    text-align: center;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+
+    animation: modalEnter 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* MESSAGE */
+.quiz-modal-message {
+    font-size: 16px;
+    color: #1f2937;
+    line-height: 1.6;
+    margin-top: 4px;
+}
+
+/* Emoji / Icon besar di atas */
+/* .quiz-modal-message::before {
+    content: "🎉";
+    display: block;
+    font-size: 48px;
+    margin-bottom: 10px;
+} */
+
+/* Score badge */
+.quiz-modal-message b {
+    display: inline-block;
+    background: linear-gradient(90deg, #4facfe, #00f2fe);
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 14px;
+    margin-top: 6px;
+}
+
+/* BUTTON */
+.quiz-modal-btn {
+    margin-top: 22px;
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: #fff;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+    transition: all 0.25s ease;
+}
+
+.quiz-modal-btn:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 14px 30px rgba(37, 99, 235, 0.55);
+}
+
+.quiz-modal-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.quiz-modal-icon {
+    font-size: 56px; /* emoji besar */
+    margin-bottom: 14px; /* jarak ke teks */
+    line-height: 1;
+    animation: pop 0.5s ease-out;
+}
+
+/* efek sedikit "pop" */
+@keyframes pop {
+    0% {
+        transform: scale(0.6);
+        opacity: 0;
+    }
+    70% {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+/* ===============================
+   FIX FINAL MATRIX INPUT (SOAL 3)
+=============================== */
+.matrix-cell {
+    width: 80px !important;
+    height: 40px;
+    padding: 6px 8px;
+
+    border-radius: 6px;
+    border: 2px solid #9a3f3f;
+    background: #fff;
+
+    text-align: center;
+    font-weight: 600;
+    font-size: 14px;
+
+    box-sizing: border-box;
+}
+
+.quiz-input.small {
+    width: 55px; /* kecil */
+    padding: 4px;
+    font-size: 15px;
+    text-align: center;
+}
+.quiz-buttons button {
+    background-color: #0d6efd;
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.quiz-buttons button:hover {
+    background-color: #0b5ed7;
+}
+
+.repeat-msg {
+    margin-top: 6px;
+    font-size: 14px;
+    color: #dc3545;
+    text-align: center;
+}
+.feedback-success {
+    color: #198754; /* hijau */
+    font-weight: 600;
+}
+
+.feedback-error {
+    color: #dc3545; /* merah */
+    font-weight: 600;
+}
+#row-repeat button,
+#col-repeat button {
+    background-color: transparent;
+    color: #0d6efd;
+    border: 2px solid #0d6efd;
+    font-weight: 600;
+    transition: all 0.25s ease;
+}
+
+#row-repeat button:hover,
+#col-repeat button:hover {
+    background-color: rgba(13, 110, 253, 0.08);
+}
+
+/* Highlight kolom untuk Matriks A */
+.column-tutorial-A td.active-col {
+    background-color: #ffff00;
+    font-weight: 700;
+    animation: matrixActiveFocus 0.4s ease-out;
+}
+
+#row-repeat-A button,
+#col-repeat-A button {
+    background-color: transparent;
+    color: #0d6efd;
+    border: 2px solid #0d6efd;
+    font-weight: 600;
+    transition: all 0.25s ease;
+}
+
+#row-repeat-A button:hover,
+#col-repeat-A button:hover {
+    background-color: rgba(13, 110, 253, 0.08);
+}
+
+.matrix-fill-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px 30px;
+    margin: 25px 0;
+
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Paksa tinggi setiap elemen sama */
+/* Pastikan tidak ada gap memecah a dan sub */
+.fill-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Jadikan a11 satu unit */
+.matrix-index {
+    display: inline-flex;
+    align-items: baseline;
+}
+
+.matrix-index sub {
+    font-size: 0.75em;
+    line-height: 1;
+    margin-left: 0.5px; /* tambahkan jarak tipis */
+}
+
+/* Hilangkan jarak antara a dan sub */
+
+/* Naikkan sedikit input agar sejajar bullet */
+.quiz-input.small {
+    position: relative;
+    top: -2px;
+}
+
+/* Pastikan a dan sub dianggap satu kesatuan */
+.fill-item sub,
+.fill-item span {
+    display: inline;
+}
+
+/* ///////////////////////////////////////////////// */
+
+#mari-mencoba-2 .jawab-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+}
+.matrix-row-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+}
+
+#nama-matriks {
+    width: 60px;
+    text-align: center;
+}
+
+.matrix-equal {
+    font-weight: 700;
+    font-size: 18px;
+}
+#mari-mencoba-2 #nama-matriks {
+    width: 60px !important;
+    min-width: 60px !important;
+    max-width: 60px !important;
+    text-align: center;
+    margin-top: 0 !important;
+}
+/* =========================================
+   FIX CENTER NAMA MATRIX + MATRIX
+========================================= */
+
+#mari-mencoba-2 .matrix-center-row {
+    display: flex;
+    justify-content: center; /* ⬅️ CENTER SELURUH BLOK */
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin: 18px 0;
+}
+
+/* nama matrix + "=" */
+#mari-mencoba-2 .matrix-name {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ukuran input nama */
+#mari-mencoba-2 #nama-matriks {
+    width: 55px !important;
+    min-width: 55px !important;
+    max-width: 55px !important;
+    text-align: center;
+}
+/* ==========================================
+   FORCE CENTER MATRIX ROW (TANPA HAPUS FLEX PARENT)
+========================================== */
+
+[data-section="mari-mencoba-2"] .matrix-center-row {
+    align-self: center !important; /* 🔥 INI KUNCINYA */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: fit-content; /* ⬅️ jangan 100% */
+    margin: 20px auto;
+}
+
+/* =========================================
+   SOAL 5 — RAPIIIII
+========================================= */
+
+[data-section="mari-mencoba-2"] .matrix-input .matrix-grid {
+    grid-template-columns: repeat(2, 75px); /* lebih lebar */
+    gap: 18px 24px; /* jarak vertikal & horizontal */
+}
+
+[data-section="mari-mencoba-2"] .matrix-input .matrix-grid input {
+    width: 75px;
+    height: 40px;
+    border-radius: 8px;
+    border: 1.5px solid #9a3f3f;
+    text-align: center;
+    font-weight: 600;
+    font-size: 15px;
+    background: #fff;
+}
+
+/* biar kurung ikut tinggi grid */
+[data-section="mari-mencoba-2"] .matrix-input {
+    align-items: stretch;
+}
+.matrix-cell-wrapper {
+    position: relative;
+}
+
+.matrix-cell-wrapper input {
+    position: relative;
+    z-index: 2; /* 🔥 input di atas label */
+}
+
+.matrix-cell-wrapper .math-label {
+    z-index: 1; /* label di bawah input */
+    pointer-events: none; /* pastikan tidak blok klik */
+}
+/* =========================================
+   FIX TEXT INPUT SOAL 5 TIDAK TERLIHAT
+========================================= */
+
+[data-section="mari-mencoba-2"] .matrix-input .matrix-grid input {
+    background: #ffffff !important;
+    color: #2b1d18 !important; /* 🔥 teks jadi gelap */
+    caret-color: #2b1d18; /* warna kursor */
+}
+/* =========================================
+   SOAL 5 — TEXT NORMAL (TIDAK BOLD)
+========================================= */
+
+[data-section="mari-mencoba-2"] .matrix-input .matrix-grid input {
+    font-weight: 400 !important; /* normal */
+}
+
+/* ============================================================ */
+/* ===== DOT LOCK ===== */
+/* .slide-indicator span.locked {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* LOCK STATE */
+/* .sidebar-sublink.locked {
+    opacity: 0.6;
+    pointer-events: none;
+} */
+
+/* ICON LOCK */
+
+/* ===== LOCK ICON FIX FINAL ===== */
+/* 
+.sidebar-sublink.locked .lock-icon {
+    display: inline-block;
+    font-size: 11px;
+    margin-left: 6px;
+    line-height: 1;
+    vertical-align: middle;
+} */
+/* 
+.sidebar-sublink.locked {
+    opacity: 0.6;
+    pointer-events: none;
+} */
+/* ===============================
+   FIX LOCK ICON PERFECT ALIGN
+=============================== */
+
+/* #sidebar_materi .sidebar-sublink {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+} */
+
+/* #sidebar_materi .sidebar-sublink .lock-icon {
+    font-size: 12px;
+    line-height: 1;
+    flex-shrink: 0;
+} */
+
+/* #sidebar_materi .sidebar-sublink {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#sidebar_materi .sidebar-sublink .sublink-text {
+    flex: 1;
+}
+
+#sidebar_materi .sidebar-sublink .lock-icon {
+    font-size: 11px;
+    margin-left: 6px;
+    flex-shrink: 0;
+} */
+/* ===============================
+   LOCKED PAGE (BELUM TERBUKA)
+================================ */
+.slide-indicator span.locked {
+    background: #dcdcdc; /* abu muda */
+    color: #8a8a8a; /* angka abu */
+    cursor: not-allowed;
+}
+
+/* hilangkan efek hover untuk locked */
+.slide-indicator span.locked:hover {
+    background: #dcdcdc;
+}
+.slide-indicator span.locked {
+    background-color: #ccc;
+    color: #777;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.slide-indicator span.locked::after {
+    content: " 🔒";
+    font-size: 12px;
+}
+.slide-indicator span.locked-dot {
+    background: #ddd !important;
+    color: #999 !important;
+    cursor: not-allowed;
+    position: relative;
+}
+
+.slide-indicator span.locked-dot::after {
+    content: "🔒";
+    font-size: 10px;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+}
+
+/* ===============================
+   RESPONSIVE SLIDE INDICATOR
+================================ */
+
+@media (max-width: 768px) {
+    .slide-indicator span {
+        width: 32px;
+        height: 32px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .slide-indicator {
+        flex-wrap: nowrap; /* jadi satu baris */
+        overflow-x: auto; /* bisa digeser */
+        padding-bottom: 4px;
+    }
+
+    .slide-indicator span {
+        flex: 0 0 auto;
+    }
+}
+
+.chart-container {
+    width: 100%;
+    max-width: 900px; /* lebih besar */
+    margin: 30px auto;
+}
+
+.chart-container canvas {
+    width: 100% !important;
+    height: 350px !important;
+}
+
+.tabel-data-matriks {
+    border-collapse: collapse;
+    margin: 15px auto;
+    font-size: 16px;
+    min-width: 400px;
+}
+
+.tabel-data-matriks th,
+.tabel-data-matriks td {
+    border: none;
+    padding: 4px 18px;
+    text-align: center;
+}
+
+.tabel-data-matriks th {
+    font-weight: 700;
+}
+
+/* 🔥 membuat tahun bold */
+.tabel-data-matriks td:first-child {
+    font-weight: 700;
+}
+.cayley-wrapper {
+    display: flex;
+    align-items: center; /* 🔥 ini bikin teks jadi tengah */
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.cayley-image {
+    /* flex: 1; */
+    max-width: 280px;
+    flex: 0 0 280px;
+}
+
+.cayley-text {
+    flex: 1;
+    text-align: justify;
+}
+
+.cayley-image img {
+    width: 100%;
+    border-radius: 12px;
+}
+
+math-field {
+    width: 100% !important;
+    min-width: 220px; /* ⬅️ biar toolbar muat */
+    overflow: visible !important;
+    padding-right: 40px; /* ⬅️ kasih ruang ikon */
+    box-sizing: border-box;
+}
+
+.pemantik-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-top: 15px;
+}
+
+.pemantik-text {
+    flex: 1;
+    text-align: justify;
+}
+
+.pemantik-image {
+    flex: 0 0 380px;
+    text-align: center;
+}
+
+.pemantik-image img {
+    width: 100%;
+    border-radius: 12px;
+}
+
+/* ===============================
+   FIX RESPONSIVE PEMANTIK
+=============================== */
+@media (max-width: 768px) {
+    .pemantik-wrapper {
+        flex-direction: column; /* ⬅️ jadi atas-bawah */
+        align-items: stretch;
+        gap: 16px;
+    }
+
+    .pemantik-image {
+        flex: none; /* ⬅️ hapus fix width */
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .pemantik-image img {
+        width: 100%;
+        height: auto;
+    }
+
+    .pemantik-text {
+        width: 100%;
+    }
+}
+
+/* ===============================
+   PERBESAR FONT KONTEN
+=============================== */
+
+/* isi materi utama */
+.materi-paragraf p,
+.paragraf-indent {
+    font-size: 16px; /* dari ~16 → 18 */
+    line-height: 1.8;
+}
+
+/* pertanyaan pemantik */
+.pemantik-text {
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+/* list tujuan */
+.tujuan-list li {
+    font-size: 17px;
+}
+
+/* soal quiz */
+.quiz-question {
+    font-size: 18px;
+}
+
+/* opsi jawaban */
+.quiz-question label {
+    font-size: 17px;
+}
+
+/* ===============================
+   TABEL → MATRIKS (KONVERSI)
+=============================== */
+
+.matrix-convert-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin: 25px 0;
+    flex-wrap: wrap;
+}
+
+/* panah */
+.matrix-arrow {
+    font-size: 32px;
+    font-weight: bold;
+    color: #555;
+    margin-top: -16px;
+    /* transform: translateY(-6px); */
+}
+
+/* bagian matriks */
+.matrix-result {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* label */
+.matrix-label {
+    font-style: italic;
+    font-size: 18px;
+}
+
+/* bracket custom */
+.matrix-bracket-box {
+    display: flex;
+    align-items: stretch;
+}
+
+/* isi angka */
+.matrix-grid-text {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 18px;
+    text-align: center;
+}
+
+/* kurung kiri */
+.matrix-bracket-box .bracket.left {
+    border-left: 3px solid #000;
+    width: 10px;
+    position: relative;
+}
+
+/* kurung kanan */
+.matrix-bracket-box .bracket.right {
+    border-right: 3px solid #000;
+    width: 10px;
+    position: relative;
+}
+
+/* garis atas bawah */
+.matrix-bracket-box .bracket::before,
+.matrix-bracket-box .bracket::after {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 3px;
+    background: #000;
+}
+
+.matrix-bracket-box .bracket.left::before {
+    top: 0;
+    left: 0;
+}
+.matrix-bracket-box .bracket.left::after {
+    bottom: 0;
+    left: 0;
+}
+
+.matrix-bracket-box .bracket.right::before {
+    top: 0;
+    right: 0;
+}
+.matrix-bracket-box .bracket.right::after {
+    bottom: 0;
+    right: 0;
+}
+
+.quiz-input::placeholder {
+    color: #f5dcd0;
+    opacity: 1;
+}
+
+.matrix-cell::placeholder {
+    color: #aaa;
+    opacity: 1;
+}
+.matrix-convert-wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    margin: 25px 0;
+    flex-wrap: wrap;
+}
+
+/* kiri */
+.matrix-left {
+    flex: 0 0 auto;
+}
+
+/* kanan */
+.matrix-right {
+    flex: 1;
+    max-width: none; /* 🔥 HAPUS BATAS */
+    width: 100%; /* 🔥 BIAR FULL */
+    text-align: justify;
+    margin-top: 10px;
+}
+
+/* biar rapi */
+.matrix-right .math-matrix {
+    margin-top: 10px;
+}
+.matrix-convert-wrapper {
+    justify-content: flex-start; /* 🔥 kunci geser ke kiri */
+}
+
+.tabel-soal td {
+    vertical-align: middle;
+}
+.tabel-soal td:first-child {
+    padding: 4px 6px; /* ⬅️ kiri bener-bener rapat */
+}
+
+.tabel-soal tr {
+    height: auto;
+}
+
+/* FIX KHUSUS HALAMAN CAYLEY */
+@media (max-width: 992px) {
+    .cayley-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cayley-image {
+        flex: none !important;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .cayley-text {
+        width: 100%;
+        text-align: justify;
+    }
+}
+
+/* 🔥 WRAPPER KHUSUS MATRIX */
+.math-matrix,
+.matrix-display,
+.matrix-wrapper {
+    width: 100%;
+    overflow-x: auto; /* ⬅️ kunci responsive */
+    overflow-y: hidden;
+    text-align: center;
+}
+
+/* biar tetap rapi di tengah */
+.math-matrix mjx-container {
+    display: inline-block;
+    max-width: 100%;
+}
+
+/* ===============================
+   FIX RESPONSIVE MATRIX INTERAKTIF
+=============================== */
+@media (max-width: 768px) {
+    .matrix-interactive-box {
+        flex-direction: column; /* dari samping → atas bawah */
+        align-items: center;
+        gap: 12px;
+    }
+
+    .matrix-info {
+        width: 100%;
+        margin-left: 0;
+        text-align: center;
+    }
+}
+.matrix-interactive {
+    max-width: 100%;
+    overflow-x: auto;
+}
+@media (max-width: 768px) {
+    .matrix-interactive td {
+        font-size: 16px;
+        padding: 4px 8px;
+    }
+}
+@media (max-width: 768px) {
+    .matrix-interactive-box {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+    }
+}
+@media (max-width: 768px) {
+    .matrix-info {
+        min-width: unset !important; /* 🔥 INI PENTING */
+        width: 100%;
+        max-width: 100%;
+        text-align: center;
+        margin-left: 0;
+    }
+}
+.matrix-interactive {
+    display: block; /* 🔥 ubah dari table default */
+    max-width: 100%;
+    overflow-x: auto;
+}
+.matrix-hybrid-box {
+    flex-wrap: wrap; /* 🔥 penting */
+    justify-content: center;
+}
+@media (max-width: 768px) {
+    .elemen-matriks-box {
+        flex-direction: column; /* 🔥 dari samping → atas bawah */
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .elemen-matriks-box ul {
+        width: 100%;
+        padding-left: 20px;
+    }
+}
+.table-responsive-matrix {
+    width: 100%;
+    overflow-x: auto; /* 🔥 kunci utama */
+}
+
+#lockedPopup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.popup-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    width: 350px;
+}
+
+.popup-content .icon {
+    font-size: 40px;
+    color: #c1856d;
+}
+
+.popup-content button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #9a3f3f;
+    color: white;
+    border: none;
+    border-radius: 6px;
+}
+
+#lockedPopup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.popup-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    width: 350px;
+}
+
+/* ===============================
+   RESPONSIVE MARI MENCOBA (FIX HP)
+=============================== */
+
+/* tablet */
+@media (max-width: 768px) {
+    .matrix-fill-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+
+    .quiz-container {
+        width: 100% !important;
+        padding: 28px 20px;
+    }
+
+    .quiz-header {
+        font-size: 18px;
+        padding: 8px 24px;
+    }
+}
+
+/* HP kecil */
+@media (max-width: 480px) {
+    .matrix-fill-grid {
+        grid-template-columns: 1fr; /* 🔥 jadi 1 kolom */
+    }
+
+    .fill-item {
+        flex-wrap: wrap; /* biar tidak kepotong */
+        gap: 6px;
+    }
+
+    .quiz-input.small {
+        width: 60px !important;
+        font-size: 14px;
+    }
+
+    .quiz-question {
+        font-size: 15px;
+        line-height: 1.5;
+    }
+
+    .quiz-container {
+        padding: 24px 16px;
+    }
+}
+
+/* =========================
+   QUIZ BUTTON RESPONSIVE FIX
+========================= */
+
+/* default (desktop tetap) */
+.quiz-buttons button {
+    min-width: 150px;
+    padding: 10px 16px;
+    font-size: 14px;
+}
+
+.quiz-nav button {
+    min-width: 120px;
+    padding: 10px 14px;
+    font-size: 14px;
+}
+
+/* TABLET */
+@media (max-width: 768px) {
+    .quiz-buttons button {
+        min-width: 130px;
+        padding: 8px 14px;
+        font-size: 13px;
+    }
+
+    .quiz-nav button {
+        min-width: 110px;
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+}
+
+/* HP */
+@media (max-width: 576px) {
+    .quiz-buttons {
+        gap: 10px;
+    }
+
+    .quiz-buttons button {
+        min-width: 110px; /* ⬅️ KECIL */
+        padding: 7px 10px; /* ⬅️ KECIL */
+        font-size: 12px;
+        border-radius: 8px;
+    }
+
+    .quiz-nav button {
+        min-width: 100px;
+        padding: 7px 10px;
+        font-size: 12px;
+        border-radius: 8px;
+    }
+}
+
+/* HP kecil banget */
+@media (max-width: 400px) {
+    .quiz-buttons button {
+        min-width: 95px;
+        padding: 6px 8px;
+        font-size: 11px;
+    }
+
+    .quiz-nav button {
+        min-width: 90px;
+        padding: 6px 8px;
+        font-size: 11px;
+    }
+}
+/* =========================
+   FIX MATRIX RESPONSIVE (AMAN)
+========================= */
+
+/* JANGAN pecah isi matrix */
+.matrix-frame {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: nowrap; /* ⬅️ WAJIB */
+}
+
+/* YANG BOLEH RESPONSIVE HANYA LUARNYA */
+.matrix-tutorial-box {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* MOBILE: baru diturunkan */
+@media (max-width: 576px) {
+    .matrix-tutorial-box {
+        flex-direction: column; /* ⬅️ turunkan ke bawah */
+        align-items: center;
+        gap: 12px;
+    }
+
+    /* matrix tetap utuh */
+    .matrix-frame {
+        justify-content: center;
+    }
+
+    /* kecilkan isi matrix */
+    .matrix-html td {
+        font-size: 16px;
+        padding: 4px 6px;
+    }
+
+    /* kecilkan kurung */
+    .math-bracket {
+        font-size: 60px;
+    }
+
+    /* info box */
+    .row-info {
+        width: fit-content;
+        max-width: 100%;
+        font-size: 14px;
+        padding: 8px 12px;
+        text-align: center;
+    }
+}
+.materi-slide:first-child .slide-nav {
+    justify-content: flex-end !important;
+}

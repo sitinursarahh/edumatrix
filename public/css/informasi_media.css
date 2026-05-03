@@ -1,0 +1,197 @@
+/* Definisi palet warna */
+:root {
+    --c1: #9a3f3f; /* merah tua */
+    --c2: #c1856d; /* coklat muda */
+    --c3: #e6cfa9; /* pastel kuning */
+    --c4: #fbf9d1; /* pastel krem */
+}
+
+/* Reset default margin dan padding */
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} */
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+/* Gaya Umum untuk Body */
+/* body {
+    font-family: Arial, sans-serif;
+    background-color: var(--c4);
+    color: var(--c1);
+    line-height: 1.6;
+    margin: 20px;
+} */
+
+/* Kontainer utama */
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* Kotak div pertama untuk Media Info */
+.media-info-box {
+    background-color: var(
+        --c3
+    ); /* Gunakan pastel kuning sebagai latar belakang */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px;
+}
+
+/* Judul */
+.title {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--c1);
+    margin-bottom: 20px;
+}
+
+/* Penjelasan */
+.explanation {
+    font-size: 1.1rem;
+    color: var(--c1);
+    margin-bottom: 20px;
+}
+
+/* Sub-judul */
+.sub-title {
+    font-size: 1.5rem;
+    color: var(--c1);
+    margin-bottom: 10px;
+}
+
+/* Tujuan Pengembangan */
+.goals {
+    list-style-type: disc;
+    color: var(--c1);
+    margin-left: 20px;
+}
+
+.goals li {
+    margin-bottom: 10px;
+}
+
+/* Kotak div kedua untuk Biodata Pengembang dan Kontak */
+.developer-info-box {
+    background-color: var(--c3);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Foto Pengembang */
+.profile-photo-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid var(--c1);
+}
+
+/* Biodata Pengembang */
+.bio-details p {
+    margin-bottom: 10px;
+    color: var(--c1);
+}
+
+.bio-details strong {
+    margin-right: 10px;
+}
+
+/* Kontak */
+.contact h3 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: var(--c1);
+}
+
+.contact-details {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Ikon Kontak */
+.contact-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 50%;
+    text-decoration: none;
+    width: 80px;
+    height: 80px;
+    background-color: var(--c2); /* Warna background untuk ikon */
+    transition: background-color 0.3s ease;
+}
+
+.contact-icon i {
+    font-size: 30px;
+    color: white;
+}
+
+/* Efek Hover untuk ikon */
+.contact-icon:hover {
+    background-color: var(--c1); /* Ubah background pada hover */
+}
+
+/* Tombol Kembali (di kiri) */
+.btn-kembali {
+    float: left; /* POSISI DI KANAN */
+    background: #f7c94b;
+    color: #000;
+    font-weight: bold;
+    padding: 8px 18px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    transition: 0.2s;
+    margin-top: 20px;
+    margin-bottom: 15px; /* jarak bawah */
+}
+
+.btn-kembali:hover {
+    background: #f5bf2a;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+    transform: translateY(-2px);
+}
+
+.btn-kembali i {
+    margin-right: 6px;
+}
+
+/* Header Judul Halaman Informasi Media (diletakkan di dalam .main-content) */
+.info-media-header {
+    background: var(--c3); /* e6cfa9 */
+    padding: 15px 20px;
+    border-left: 10px solid var(--c1); /* 9a3f3f */
+    border-radius: 10px;
+    margin-bottom: 35px; /* berjarak dari wrapper di bawahnya */
+    /* jangan pakai margin-left/right besar yang membuat elemen jadi kolom tersendiri */
+}
+
+.info-media-header h1 {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--c1);
+}

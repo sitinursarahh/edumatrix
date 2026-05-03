@@ -1,0 +1,179 @@
+:root {
+    --c1: #9a3f3f;
+    --c2: #c1856d;
+    --c3: #e6cfa9;
+    --c4: #fbf9d1;
+}
+
+/* =========================
+   CONTAINER
+   ========================= */
+.kelola-container {
+    margin-top: 40px;
+}
+
+/* =========================
+   GRID MATERI
+   ========================= */
+.row-kelola {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+/* =========================
+   UJI KOMPETENSI (FIX UTAMA)
+   ========================= */
+.row-uji {
+    text-align: center; /* 🔥 bukan flex */
+    margin-top: 20px;
+}
+
+/* BOX UJI (ANTI MELEBAR TOTAL) */
+.box-uji {
+    display: inline-block; /* 🔥 kunci utama */
+
+    width: 500px;
+    max-width: 90%;
+
+    height: 110px;
+    line-height: 110px;
+
+    background-color: var(--c2);
+    color: #3a2a1a;
+
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 18px;
+
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+/* =========================
+   BOX MATERI
+   ========================= */
+.box-kelola {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    width: 100%;
+    min-height: 100px;
+    padding: 15px;
+
+    background-color: var(--c3);
+    color: #3a2a1a;
+
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+/* =========================
+   HOVER
+   ========================= */
+.box-kelola:hover {
+    background-color: var(--c1);
+    color: white;
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+.box-uji:hover {
+    background-color: var(--c1);
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* =========================
+   BUTTON KEMBALI
+   ========================= */
+.btn-kembali {
+    background: #f7c94b;
+    color: #000;
+    font-weight: bold;
+    padding: 8px 18px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    transition: 0.2s;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.btn-kembali:hover {
+    background: #f5bf2a;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+    transform: translateY(-2px);
+}
+
+.btn-kembali i {
+    margin-right: 6px;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+/* TABLET */
+@media (max-width: 992px) {
+    .row-kelola {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* HP */
+@media (max-width: 576px) {
+    .row-kelola {
+        grid-template-columns: 1fr;
+    }
+
+    .box-kelola {
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .box-uji {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        line-height: normal;
+        padding: 20px;
+        font-size: 16px;
+    }
+}
+/* =========================
+   DEFAULT (DESKTOP)
+   ========================= */
+.table-responsive-custom {
+    width: 100%;
+    overflow-x: visible; /* 🔥 penting */
+}
+
+.table-responsive-custom table {
+    width: 100%;
+}
+
+/* =========================
+   MOBILE / TABLET
+   ========================= */
+@media (max-width: 992px) {
+    .table-responsive-custom {
+        overflow-x: auto; /* 🔥 aktifkan scroll */
+    }
+
+    .table-responsive-custom table {
+        min-width: 800px; /* supaya bisa digeser */
+    }
+}

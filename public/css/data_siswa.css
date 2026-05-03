@@ -1,0 +1,509 @@
+:root {
+    --c1: #9a3f3f; /* merah tua */
+    --c2: #c1856d; /* coklat muda */
+    --c3: #e6cfa9; /* pastel kuning */
+    --c4: #fbf9d1; /* pastel krem */
+}
+
+/* Container */
+.filter-container {
+    background: var(--c4);
+    padding: 15px 20px;
+    border-radius: 10px;
+    border: 1px solid var(--c3);
+}
+
+/* Label */
+.filter-label {
+    font-weight: 600;
+    color: var(--c1);
+}
+
+/* Select */
+.filter-select {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--c2);
+    background-color: white;
+    outline: none;
+    transition: 0.3s;
+}
+
+.filter-select:focus {
+    border-color: var(--c1);
+    box-shadow: 0 0 0 2px rgba(154, 63, 63, 0.2);
+}
+
+/* Search */
+.search-input {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--c2);
+    width: 250px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.search-input:focus {
+    border-color: var(--c1);
+    box-shadow: 0 0 0 2px rgba(154, 63, 63, 0.2);
+}
+
+/* Table Header Override */
+.table-secondary {
+    background-color: var(--c2) !important;
+    color: white;
+}
+
+.search-wrapper {
+    position: relative;
+    width: 260px;
+}
+
+.search-wrapper .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    font-size: 14px;
+}
+
+.search-wrapper .search-input {
+    width: 100%;
+    padding: 8px 12px 8px 35px; /* padding kiri lebih besar */
+    border-radius: 8px;
+    border: 1px solid #9a3f3f;
+}
+.edit-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.nilai-input {
+    width: 120px;
+    text-align: center;
+    padding-right: 70px; /* 🔥 ruang BESAR untuk spinner + icon */
+    border-radius: 10px;
+    transition: 0.3s;
+}
+/* 🔥 paksa spinner geser ke kiri */
+.nilai-input::-webkit-inner-spin-button {
+    margin-right: 20px;
+}
+
+.nilai-input:focus {
+    border-color: #4e73df;
+    box-shadow: 0 0 5px rgba(78, 115, 223, 0.5);
+}
+
+.btn-edit {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: white; /* 🔥 kasih background biar nutup spinner */
+    padding: 2px 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #858796;
+    z-index: 3;
+}
+
+.btn-edit:hover {
+    color: #4e73df;
+}
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999; /* 🔥 penting */
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.popup-overlay.show {
+    opacity: 1;
+}
+
+.popup-content {
+    background: #fff;
+    padding: 25px 35px;
+    border-radius: 15px;
+    text-align: center;
+    transform: scale(0.7);
+    transition: 0.3s;
+}
+
+.popup-overlay.show .popup-content {
+    transform: scale(1);
+}
+
+.popup-content .icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.popup-content.success .icon {
+    color: #1cc88a;
+}
+
+.popup-content.error .icon {
+    color: #e74a3b;
+}
+/* ===== CHECKMARK STYLE ===== */
+
+.checkmark {
+    width: 60px;
+    height: 60px;
+    display: block;
+    margin: 0 auto 10px;
+
+    /* 🔥 FIX distorsi */
+    transform: none !important;
+}
+
+.checkmark-circle {
+    fill: none;
+    stroke: #1cc88a;
+    stroke-width: 3;
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    animation: circle 0.5s ease-out forwards;
+}
+
+.checkmark-check {
+    fill: none;
+    stroke: #1cc88a;
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    stroke-dasharray: 50;
+    stroke-dashoffset: 50;
+
+    animation: check 0.4s ease forwards;
+    animation-delay: 0.5s;
+}
+
+/* animasi */
+@keyframes circle {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes check {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* animasi lingkaran */
+@keyframes circleFill {
+    0% {
+        stroke-dashoffset: 166;
+        transform: scale(0.8);
+    }
+    100% {
+        stroke-dashoffset: 0;
+        transform: scale(1);
+    }
+}
+
+/* animasi centang */
+@keyframes checkDraw {
+    0% {
+        stroke-dashoffset: 48;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* 🔥 efek bounce kecil */
+.popup-content.success {
+    animation: bounceIn 0.4s ease;
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.7);
+    }
+    60% {
+        transform: scale(1.08);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.custom-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.6);
+
+    /* 🔥 INI YANG BIKIN TENGAH SEMPURNA */
+    align-items: center;
+    justify-content: center;
+}
+
+.custom-modal-content {
+    background: #ffffff;
+    width: 420px;
+
+    padding: 25px 25px 20px;
+    border-radius: 16px;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+
+    /* ❌ WAJIB DIHAPUS */
+    /* margin: 8% auto; */
+
+    animation: popIn 0.3s ease;
+}
+
+.modal-title {
+    font-weight: 700;
+    font-size: 20px;
+    color: #1f2937;
+}
+
+.input-custom {
+    border-radius: 10px;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    transition: 0.2s;
+}
+
+.input-custom:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+/* circle */
+.checkmark {
+    width: 80px;
+    height: 80px;
+    display: block;
+    margin: 0 auto;
+}
+
+.checkmark circle {
+    stroke: #22c55e;
+    stroke-width: 3;
+    fill: none;
+
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+
+    animation: circleDraw 0.5s ease-out forwards;
+}
+
+.checkmark path {
+    stroke: #22c55e;
+    stroke-width: 4;
+    fill: none;
+
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+
+    animation: checkDraw 0.4s ease forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes circleDraw {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes checkDraw {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.table-responsive-custom {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border-radius: 10px;
+}
+
+/* biar tidak pecah */
+/* default: TANPA SCROLL */
+.table-normal table {
+    width: 100%;
+}
+
+/* khusus tabel banyak kolom */
+.table-scroll {
+    overflow-x: auto;
+}
+
+.table-scroll table {
+    min-width: 1200px;
+}
+
+/* optional: scrollbar lebih halus */
+.table-responsive-custom::-webkit-scrollbar {
+    height: 8px;
+}
+
+.table-responsive-custom::-webkit-scrollbar-thumb {
+    background: #c1856d;
+    border-radius: 10px;
+}
+.table td {
+    white-space: nowrap;
+}
+.table td:nth-child(4),
+.table td:nth-child(5),
+.table td:nth-child(6),
+.table td:nth-child(7) {
+    white-space: normal;
+    max-width: 250px;
+}
+/* TRACK (background scroll) */
+.table-responsive-custom::-webkit-scrollbar-track {
+    background: #e6cfa9; /* 🔥 warna belakang (sesuaikan tema kamu) */
+    border-radius: 10px;
+}
+
+/* THUMB (yang digeser) */
+.table-responsive-custom::-webkit-scrollbar-thumb {
+    background: #c1856d;
+    border-radius: 10px;
+}
+
+/* optional hover biar hidup */
+.table-responsive-custom::-webkit-scrollbar-thumb:hover {
+    background: #9a3f3f;
+}
+/* HEADER TABLE FIX */
+.table th {
+    text-align: center;
+    vertical-align: middle !important; /* 🔥 ini yang bikin center vertical */
+    white-space: normal; /* biar bisa turun baris */
+    line-height: 1.5;
+    padding: 14px 10px;
+}
+
+/* khusus header panjang biar lebih enak dibaca */
+.table th {
+    max-width: 180px;
+}
+/* WRAPPER FILTER */
+.filter-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap; /* 🔥 BIAR TURUN */
+}
+
+/* SEARCH */
+.search-wrapper {
+    flex: 0 1 260px; /* 🔥 tidak boleh full lebar */
+    max-width: 300px;
+}
+
+/* BUTTON EXPORT */
+.export-wrapper {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+/* WRAPPER TABEL */
+.table-responsive-custom {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* TABLE NORMAL DESKTOP */
+.table {
+    width: 100%;
+}
+
+/* 🔥 HP MODE */
+@media (max-width: 768px) {
+    /* biar tidak gepeng */
+    .table-scroll table {
+        min-width: 900px; /* 🔥 jangan terlalu besar */
+    }
+
+    /* font kecil */
+    .table th,
+    .table td {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    /* header lebih rapi */
+    .table th {
+        line-height: 1.3;
+    }
+}
+.info-pemberitahuan-header h1 {
+    word-break: break-word;
+}
+
+/* HP */
+@media (max-width: 576px) {
+    .info-pemberitahuan-header h1 {
+        font-size: 18px;
+        text-align: center;
+    }
+}
+@media (max-width: 576px) {
+    .export-wrapper .btn {
+        width: 100%;
+    }
+}
+/* WRAPPER SCROLL */
+.table-responsive-custom {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* PAKSA LEBAR SUPAYA BISA GESER */
+.table-scroll table {
+    min-width: 900px;
+}
+
+/* BIAR TIDAK PECAH */
+.table td {
+    white-space: nowrap;
+}
+
+/* KOLOM PANJANG */
+.table td:nth-child(2), /* Nama */
+.table td:nth-child(4) {
+    /* Email */
+    white-space: normal;
+    max-width: 200px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    .table th,
+    .table td {
+        font-size: 12px;
+        padding: 8px;
+    }
+}

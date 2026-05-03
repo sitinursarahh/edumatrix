@@ -1,0 +1,274 @@
+.copy-btn {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+}
+
+.copy-btn i {
+    font-size: 16px;
+    color: #8c6f3f;
+    transition:
+        transform 0.2s ease,
+        color 0.2s ease;
+}
+
+/* 🔥 Hover hanya pada icon */
+.copy-btn:hover i {
+    color: #5a3e1b;
+    transform: scale(1.15);
+}
+.copy-toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #5a3e1b;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 9999;
+}
+
+.copy-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.token-box {
+    display: flex;
+    align-items: center;
+    padding: 6px 12px;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px dashed #c9b873;
+    position: relative;
+}
+
+/* Popup kecil di samping token */
+.copy-popup {
+    position: absolute;
+    left: 100%; /* Mulai dari ujung kanan token box */
+    margin-left: 12px; /* Jarak sedikit dari token */
+    top: 50%;
+    transform: translateY(-50%);
+    background: #5a3e1b;
+    color: #fff;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+}
+
+/* Saat muncul */
+.copy-popup.show {
+    opacity: 1;
+}
+
+.stat-card {
+    background: var(--c4);
+    border-radius: 20px;
+    padding: 18px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
+    height: 260px;
+    overflow: hidden;
+
+    display: flex; /* 🔥 penting */
+    flex-direction: column; /* 🔥 */
+    justify-content: center; /* 🔥 ini yang bikin tengah */
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+}
+
+.stat-card h6 {
+    color: var(--c1);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.stat-card h3 {
+    color: var(--c1);
+    font-size: 22px;
+}
+
+.stat-icon {
+    background: var(--c3);
+    color: var(--c1);
+    font-size: 28px;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.stat-icon.selesai {
+    background: var(--c2);
+    color: #fff;
+}
+
+.activity-card {
+    background: var(--c4);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.activity-card h5 {
+    color: var(--c1);
+    font-weight: 600;
+}
+
+.activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.activity-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 12px 18px;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+}
+
+/* .activity-item:hover {
+    transform: translateX(4px);
+    background: var(--c3);
+} */
+
+.activity-time {
+    font-size: 13px;
+    color: #7a5c3a;
+}
+
+/* ================================================================== */
+/* 🔥 PAKSA NAVBAR PALING ATAS */
+.header {
+    z-index: 999999 !important;
+}
+
+/* 🔥 PAKSA MENU DROPDOWN */
+#profileMenu {
+    z-index: 999999 !important;
+}
+
+/* 🔥 BIAR BISA DIKLIK */
+#profileToggle {
+    position: relative;
+    z-index: 999999;
+}
+
+/* 🔥 MATIKAN INTERAKSI ELEMENT DASHBOARD */
+.main-content * {
+    pointer-events: auto;
+}
+
+/* 🔥 KHUSUS YANG SERING JADI BIANG */
+canvas {
+    pointer-events: none;
+}
+.activity-card,
+.stat-card,
+.chart-wrapper {
+    position: relative;
+    z-index: 1;
+}
+/* ================================================================== */
+/* ===============================
+   🔥 WRAPPER UTAMA
+   =============================== */
+.welcome-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    flex-wrap: wrap; /* 🔥 WAJIB */
+}
+
+/* ===============================
+   🔥 BAGIAN TEKS
+   =============================== */
+.welcome-text {
+    flex: 1 1 180px;
+    min-width: 0;
+}
+
+/* ===============================
+   🔥 TOKEN BOX (INI BIANG MASALAH)
+   =============================== */
+.token-box {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    max-width: 100%;
+    flex-wrap: wrap; /* 🔥 BIAR TURUN */
+    word-break: break-all; /* 🔥 BIAR TIDAK MAKSA LEBAR */
+}
+
+/* TEXT TOKEN */
+.token-box span {
+    font-size: 14px;
+}
+
+/* ===============================
+   🔥 GAMBAR
+   =============================== */
+.welcome-img {
+    flex: 0 1 120px; /* 🔥 boleh mengecil */
+    max-width: 120px;
+    width: 100%;
+}
+
+.welcome-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ===============================
+   🔥 MOBILE FIX TOTAL
+   =============================== */
+@media (max-width: 768px) {
+    .welcome-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    /* 🔥 TOKEN DIPERKECIL */
+    .token-box {
+        font-size: 12px;
+        padding: 4px 8px;
+    }
+
+    /* 🔥 GAMBAR DIPERKECIL */
+    .welcome-img {
+        max-width: 90px;
+        align-self: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .token-box {
+        font-size: 11px;
+        padding: 3px 6px;
+    }
+
+    .welcome-img {
+        max-width: 70px;
+    }
+}

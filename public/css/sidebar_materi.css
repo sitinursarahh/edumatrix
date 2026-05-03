@@ -1,0 +1,394 @@
+/* materi.css
+   Styling sidebar dengan submenu collapsible
+   Semua komentar dalam bahasa Indonesia
+*/
+
+/* ---------- Variabel warna dan ukuran ---------- */
+:root {
+    --c1: #9a3f3f; /* merah tua */
+    --c2: #c1856d; /* coklat muda */
+    --c3: #e6cfa9; /* pastel kuning */
+    --c4: #fbf9d1; /* pastel krem */
+
+    --sidebar-width: 240px;
+    --sidebar-collapsed-width: 60px;
+    --navbar-height: 60px;
+}
+
+body {
+    background: var(--c4);
+}
+/* ---------- Reset dasar ---------- */
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family:
+        "Inter",
+        system-ui,
+        -apple-system,
+        "Segoe UI",
+        Roboto,
+        Arial;
+}
+
+/* sidebar_materi.css
+   Lengkap — perbaikan collapse, toggle spacing, dan ikon tetap terlihat
+   NOTE: pastikan file ini dimuat AFTER dashboard.css */
+:root {
+    --sidebar-width: 240px;
+    --sidebar-collapsed-width: 72px; /* sedikit lebih lebar agar toggle & icon tidak terpotong */
+    --navbar-height: 60px;
+}
+
+/* Box sizing */
+#sidebar_materi,
+#sidebar_materi * {
+    box-sizing: border-box;
+}
+
+/* ---------- Kontainer sidebar ---------- */
+#sidebar_materi {
+    width: var(--sidebar-width);
+    background: var(--c1);
+    color: #fff;
+    position: fixed;
+    top: var(--navbar-height);
+    left: 0;
+    height: calc(100vh - var(--navbar-height));
+    display: flex;
+    flex-direction: column;
+    z-index: 200; /* lebih tinggi agar menutupi konten kalau perlu */
+    transition:
+        width 0.22s ease,
+        padding 0.22s ease;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/* ---------- Bagian atas sidebar ---------- */
+#sidebar_materi .sidebar-top {
+    flex: 0 0 auto;
+    padding: 8px 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* tombol toggle (hamburger) - beri ruang agar tidak menempel */
+#sidebar_materi .btn-toggle {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    z-index: 210;
+}
+
+/* beri sedikit hover effect agar terlihat klik-able */
+#sidebar_materi .btn-toggle:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* judul kecil di atas (contoh: "Materi") */
+#sidebar_materi .sidebar-title {
+    font-weight: 700;
+    color: #fff;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition:
+        opacity 0.18s ease,
+        width 0.18s ease,
+        margin 0.18s ease;
+}
+
+/* ---------- Area scroll ---------- */
+#sidebar_materi .sidebar-scroll {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 6px 4px 20px 4px;
+}
+
+/* ---------- Link utama (menu) ---------- */
+#sidebar_materi .sidebar-link {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #fff;
+    padding: 10px 12px;
+    margin-bottom: 6px;
+    font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;
+    gap: 10px;
+    transition:
+        background 0.15s ease,
+        padding 0.15s ease;
+}
+
+/* ---------- Icon styling (pastikan selalu terlihat) ---------- */
+#sidebar_materi .sidebar-link > i {
+    margin-right: 10px;
+    font-size: 20px;
+    min-width: 22px;
+}
+
+/* hover / active */
+#sidebar_materi .sidebar-link:hover {
+    background: var(--c2);
+}
+#sidebar_materi .sidebar-link.active {
+    background: var(--c2);
+}
+
+/* ---------- Submenu ---------- */
+#sidebar_materi .sidebar-submenu {
+    display: none;
+    padding: 8px 6px 12px 6px;
+    margin-bottom: 8px;
+}
+
+#sidebar_materi .sidebar-submenu.open {
+    display: block;
+}
+
+/* #sidebar_materi .sidebar-sublink {
+    display: block;
+    color: rgba(255, 255, 255, 0.95);
+    text-decoration: none;
+    padding: 8px 10px 8px 26px;
+    margin-bottom: 4px;
+    border-radius: 6px;
+    font-weight: 600;
+    padding-left: calc(12px + 1.25rem + 10px);
+}
+#sidebar_materi .sidebar-sublink:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+#sidebar_materi .sidebar-sublink.active {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+} */
+
+/* ---------- Collapsed Mode (perilaku rapi) ---------- */
+#sidebar_materi.collapsed {
+    width: 76px !important;
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+    overflow: hidden !important;
+}
+
+/* sembunyikan top title rapi saat collapsed (opacity + width) */
+#sidebar_materi.collapsed .sidebar-top .sidebar-title {
+    opacity: 0;
+    width: 0;
+    margin: 0;
+    pointer-events: none;
+}
+
+/* label teks (menu text) */
+#sidebar_materi .sidebar-label {
+    display: inline-block;
+    line-height: 1;
+    vertical-align: middle;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition:
+        opacity 0.15s ease,
+        width 0.15s ease,
+        visibility 0.15s;
+    opacity: 1;
+    width: auto;
+}
+
+/* sembunyikan label tapi jangan set font-size:0 agar ikon tidak terpengaruh */
+#sidebar_materi.collapsed .sidebar-label {
+    opacity: 0;
+    width: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* HILANGKAN LABEL */
+#sidebar_materi.collapsed .sidebar-label,
+#sidebar_materi.collapsed .chev,
+#sidebar_materi.collapsed .sidebar-submenu {
+    display: none !important;
+}
+
+/* ACTIVE BOX PROPORSIONAL */
+#sidebar_materi.collapsed .sidebar-link.active,
+#sidebar_materi.collapsed .sidebar-link:hover {
+    background: var(--c2);
+    border-radius: 10px;
+}
+/* saat collapsed, center-kan icon dan kecilkan gap */
+#sidebar_materi.collapsed .sidebar-link {
+    justify-content: center !important;
+    padding: 10px 0 !important;
+    gap: 0 !important;
+}
+
+/* ICON BENAR-BENAR CENTER */
+#sidebar_materi.collapsed .sidebar-link > i {
+    margin: 0 !important;
+    min-width: auto !important;
+    width: 24px;
+    text-align: center;
+}
+/* sembunyikan sublinks & chevron saat collapsed */
+/* #sidebar_materi.collapsed .sidebar-sublink,
+#sidebar_materi.collapsed .chev {
+    display: none !important;
+} */
+
+/* chevron (panah) */
+#sidebar_materi .chev {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    transition: transform 0.18s ease;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+/* ---------- Override potensi aturan global yang merusak ikon ---------- */
+/* jika ada rule .sidebar.collapsed .sidebar-link { font-size:0 }, override hanya untuk #sidebar_materi */
+/* #sidebar_materi.collapsed .sidebar-link,
+#sidebar_materi.collapsed .sidebar-link * {
+    font-size: initial !important;
+} */
+
+/* ---------- Scrollbar ---------- */
+#sidebar_materi .sidebar-scroll::-webkit-scrollbar {
+    width: 8px;
+}
+#sidebar_materi .sidebar-scroll::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 6px;
+}
+#sidebar_materi .sidebar-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+/* =========================================
+   🔥 FINAL LOCK & SUBLINK FIX (BERSIH)
+========================================= */
+
+/* Jadikan sublink flex supaya icon selalu sejajar */
+/* =========================================
+   FINAL PERFECT SUBLINK LAYOUT
+========================================= */
+
+/* =========================================
+   FIX SUBLINK AGAR ICON TIDAK TURUN
+========================================= */
+/* =========================================
+   FIX FINAL AGAR ICON TIDAK TURUN
+========================================= */
+
+/* =========================================
+   FIX 100% ICON SELALU DI SAMPING
+========================================= */
+
+#sidebar_materi .sidebar-sublink {
+    position: relative; /* penting */
+
+    display: block;
+    padding: 8px 28px 8px 34px; /* kanan dikasih ruang icon */
+    margin-bottom: 4px;
+
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+
+    color: rgba(255, 255, 255, 0.95);
+}
+
+/* teks */
+#sidebar_materi .sidebar-sublink .sublink-text {
+    display: inline;
+}
+
+/* ICON LOCK */
+#sidebar_materi .sidebar-sublink .lock-icon {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    opacity: 1 !important;
+    display: inline-block !important;
+    visibility: visible !important;
+    z-index: 5;
+}
+
+/* warna locked */
+#sidebar_materi .sidebar-sublink.locked {
+    color: rgba(255, 255, 255, 0.55);
+    opacity: 0.6;
+    pointer-events: none;
+}
+/* ============================
+   ACTIVE PARENT (Nama Materi)
+============================ */
+#sidebar_materi .sidebar-link.active {
+    background: var(--c2);
+    color: #ffffff;
+}
+
+/* ============================
+   ACTIVE SUB-MATERI (Beda Warna)
+============================ */
+#sidebar_materi .sidebar-sublink.active {
+    background: rgba(255, 255, 255, 0.15); /* lebih soft */
+    color: #ffffff;
+    font-weight: 700;
+    border-left: 4px solid #ffffff; /* tanda visual */
+}
+
+.sidebar-sublink.locked {
+    pointer-events: none;
+    opacity: 0.5;
+    color: #bbb !important;
+}
+
+.sidebar-sublink.locked i {
+    font-size: 12px;
+}
+
+.sidebar-sublink.locked {
+    pointer-events: none;
+    opacity: 0.5;
+    color: #bbb !important;
+}
+#sidebar_materi .sidebar-link.locked {
+    pointer-events: none;
+    opacity: 0.5;
+    color: #ddd !important;
+}
+
+#sidebar_materi .sidebar-link .lock-icon {
+    margin-left: auto;
+    font-size: 14px;
+}

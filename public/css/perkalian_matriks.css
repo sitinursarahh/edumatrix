@@ -1,0 +1,477 @@
+/* ===== Skalar Perkalian ===== */
+.scalar-frame {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* 🔥 JARAK antara 2 dan × */
+    font-size: 22px;
+}
+
+.scalar-value {
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* ikut highlight saat klik */
+.scalar-value.matrix-mark {
+    background-color: #ffe8b3;
+    padding: 2px 6px;
+    /* border-radius: 4px; */
+}
+
+.scalar-times {
+    font-weight: 700;
+}
+
+.matrix-mark-blue {
+    background: #dbeafe;
+    transition: 0.4s;
+}
+
+.matrix-mark-yellow {
+    background: #fde68a;
+    transition: 0.4s;
+}
+
+.matrix-pop {
+    animation: popResult 0.45s ease;
+}
+
+@keyframes popResult {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.25);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+/* 
+pembatas */
+
+.matrix-mark-p {
+    background: #cce5ff;
+    font-weight: 700;
+}
+
+.matrix-mark-q {
+    background: #ffd6d6;
+    font-weight: 700;
+}
+
+.matrix-mark-scalar {
+    color: #b91c1c;
+    font-weight: 800;
+}
+
+.matrix-pop {
+    animation: popResult 0.4s ease;
+    background: #d1fae5;
+    font-weight: 800;
+}
+
+@keyframes popResult {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.25);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.matrix-mark {
+    outline: 3px solid #e8590c;
+    background: #fff4e6;
+    font-weight: 700;
+}
+
+.matrix-mark-blue {
+    outline: 3px solid #228be6;
+    background: #e7f5ff;
+}
+
+.matrix-mark-yellow {
+    outline: 3px solid #fab005;
+    background: #fff9db;
+}
+
+.matrix-pop {
+    animation: popScale 0.4s ease;
+}
+
+@keyframes popScale {
+    0% {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.matrix-step-controls {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center; /* 🔥 TENGAH HORIZONTAL */
+    align-items: center; /* 🔥 TENGAH VERTIKAL */
+    gap: 12px;
+}
+
+.cpq-expr {
+    display: inline-flex;
+    align-items: center;
+    font-size: 22px;
+    margin: 0 12px;
+    font-weight: 600;
+}
+
+.cpq-inner {
+    margin: 0 4px;
+}
+
+.matrix-label {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-right: 4px;
+}
+
+.matrix-label mjx-container {
+    font-size: 1.1em;
+}
+
+/* ===== KONSISTENSI KURUNG (CONTOH 2) ===== */
+
+/* Kurung siku */
+/* ===== KURUNG SIKU [ ] ===== */
+.tutorial-cpq .math-bracket-2 {
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1;
+    transform: scaleY(2.2) translateY(-2px); /* 🔥 NAIK DIKIT */
+    display: inline-block;
+}
+
+/* Kurung biasa ( ) */
+.tutorial-cpq .matrix-frame:has(> span:contains("(")),
+.tutorial-cpq .matrix-frame:has(> span:contains(")")),
+.tutorial-cpq .matrix-frame:has(> span:contains("(")),
+.tutorial-cpq .matrix-frame:has(> span:contains(")")) {
+    font-weight: 400;
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+/* ===== KURUNG BIASA ( ) ===== */
+.tutorial-cpq .paren {
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1;
+    transform: scaleY(2.2) translateY(-2px); /* 🔥 SAMAKAN */
+    display: inline-block;
+    margin: 0 8px;
+}
+
+/* Wrapper matriks */
+.tutorial-cpq .matrix-frame {
+    display: flex;
+    align-items: center;
+}
+
+/* ===== FRAME KHUSUS KURUNG ===== */
+.tutorial-cpq .matrix-frame.paren-frame,
+.tutorial-cpq .matrix-frame.bracket-frame {
+    align-items: stretch; /* 🔥 KUNCI UTAMA */
+}
+
+/* ================= PAGE INDICATOR ================= */
+
+.slide-indicator {
+    display: flex;
+    gap: 10px;
+}
+
+.page-dot:hover {
+    background: #d6d2b8;
+}
+
+.slide-footer {
+    margin-top: 24px;
+    padding-top: 16px;
+    /* border-top: 1px solid rgba(0, 0, 0, 0.15); */
+}
+
+.slide-indicator-wrapper {
+    margin-top: 16px;
+    padding-top: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.slide-indicator {
+    display: flex;
+    gap: 8px;
+}
+
+/* === PAGE INDICATOR (SAMAKAN DENGAN PENJUMLAHAN) === */
+.page-dot {
+    min-width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    background: #e8e1c7;
+
+    border: none; /* 🔥 HILANGKAN BORDER HITAM */
+    outline: none; /* 🔥 HILANGKAN GARIS FOCUS */
+    box-shadow: none; /* 🔥 JAGA-JAGA */
+}
+
+.page-dot.active {
+    background: #0d6efd;
+    color: #fff;
+}
+
+.materi-slide {
+    position: relative;
+}
+
+.materi-slide .slide-indicator-wrapper {
+    margin-top: 16px;
+    padding-top: 0;
+    border-top: none; /* ✅ PAKSA HILANG */
+    display: flex;
+    justify-content: center;
+}
+/* ===== FRAME MATRIKS DENGAN KURUNG PRESISI ===== */
+/* ===== FRAME MATRIKS ===== */
+.bracket-frame {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    padding: 0 14px;
+}
+
+.bracket-frame::before,
+.bracket-frame::after {
+    content: "";
+    position: absolute;
+    top: 4px; /* 🔑 INI YANG MENENTUKAN */
+    bottom: 4px;
+    width: 8px;
+}
+
+/* KURUNG KIRI */
+.bracket-frame::before {
+    content: "";
+    position: absolute;
+    left: 0;
+
+    top: 1px; /* 🔽 RENDAHKAN */
+    bottom: 1px; /* 🔽 RENDAHKAN */
+
+    width: 8px;
+    border-left: 3px solid #000;
+    border-top: 3px solid #000;
+    border-bottom: 3px solid #000;
+}
+
+/* KURUNG KANAN */
+.bracket-frame::after {
+    content: "";
+    position: absolute;
+    right: 0;
+
+    top: 1px; /* 🔽 RENDAHKAN */
+    bottom: 1px; /* 🔽 RENDAHKAN */
+
+    width: 8px;
+    border-right: 3px solid #000;
+    border-top: 3px solid #000;
+    border-bottom: 3px solid #000;
+}
+
+/* ===== TABEL MATRIKS ===== */
+.matrix-html {
+    border-collapse: collapse;
+}
+
+.matrix-html td {
+    padding: 4px 12px; /* 🔽 lebih ramping */
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.2; /* 🔥 kunci tinggi */
+}
+/* ===============================
+   BOX MASALAH
+================================ */
+.box-masalah {
+    position: relative;
+    border: 2px solid #000000;
+    padding: 24px 20px 20px;
+    margin-top: 28px;
+    background: #fff9d5;
+}
+
+.box-masalah-title {
+    position: absolute;
+    top: -14px;
+    left: 18px;
+    padding: 4px 16px;
+    background: #fff9d5;
+    border: 2px solid #000000;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+/* isi */
+.box-masalah-content p {
+    margin-bottom: 12px;
+}
+/* ===============================
+   RUMUS RESPONSIVE (SCROLL SAMPING SAJA)
+=============================== */
+.matrix-center-fix {
+    overflow-x: auto; /* ✅ scroll ke samping */
+    overflow-y: hidden; /* 🔥 MATIKAN scroll atas-bawah */
+    white-space: nowrap; /* 🔥 paksa 1 baris */
+}
+
+.matrix-center-fix mjx-container {
+    font-size: clamp(14px, 4vw, 22px) !important;
+    display: inline-block;
+}
+/* ===============================
+   FIX OPSI AGAR TEKS TIDAK KELUAR
+=============================== */
+.opsi1 {
+    width: 100%;
+    max-width: 100%;
+
+    box-sizing: border-box;
+    padding: 10px 12px;
+
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+
+    overflow: hidden; /* 🔥 ini kunci */
+
+    text-align: center;
+}
+@media (max-width: 600px) {
+    .opsi1 {
+        font-size: 12px;
+        padding: 8px 10px;
+
+        line-height: 1.3;
+    }
+}
+/* ===============================
+   FIX: OPSI SAAT DI DALAM DROP BOX
+=============================== */
+/* ===============================
+   DESKTOP (DEFAULT)
+=============================== */
+.drop-box1 .opsi1 {
+    width: 100%;
+    height: auto;
+
+    margin: 0;
+    padding: 6px 8px;
+
+    box-sizing: border-box;
+
+    font-size: 14px; /* 🔥 NORMAL DI LAYAR BESAR */
+    line-height: 1.3;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+
+    overflow: visible;
+}
+@media (max-width: 600px) {
+    .drop-box1 .opsi1 {
+        font-size: 10px; /* 🔥 kecil hanya di HP */
+        padding: 6px 4px;
+        line-height: 1.2;
+    }
+}
+.drop-box1 {
+    overflow: hidden; /* 🔥 ini wajib */
+    padding: 0;
+    align-items: stretch;
+}
+/* ===============================
+   CENTER PLACEHOLDER SAJA
+=============================== */
+.drop-box1:empty {
+    display: flex;
+    align-items: center; /* 🔥 tengah vertikal */
+    justify-content: center; /* 🔥 tengah horizontal */
+
+    text-align: center;
+}
+/* ===============================
+   FIX AGAR 4-7 & 2-5 SEJAJAR
+=============================== */
+.matrix-result td,
+.matrix-mid td,
+.matrix-final td {
+    white-space: nowrap; /* 🔥 jangan turun */
+    vertical-align: middle;
+}
+
+.matrix-result td span,
+.matrix-mid td span,
+.matrix-final td span {
+    display: inline-block; /* 🔥 pastikan sejajar */
+}
+/* ===============================
+   FIX PERKALIAN AB (MOBILE)
+=============================== */
+@media (max-width: 600px) {
+    .tutorial-ab .matrix-tutorial-box {
+        flex-wrap: wrap; /* 🔥 biar turun, tidak keluar */
+        justify-content: center;
+        gap: 6px;
+    }
+
+    .tutorial-ab .matrix-frame {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* 🔥 kecilkan teks rumus */
+    .tutorial-ab {
+        font-size: 14px;
+    }
+
+    /* 🔥 kecilkan isi matriks */
+    .tutorial-ab .matrix-html td {
+        font-size: 15px;
+        padding: 3px 6px;
+    }
+
+    /* 🔥 kecilkan label */
+    .tutorial-ab .matrix-label {
+        font-size: 1rem;
+    }
+
+    /* 🔥 kecilkan ekspresi 4×(2)+... */
+    .tutorial-ab .row-tutorial {
+        line-height: 1.3;
+    }
+}

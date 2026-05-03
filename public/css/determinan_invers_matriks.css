@@ -1,0 +1,613 @@
+.sarrus-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    margin-top: 10px;
+}
+
+/* equals */
+.equals {
+    font-size: 28px;
+}
+
+/* ===== MATRKS ===== */
+.matrix-left,
+.matrix-right {
+    display: inline-flex;
+    align-items: center;
+}
+
+.matrix-right {
+    position: relative; /* PANAH NEMPEL DI SINI */
+    overflow: visible;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+/* duplikasi kolom */
+.dup-matrix {
+    margin-left: 6px;
+}
+
+/* ===== SVG PANAH ===== */
+.sarrus-arrows {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    height: 100%;
+
+    pointer-events: none;
+    z-index: 5;
+
+    width: calc(100% + 20px);
+}
+
+.sarrus-arrows line {
+    stroke-width: 2.5;
+    vector-effect: non-scaling-stroke;
+    fill: none;
+    stroke-linecap: round;
+}
+
+.plus {
+    stroke: #1c7ed6;
+}
+.minus {
+    stroke: #e8590c;
+}
+
+/* ===== TANDA ===== */
+.signs {
+    position: absolute;
+    display: flex;
+    gap: 20px;
+    font-weight: bold;
+    z-index: 6;
+}
+
+.signs.top {
+    top: -26px;
+    left: 110px;
+}
+
+.signs.bottom {
+    bottom: -30px;
+    left: -10px;
+}
+
+/* WRAPPER TENGAH HALAMAN */
+.minor-visual-wrapper {
+    display: flex;
+    justify-content: center; /* 🔥 KUNCI UTAMA */
+    align-items: center;
+    gap: 60px;
+    margin: 40px auto;
+    width: 100%;
+}
+
+/* BLOK KIRI */
+.matrix-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* PANAH */
+.arrow {
+    font-size: 28px;
+    margin: 6px 0;
+    color: orange;
+}
+
+/* CATATAN ORANYE */
+.note {
+    background: orange;
+    color: white;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 13px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* BLOK HASIL */
+.result-block {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: 0 !important;
+    margin-top: 0px;
+    /* transform: translateY(-60px); */
+}
+
+/* TEKS */
+.result-text {
+    font-size: 16px;
+    margin: 0;
+}
+
+/* MATRIX KECIL */
+.matrix.result {
+    font-size: 0.95rem;
+    margin-top: 0px;
+}
+
+.matrix-pop {
+    background: #1e90ff; /* biru */
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+.matrix-center {
+    text-align: center; /* matriks tetap di tengah */
+    margin: 16px 0;
+}
+
+.jawaban-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    text-align: left;
+    justify-content: flex-start; /* PAKSA KIRI */
+}
+
+.jawaban-left .input-mini {
+    width: 60px;
+    text-align: center;
+}
+
+.matrix-box {
+    display: inline-flex;
+    align-items: stretch;
+}
+
+/* ================= MATRIX ================= */
+.matrix-wrap {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 22px 38px;
+    padding: 12px 18px;
+}
+
+.matrix-wrap span {
+    text-align: center;
+    font-size: 1.05em;
+}
+
+.hl {
+    color: orange;
+    font-weight: 600;
+}
+/* KURUNG SIKU FULL */
+.bracket {
+    width: 14px;
+    position: relative;
+    align-self: stretch; /* 🔥 bikin setinggi konten */
+}
+
+/* kiri */
+.bracket.left {
+    border-left: 3px solid #000;
+}
+
+.bracket.left::before,
+.bracket.left::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 12px;
+    height: 3px;
+    background: #000;
+}
+
+.bracket.left::before {
+    top: -4px; /* 🔥 keluar sedikit ke atas */
+}
+
+.bracket.left::after {
+    bottom: -4px; /* 🔥 keluar sedikit ke bawah */
+}
+
+/* kanan */
+.bracket.right {
+    border-right: 3px solid #000;
+}
+
+.bracket.right::before,
+.bracket.right::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    width: 12px;
+    height: 3px;
+    background: #000;
+}
+
+.bracket.right::before {
+    top: -4px;
+}
+
+.bracket.right::after {
+    bottom: -4px;
+}
+
+/* 🔥 ISOLASI KHUSUS SARRUS */
+.sarrus-wrapper .matrix-left,
+.sarrus-wrapper .matrix-right {
+    flex: 0 0 auto !important;
+    width: auto !important;
+}
+
+.sarrus-wrapper {
+    justify-content: center !important;
+}
+
+.signs {
+    gap: 28px; /* biar jarak antar tanda sama */
+}
+/* 🔥 FIX FINAL: matikan efek dari CSS lain */
+.minor-visual-wrapper .matrix-block {
+    flex: 0 0 auto !important; /* ⬅️ MATIKAN flex:1 */
+    text-align: left !important;
+}
+
+.minor-visual-wrapper .matrix-wrapper {
+    justify-content: flex-start !important;
+}
+/* 🔥 FIX FINAL: matikan efek dari CSS lain */
+.minor-visual-wrapper .matrix-block {
+    flex: 0 0 auto !important; /* ⬅️ MATIKAN flex:1 */
+    text-align: left !important;
+}
+
+/* WRAPPER */
+.det-visual {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+/* MATRIX */
+.matrix-box-det {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 10px;
+}
+
+.matrix-det {
+    display: grid;
+    grid-template-columns: repeat(2, 40px);
+    gap: 10px 20px;
+    padding: 10px 14px;
+    text-align: center;
+    font-style: italic;
+}
+
+/* PANAH */
+.det-arrows {
+    position: absolute;
+    top: 8%;
+    left: 8%;
+    width: 84%;
+    height: 84%;
+    pointer-events: none;
+}
+
+.plus-arrow {
+    stroke: #1c7ed6;
+    stroke-width: 2.5;
+}
+
+.minus-arrow {
+    stroke: #e8590c;
+    stroke-width: 2.5;
+}
+
+/* TANDA */
+.det-sign {
+    position: absolute;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.det-plus {
+    bottom: -22px;
+    right: 8px;
+}
+
+.det-minus {
+    bottom: -22px;
+    left: 8px;
+}
+.bracket {
+    width: 14px;
+    position: relative;
+    align-self: stretch; /* 🔥 KUNCI */
+}
+
+/* kiri */
+.bracket.left {
+    border-left: 3px solid #000;
+}
+.bracket.left::before,
+.bracket.left::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 10px;
+    height: 2px;
+    background: #000;
+}
+.bracket.left::before {
+    top: 0;
+}
+.bracket.left::after {
+    bottom: 0;
+}
+
+/* kanan */
+.bracket.right {
+    border-right: 3px solid #000;
+}
+.bracket.right::before,
+.bracket.right::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    width: 10px;
+    height: 2px;
+    background: #000;
+}
+.bracket.right::before {
+    top: 0;
+}
+.bracket.right::after {
+    bottom: 0;
+}
+
+.kofaktor-wrapper {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* MATRIX KOFATOR */
+.kofaktor-matrix {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 14px 24px;
+    font-size: 18px;
+}
+
+/* clickable */
+.kofaktor {
+    cursor: pointer;
+    transition: 0.2s;
+}
+.kofaktor:hover {
+    color: #1c7ed6;
+    transform: scale(1.1);
+}
+
+/* MATRIX ANIMASI */
+.minor-anim {
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+    padding: 10px;
+}
+
+.minor-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 40px);
+    gap: 10px;
+    text-align: center;
+}
+
+/* animasi hilang */
+.fade-out {
+    opacity: 0;
+    transform: scale(0.6);
+    transition: 0.4s;
+}
+/* WRAPPER UTAMA */
+.kofaktor-wrapper {
+    display: flex;
+    align-items: center; /* 🔥 ini bikin sejajar tengah */
+    justify-content: center;
+    gap: 30px;
+}
+
+/* KOTAK KOFATOR + KURUNG */
+.kofaktor-box {
+    display: flex;
+    align-items: center;
+}
+
+/* PANAH TENGAH */
+.arrow-mid {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 0 10px;
+}
+/* KOFATOR AKTIF */
+.kofaktor.active {
+    background: #1c7ed6;
+    color: #fff;
+    padding: 2px 4px;
+    border-radius: 6px;
+}
+.minor-info {
+    max-width: 220px;
+    font-size: 14px;
+    line-height: 1.5;
+    background: #1c7ed6;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+.minus-row {
+    position: absolute; /* 🔥 INI YANG KURANG */
+    bottom: -40px;
+    left: 110px;
+    z-index: 6;
+}
+.matrix-live-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+math-field {
+    font-size: 28px;
+    padding: 12px;
+    border-radius: 12px;
+    border: 2px dashed #333;
+    background: #e6eefc;
+    min-width: 120px;
+    min-height: 70px;
+}
+.slide-indicator span.locked {
+    opacity: 0.4;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.slide-indicator span.locked::after {
+    content: "🔒";
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    font-size: 12px;
+}
+@media (max-width: 768px) {
+    .sarrus-wrapper {
+        flex-direction: column; /* 🔥 jadi ke bawah */
+        align-items: center;
+        gap: 20px;
+    }
+
+    .equals {
+        display: none; /* opsional */
+    }
+}
+@media (max-width: 768px) {
+    .matrix-left mjx-container,
+    .matrix-right mjx-container {
+        font-size: 16px;
+    }
+}
+.matrix-display-big {
+    max-width: 100%;
+    overflow-x: auto; /* 🔥 kunci utama */
+    overflow-y: hidden;
+}
+.matrix-display-big mjx-container {
+    display: inline-block;
+    min-width: max-content; /* 🔥 biar tidak kepotong */
+}
+@media (max-width: 768px) {
+    .matrix-display-big mjx-container {
+        font-size: 16px;
+    }
+}
+@media (max-width: 768px) {
+    .minor-visual-wrapper {
+        flex-direction: column; /* 🔥 jadi ke bawah */
+        gap: 20px;
+        align-items: center;
+    }
+
+    .result-block {
+        flex-direction: column; /* 🔥 teks + matrix turun */
+        align-items: center;
+        text-align: center;
+        transform: none; /* 🔥 hapus geser aneh */
+        gap: 10px;
+    }
+}
+@media (max-width: 768px) {
+    .matrix-box {
+        transform: scale(0.9);
+    }
+
+    .note {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .kofaktor-wrapper {
+        flex-direction: column; /* 🔥 jadi ke bawah */
+        align-items: center;
+        gap: 20px;
+    }
+
+    .arrow-mid {
+        transform: rotate(90deg); /* 🔥 panah jadi ↓ */
+    }
+
+    .minor-info {
+        text-align: center;
+        max-width: 90%;
+    }
+}
+@media (max-width: 768px) {
+    .kofaktor-matrix {
+        gap: 10px 16px;
+        font-size: 16px;
+    }
+
+    .minor-grid {
+        gap: 8px;
+    }
+}
+@media (max-width: 768px) {
+    .kofaktor-box {
+        transform: scale(0.95);
+    }
+
+    .minor-anim {
+        transform: scale(0.95);
+    }
+}
+/* ===============================
+   MATRIX DISPLAY (SCROLL BERSIH)
+   =============================== */
+.matrix-display-big {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    display: block;
+    padding-bottom: 6px;
+}
+
+/* 🔥 KUNCI: ukur sesuai isi, bukan angka paksa */
+.matrix-display-big mjx-container {
+    display: inline-block;
+    width: max-content; /* 🔥 ini yang benar */
+}
+
+/* ===============================
+   KHUSUS ADJOINT
+   =============================== */
+.adjoint-block mjx-container {
+    white-space: nowrap; /* tetap 1 baris */
+}
+
+/* ===============================
+   MOBILE
+   =============================== */
+@media (max-width: 768px) {
+    .matrix-display-big mjx-container {
+        font-size: 16px;
+    }
+}

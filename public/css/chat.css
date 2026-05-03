@@ -1,0 +1,173 @@
+.chat-wrapper {
+    background: #fbf9d1;
+    border: 3px solid #9a3f3f;
+    border-radius: 16px;
+
+    display: flex;
+    flex-direction: column;
+
+    flex: 1;
+    min-height: 0;
+}
+
+#chat-box {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+.chat-input-area {
+    border-top: 1px solid #d6caa0;
+}
+
+html,
+body {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto; /* 🔥 INI KUNCI */
+}
+/* 🔥 SEMBUNYIKAN SCROLLBAR (SEMUA BROWSER) */
+html,
+body {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge lama */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+}
+.chat-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #9a3f3f;
+}
+
+.chat-bubble {
+    max-width: 65%;
+    padding: 10px 14px;
+    border-radius: 16px;
+    position: relative;
+    word-wrap: break-word;
+
+    overflow: hidden; /* 🔥 INI PENTING BANGET */
+}
+
+.bubble-me {
+    background: #1e63d6;
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+
+.bubble-other {
+    background: white;
+    border: 1px solid #ddd;
+    border-bottom-left-radius: 4px;
+}
+
+.chat-time {
+    font-size: 11px;
+    opacity: 0.7;
+    text-align: right;
+    margin-top: 4px;
+}
+
+.chat-avatar {
+    width: 40px;
+    height: 40px;
+    min-width: 40px; /* 🔥 penting biar gak gepeng di flex */
+    border-radius: 50% !important;
+    object-fit: cover;
+    border: 2px solid #9a3f3f;
+    flex-shrink: 0;
+}
+
+.chat-initial {
+    background: #e5e7eb; /* abu seperti gambar */
+    color: #2563eb; /* biru huruf */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.chat-room-card {
+    border-radius: 15px;
+    transition: 0.3s ease;
+    border: 2px solid #c1856d;
+}
+
+.chat-room-card:hover {
+    transform: translateY(-5px);
+    background: #f8f9fa;
+    border-color: #9a3f3f;
+}
+
+.card.chat-room-card {
+    border: 2px solid #c1856d !important;
+}
+
+/* Default warna icon & teks */
+.chat-room-card i,
+.chat-room-card h5 {
+    color: #333;
+    transition: 0.3s ease;
+}
+
+/* Saat hover card */
+.chat-room-card:hover i,
+.chat-room-card:hover h5 {
+    color: #9a3f3f;
+}
+/* =========================
+   CHAT BADGE (NOTIF ANGKA)
+   ========================= */
+.chat-badge {
+    background: #ff3b3b; /* merah */
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+
+    padding: 2px 7px;
+    border-radius: 50px;
+
+    margin-left: auto;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 18px;
+    height: 18px;
+
+    line-height: 1;
+}
+.chat-text {
+    word-wrap: break-word;
+}
+
+.chat-image {
+    width: auto; /* 🔥 jangan paksa penuh */
+    max-width: 220px; /* batas lebar */
+    max-height: 180px; /* 🔥 batas tinggi juga */
+
+    border-radius: 12px;
+    object-fit: cover; /* crop biar rapi */
+    display: block;
+
+    margin-top: 5px;
+}
+
+.chat-file {
+    text-decoration: none;
+    color: #2563eb;
+    font-size: 14px;
+}
+
+.chat-bubble .chat-image {
+    display: block;
+    max-width: 100%;
+}

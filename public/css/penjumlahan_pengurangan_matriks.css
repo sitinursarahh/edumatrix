@@ -1,0 +1,694 @@
+.matrix-html td {
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.matrix-mark {
+    background-color: #ffe8b3;
+    outline: 3px solid #c1856d;
+    outline-offset: -2px;
+    font-weight: 700;
+    /* border-radius: 6px; */
+}
+
+.matrix-mark-result {
+    background-color: #f9d6d5;
+    outline: 3px solid #9a3f3f;
+    outline-offset: -2px;
+    /* border-radius: 6px; */
+}
+/* ===== WRAPPER ===== */
+/* ===== WRAPPER ===== */
+.matrix-wrapper {
+    margin: 16px auto;
+    padding: 18px 22px;
+    background: #fff9db;
+    border-radius: 8px;
+    width: 100%;
+    font-family: system-ui, sans-serif;
+
+    display: grid;
+    grid-template-rows: auto auto;
+    row-gap: 5px; /* ⬅️ INI KUNCINYA PANAH TURUN */
+    overflow: visible !important;
+}
+
+/* ===== LABEL KOLOM ===== */
+.column-labels {
+    display: grid;
+    grid-template-columns: repeat(2, 46px); /* sama dengan td */
+    margin-left: calc(100% - (46px * 2));
+    margin-bottom: 10px;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+.col {
+    width: 46px; /* SAMA PERSIS DENGAN TD */
+    text-align: center;
+}
+/* PANAH ATAS */
+.arrow-up {
+    margin: 15px auto 0;
+    width: 0;
+    height: 18px;
+    border-left: 2px solid #2563eb;
+    position: relative;
+}
+.arrow-up::after {
+    content: "";
+    position: absolute;
+    top: -7px;
+    left: -6px;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 8px solid #2563eb;
+}
+
+/* ===== BARIS ===== */
+.matrix-row {
+    display: grid;
+    grid-template-columns: max-content auto;
+    column-gap: 10px; /* ⬅️ ATUR JARAK KE MATRIX DI SINI */
+    align-items: center;
+    overflow: visible !important;
+}
+
+/* LABEL BARIS */
+.row-labels {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+
+    font-size: 13px;
+
+    min-width: max-content; /* ⬅️ BIAR TIDAK KEPOTONG */
+    margin-right: 0px; /* ⬅️ JARAK KE MATRIX */
+    overflow: visible !important;
+}
+.row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: normal;
+    min-width: max-content;
+    justify-content: flex-end;
+    overflow: visible !important;
+    left: 0px;
+}
+
+/* PANAH KIRI */
+.arrow-left {
+    /* margin: 15px auto 0; */
+    width: 18px;
+    margin-left: 2px;
+    border-top: 2px solid #2563eb;
+    position: relative;
+    margin-right: 15px;
+}
+.arrow-left::after {
+    content: "";
+    position: absolute;
+    left: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-right: 8px solid #2563eb;
+}
+
+/* ===== MATRIX + KURUNG SIKU ===== */
+/* ===== MATRIX + KURUNG SIKU ASLI ===== */
+.matrix-table {
+    border-collapse: collapse;
+    position: relative;
+
+    /* garis vertikal kurung */
+    border-left: 3px solid #000;
+    border-right: 3px solid #000;
+}
+
+/* KURUNG KIRI — garis atas & bawah pendek */
+.matrix-table::before {
+    content: "";
+    position: absolute;
+    left: -1px;
+    top: 0;
+    width: 12px; /* PANJANG STROKE */
+    height: 100%;
+    border-top: 3px solid #000;
+    border-bottom: 3px solid #000;
+}
+
+/* KURUNG KANAN — garis atas & bawah pendek */
+.matrix-table::after {
+    content: "";
+    position: absolute;
+    right: -1px;
+    top: 0;
+    width: 12px; /* PANJANG STROKE */
+    height: 100%;
+    border-top: 3px solid #000;
+    border-bottom: 3px solid #000;
+}
+
+.matrix-table td {
+    width: 46px;
+    height: 38px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Geser label kolom jagung sedikit ke kiri */
+/* .column-labels .col:last-child {
+    transform: translateX(-27px);
+} */
+
+/* ===============================
+   ATUR LEBAR KOLOM TABEL
+   =============================== */
+.tabel-soal {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* ⬅️ KUNCI */
+}
+
+/* Kolom kiri (dipersempit) */
+.tabel-soal th:first-child,
+.tabel-soal td:first-child {
+    width: 32%;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Kolom kanan (dilebarkan) */
+.tabel-soal th:last-child,
+.tabel-soal td:last-child {
+    width: 68%;
+}
+
+/* ===============================
+   DROP BOX — AUTO TINGGI & RAPI
+   =============================== */
+.drop-box1 {
+    width: 100%;
+    min-height: 44px;
+    height: auto; /* ⬅️ IKUT ISI */
+
+    padding: 6px 10px;
+
+    border: 2px dashed #6ea8fe;
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center; /* center vertikal */
+    justify-content: flex-start; /* ⬅️ jangan center horizontal */
+
+    font-size: 14px;
+    color: #6c757d;
+    background: #f8fbff;
+
+    white-space: normal; /* ⬅️ BOLEH TURUN BARIS */
+    overflow: visible; /* ⬅️ JANGAN DIPOTONG */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+
+    box-sizing: border-box;
+}
+
+/* Placeholder tetap rapi */
+.drop-box1:empty::before {
+    content: "Tarik jawaban ke sini";
+    color: #9aa4bf;
+    font-style: italic;
+}
+
+/* ===============================
+   OPSI SAAT BERADA DI DROP BOX
+   =============================== */
+.drop-box1 .opsi1 {
+    width: 100%; /* ⬅️ KUNCI UTAMA */
+    max-width: 100%;
+
+    white-space: normal; /* boleh turun baris */
+    word-break: break-word;
+    overflow-wrap: break-word;
+
+    text-align: left;
+    box-sizing: border-box;
+}
+
+/* ===============================
+   SAAT DROP BOX MASIH KOSONG
+   =============================== */
+.drop-box1:empty {
+    justify-content: center; /* ⬅️ teks ke tengah */
+    text-align: center;
+}
+
+/* ===============================
+   ISI KOLOM KIRI TIDAK BOLD
+   =============================== */
+.tabel-soal td:first-child {
+    font-weight: normal; /* ⬅️ HILANGKAN BOLD */
+}
+
+/* ===============================
+   INPUT JAWABAN MATRIKS
+   =============================== */
+.matrix-input input {
+    border: 1px solid #9a3f3f; /* ⬅️ warna border */
+    border-radius: 6px;
+    outline: none;
+}
+
+/* Opsional: saat fokus (diketik) */
+.matrix-input input:focus {
+    border-color: #9a3f3f;
+    box-shadow: 0 0 0 1px rgba(154, 63, 63, 0.3);
+}
+
+.materi-slide {
+    display: none;
+    animation: fadeSlide 0.4s ease;
+}
+
+.materi-slide.active {
+    display: block;
+}
+
+@keyframes fadeSlide {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.page-section {
+    display: none;
+}
+
+/* ===== MODE SLIDE (WAJIB) ===== */
+#materi-slide-wrapper {
+    min-height: 100vh;
+}
+
+/* hanya slide yang boleh tampil */
+.materi-slide {
+    display: none;
+}
+
+.materi-slide.active {
+    display: block;
+}
+
+/* NONAKTIFKAN SCROLL KONTEN */
+.main-content {
+    overflow-x: hidden;
+    /* padding-bottom: 80px; */
+}
+.quiz-container {
+    overflow-x: hidden;
+    position: relative; /* 🔥 WAJIB agar header nempel ke sini */
+    padding-top: 40px;
+}
+.quiz-wrapper {
+    overflow: visible; /* 🔥 biar header tidak terpotong */
+}
+.quiz-header {
+    position: absolute; /* 🔥 bikin mengambang */
+    left: 50%; /* 🔥 center */
+    transform: translateX(-50%);
+    top: -18px; /* 🔥 naik ke atas */
+
+    padding: 8px 24px;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+.quiz-wrapper,
+.quiz-container {
+    overflow: visible !important;
+}
+.slide-nav {
+    display: flex;
+    justify-content: space-between; /* kiri & kanan */
+    align-items: center;
+    padding: 0 8px;
+}
+
+/* ===== SLIDE INDICATOR ===== */
+/* ===== SLIDE INDICATOR (SAMAKAN DENGAN PENGERTIAN MATRIKS) ===== */
+.slide-indicator-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+.slide-indicator {
+    display: flex;
+    gap: 10px;
+}
+
+.slide-indicator span {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: #e8e1c7;
+    color: #333;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.slide-indicator span:hover {
+    background: #d6c89a;
+}
+
+.slide-indicator span.active {
+    background: #0d6efd;
+    color: #fff;
+}
+
+/* ===== PERBAIKAN INDENTASI LIST MATERI ===== */
+.materi-list {
+    margin: 0 0 16px 0; /* hilangkan margin kiri */
+    padding-left: 24px; /* jarak angka ke teks */
+    list-style-position: outside;
+}
+
+.materi-list li {
+    margin-left: 0; /* PENTING: sejajarkan semua */
+    padding-left: 0;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+/* ===== LIST AKADEMIK (SESUAI FOTO) ===== */
+.materi-step {
+    list-style-position: outside; /* angka di luar */
+    padding-left: 28px; /* jarak angka ke teks */
+    margin-left: 0;
+}
+
+.materi-step li {
+    padding-left: 12px; /* INI YANG MEMBUAT ISI MASUK */
+    margin-bottom: 24px;
+}
+
+/* Isi di dalam li otomatis ikut masuk */
+.materi-step li p,
+.materi-step li div {
+    margin-left: 0;
+}
+
+.matrix-explanation {
+    margin: 15px auto;
+    width: fit-content;
+    padding: 10px 22px;
+    background: #e6cfa9; /* coklat muda */
+    border-left: 6px solid #9a3f3f;
+    border-radius: 6px;
+    font-weight: 700;
+    color: #9a3f3f;
+    text-align: center;
+    min-width: 160px;
+}
+
+/* ===============================
+   INPUT MINI (SOAL 2b)
+=============================== */
+/* ===============================
+   C21 INLINE — ALIGN FINAL FIX
+=============================== */
+
+.c21-inline {
+    display: flex;
+    align-items: center; /* ⬅️ BUKAN baseline */
+    gap: 8px;
+    margin-top: 12px;
+}
+
+/* teks MathJax */
+.c21-text {
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+/* operator umum */
+.c21-operator {
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+}
+
+/* KHUSUS tanda "=" kedua */
+.c21-operator.equal {
+    position: relative;
+    top: -2px; /* ⬅️ NAIKKAN SEDIKIT */
+}
+
+/* input */
+.input-mini {
+    width: 44px !important;
+    height: 30px;
+    font-size: 0.95rem;
+    text-align: center;
+    padding: 0;
+    border-radius: 6px;
+
+    display: flex;
+    align-items: center;
+
+    position: relative;
+    top: -2px; /* ⬅️ SAMA DENGAN "=" */
+}
+
+/* ================= POPUP QUIZ (ENHANCED) ================= */
+.quiz-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.quiz-modal.hidden {
+    display: none;
+    pointer-events: none;
+}
+
+/* CARD */
+.quiz-modal-box {
+    background: linear-gradient(145deg, #ffffff, #f8fafc);
+    padding: 28px 30px 26px;
+    border-radius: 18px;
+    max-width: 420px;
+    width: 92%;
+    text-align: center;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+
+    animation: modalEnter 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* MESSAGE */
+.quiz-modal-message {
+    font-size: 16px;
+    color: #1f2937;
+    line-height: 1.6;
+}
+
+/* Score badge */
+.quiz-modal-message b {
+    display: inline-block;
+    background: linear-gradient(90deg, #4facfe, #00f2fe);
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 14px;
+    margin-top: 6px;
+}
+
+/* BUTTON */
+.quiz-modal-btn {
+    margin-top: 22px;
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: #fff;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+    transition: all 0.25s ease;
+}
+
+.quiz-modal-btn:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 14px 30px rgba(37, 99, 235, 0.55);
+}
+
+.quiz-modal-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.quiz-modal-icon {
+    font-size: 56px;
+    margin-bottom: 12px;
+}
+/* ANIMATION */
+@keyframes modalEnter {
+    from {
+        transform: translateY(16px) scale(0.92);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.matrix-explanation::before {
+    content: none !important;
+}
+
+.matrix-explanation::before {
+    display: none;
+}
+
+.matrix-center-fix {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+/* 🔥 BESARKAN FONT MATRiks */
+.matrix-center-fix mjx-container {
+    font-size: 130% !important; /* bisa kamu ubah: 110% - 150% */
+    text-align: center !important;
+    margin: 0 auto !important;
+}
+
+.matrix-tutorial-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.matrix-tutorial-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* 🔥 KUNCI AGAR TIDAK LOMPAT */
+.matrix-explanation {
+    position: relative;
+    margin-top: 14px;
+    width: 100%;
+    max-width: fit-content;
+}
+
+.slide-indicator span.locked {
+    background: #ccc;
+    cursor: not-allowed;
+    color: white;
+}
+
+.slide-indicator span.locked i {
+    font-size: 12px;
+}
+.slide-indicator span {
+    position: relative;
+}
+
+.slide-indicator span.locked {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.slide-indicator span.locked::after {
+    content: "🔒";
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    font-size: 12px;
+}
+.slide-indicator span.locked {
+    background: #ccc;
+    color: #666;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.slide-indicator span.active {
+    background: #0d6efd;
+    color: white;
+}
+
+.jawaban-inline {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.jawaban-inline span {
+    display: inline-flex;
+    align-items: center;
+}
+
+.input-mini {
+    width: 60px;
+    height: 32px;
+    padding: 4px;
+}
+.matrix-frame {
+    display: inline-flex;
+    align-items: stretch; /* 🔥 KUNCI: ikut tinggi tabel */
+    gap: 2px;
+}
+/* ===============================
+   BESARKAN KURUNG SIKU (FIX TOTAL)
+=============================== */
+.math-bracket-2 {
+    display: flex;
+    align-items: stretch; /* 🔥 ikut tinggi tabel */
+
+    font-size: 42px; /* 🔥 BESARKAN */
+    line-height: 1;
+
+    padding: 0 2px;
+}
+
+/* 🔥 bikin kurung benar-benar tinggi */
+.math-bracket-2 span,
+.math-bracket-2 mjx-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.matrix-html {
+    display: inline-table;
+    margin: 0 -2px;
+}
