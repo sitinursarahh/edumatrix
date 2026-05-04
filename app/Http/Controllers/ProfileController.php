@@ -25,51 +25,40 @@ class ProfileController extends Controller
     ]);
 
     // =============================
-    // 🔥 HITUNG PROGRESS (FINAL)
+    // 🔥 HITUNG PROGRESS (FIX)
     // =============================
     $ujiSlug = 'uji-kompetensi';
 
-    // 🔹 Total materi TANPA uji
-    $totalSubMateri = UserProgress::where('user_id', $user->id)
-        ->where('sub_materi_slug', '!=', $ujiSlug)
-        ->pluck('sub_materi_slug')
-        ->unique()
-        ->count();
+    // 🔹 TOTAL MATERI (FIX - JANGAN DARI USER)
+    $totalSubMateri = 70; // ⬅️ ganti sesuai jumlah materi kamu
 
-    // 🔹 Yang sudah selesai
+    // 🔹 AMBIL PROGRESS USER
     $progress = UserProgress::where('user_id', $user->id)
-        ->where('completed', 1)
         ->pluck('sub_materi_slug')
         ->unique()
         ->toArray();
 
-    // 🔹 Hitung materi selesai (tanpa uji)
+    // 🔹 HITUNG MATERI SELESAI (TANPA UJI)
     $materiSelesai = collect($progress)
         ->filter(fn($slug) => $slug !== $ujiSlug)
         ->count();
 
-    // 🔹 Progress materi (maks 70%)
-    if ($materiSelesai >= $totalSubMateri && $totalSubMateri > 0) {
-        $progressMateri = 70;
-    } else {
-        $progressMateri = $totalSubMateri > 0
-            ? ($materiSelesai / $totalSubMateri) * 70
-            : 0;
-    }
+    // 🔹 PROGRESS MATERI (70%)
+    $progressMateri = $totalSubMateri > 0
+        ? ($materiSelesai / $totalSubMateri) * 70
+        : 0;
 
-    // 🔹 Uji kompetensi (30%)
+    // 🔹 CEK UJI
     $ujiSelesai = in_array($ujiSlug, $progress);
+
+    // 🔹 PROGRESS UJI (30%)
     $progressUji = $ujiSelesai ? 30 : 0;
 
-    // 🔥 FIX UTAMA: jika uji sudah selesai → 100%
-    if ($ujiSelesai) {
-        $progressPercent = 100;
-    } else {
-        $progressPercent = min(100, round($progressMateri + $progressUji));
-    }
+    // 🔹 FINAL PROGRESS
+    $progressPercent = min(100, round($progressMateri + $progressUji));
 
     // =============================
-    // AMBIL NILAI PER QUIZ (RIWAYAT)
+    // AMBIL NILAI PER QUIZ
     // =============================
     $quizzes = Quiz::orderBy('id')->get();
     $nilaiPerQuiz = [];
@@ -89,7 +78,6 @@ class ProfileController extends Controller
         'nilaiPerQuiz'
     ));
 }
-
     public function update(Request $request)
     {
         $user = auth()->user();
