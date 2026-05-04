@@ -11,6 +11,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
@@ -42,15 +43,25 @@
         <input type="email" name="email" required>
     </div>
 
-    <div class="input-group">
-        <label>Kata Sandi</label>
-        <input type="password" name="password" required>
-    </div>
+    <div class="input-group" style="position: relative;">
+    <label>Kata Sandi</label>
+    <input type="password" name="password" id="passwordRegister" required>
 
-    <div class="input-group">
-        <label>Konfirmasi Kata Sandi</label>
-        <input type="password" name="password_confirmation" required>
-    </div>
+    <span onclick="togglePassword('passwordRegister', this)" 
+          style="position:absolute; right:10px; top:38px; cursor:pointer;">
+        <i class="fa fa-eye-slash"></i>
+    </span>
+</div>
+
+    <div class="input-group" style="position: relative;">
+    <label>Konfirmasi Kata Sandi</label>
+    <input type="password" name="password_confirmation" id="passwordConfirm" required>
+
+    <span onclick="togglePassword('passwordConfirm', this)" 
+          style="position:absolute; right:10px; top:38px; cursor:pointer;">
+        <i class="fa fa-eye-slash"></i>
+    </span>
+</div>
 
     <!-- <div class="input-group">
         <label>Kelas</label>
@@ -117,10 +128,15 @@
         <input type="email" name="email" required>
     </div>
 
-    <div class="input-group">
-        <label>Kata Sandi</label>
-        <input type="password" name="password" required>
-    </div>
+    <div class="input-group" style="position: relative;">
+    <label>Kata Sandi</label>
+    <input type="password" name="password" id="passwordLogin" required>
+
+    <span onclick="togglePassword('passwordLogin', this)" 
+          style="position:absolute; right:10px; top:38px; cursor:pointer;">
+        <i class="fa fa-eye-slash"></i>
+    </span>
+</div>
 
     <button type="submit">Log In</button>
 
@@ -218,6 +234,22 @@ roleSelect.addEventListener("change", function () {
 @endif
 </script>
 
+<script>
+function togglePassword(inputId, el) {
+    const input = document.getElementById(inputId);
+    const icon = el.querySelector("i");
+
+    if (input.type === "password") {
+        input.type = "text";
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
+    } else {
+        input.type = "password";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
+    }
+}
+</script>
 </body>
 </html>
 <!-- created by badr aouragh or boss.exe -->
