@@ -212,7 +212,7 @@
         <img id="editAvatarPreview"
              src="{{ auth()->user()->profile_photo_path 
                     ? asset('storage/' . auth()->user()->profile_photo_path) 
-                    : asset('img/pas_foto_sarah.jpeg') }}">
+                    : asset('img/icon_profil_kosong.jpg') }}">
 
         <label class="edit-change-photo">
             <input type="file" name="photo" id="editAvatarInput" accept="image/*">
@@ -369,6 +369,21 @@ document.addEventListener("DOMContentLoaded", function(){
         overlay.style.display = "none";
     });
 
+});
+</script>
+<script>
+document.getElementById('editAvatarInput').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            document.getElementById('editAvatarPreview').src = e.target.result;
+        }
+
+        reader.readAsDataURL(file);
+    }
 });
 </script>
 </body>
