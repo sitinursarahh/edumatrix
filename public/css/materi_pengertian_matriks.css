@@ -2952,3 +2952,13 @@ math-field {
     min-height: 40px;
     border: 2px dashed #aaa;
 }
+.opsi {
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+
+    -webkit-touch-callout: none; /* iOS fix */
+    -webkit-user-drag: none;
+
+    touch-action: none;
+}

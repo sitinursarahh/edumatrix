@@ -2428,6 +2428,9 @@ userAnswer[1] = { name:'', matrixLatex:'', ordoRow:'', ordoCol:'' };
 
     document.querySelectorAll('.opsi').forEach(item => {
 
+        // 🔥 FIX: cegah teks terseleksi (INI YANG KAMU BUTUH)
+        item.addEventListener('selectstart', e => e.preventDefault());
+
         // ======================
         // DESKTOP
         // ======================
@@ -2436,9 +2439,9 @@ userAnswer[1] = { name:'', matrixLatex:'', ordoRow:'', ordoCol:'' };
         });
 
         // ======================
-        // MOBILE FIX
+        // MOBILE
         // ======================
-        item.addEventListener('touchstart', function () {
+        item.addEventListener('touchstart', function (e) {
             dragged = this;
         });
 
@@ -2465,7 +2468,6 @@ userAnswer[1] = { name:'', matrixLatex:'', ordoRow:'', ordoCol:'' };
                 dropzone.innerHTML = '';
                 dropzone.appendChild(this);
 
-                // simpan jawaban
                 const key = dropzone.dataset.ans;
                 const val = this.dataset.val;
 
@@ -2473,12 +2475,13 @@ userAnswer[1] = { name:'', matrixLatex:'', ordoRow:'', ordoCol:'' };
 
             }
 
-            // reset posisi
+            // reset posisi (WAJIB)
             this.style.position = '';
             this.style.left = '';
             this.style.top = '';
             this.style.zIndex = '';
 
+            dragged = null;
         });
 
     });
