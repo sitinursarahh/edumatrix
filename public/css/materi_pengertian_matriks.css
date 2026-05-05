@@ -2942,3 +2942,13 @@ math-field {
 .drag-item {
     touch-action: none;
 }
+.opsi {
+    touch-action: none;
+    user-select: none;
+    cursor: grab;
+}
+
+.drop-box {
+    min-height: 40px;
+    border: 2px dashed #aaa;
+}

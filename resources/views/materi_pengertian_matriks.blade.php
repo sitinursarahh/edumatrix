@@ -2423,41 +2423,88 @@ userAnswer[1] = { name:'', matrixLatex:'', ordoRow:'', ordoCol:'' };
                     userAnswer[2] = { drop: {} };
                 },
                 afterRender: () => {
-                    let dragged = null;
 
-                    document.querySelectorAll('.opsi').forEach(op => {
-                        op.addEventListener('dragstart', e => {
-                            dragged = op;
-                            e.dataTransfer.setDragImage(op, op.offsetWidth / 2, op.offsetHeight / 2);
-                        });
-                    });
+    let dragged = null;
 
-                    document.querySelectorAll('.drop-box').forEach(box => {
-                        box.addEventListener('dragover', e => e.preventDefault());
-                        box.addEventListener('drop', e => {
-                            e.preventDefault();
-                            if (!box.children.length && dragged) {
-                                box.appendChild(dragged);
-                                userAnswer[2].drop[box.dataset.ans] = dragged.dataset.val;
-                            }
-                        });
-                    });
+    document.querySelectorAll('.opsi').forEach(item => {
 
-                    const opsiContainer = document.querySelector('.opsi-jawaban');
-                    opsiContainer.addEventListener('dragover', e => e.preventDefault());
-                    opsiContainer.addEventListener('drop', e => {
-                        e.preventDefault();
-                        if (dragged) {
-                            opsiContainer.appendChild(dragged);
-                            Object.keys(userAnswer[2].drop).forEach(k => {
-                                if (userAnswer[2].drop[k] === dragged.dataset.val) {
-                                    delete userAnswer[2].drop[k];
-                                }
-                            });
-                        }
-                    });
-                }
-            },
+        // ======================
+        // DESKTOP
+        // ======================
+        item.addEventListener('dragstart', function () {
+            dragged = this;
+        });
+
+        // ======================
+        // MOBILE FIX
+        // ======================
+        item.addEventListener('touchstart', function () {
+            dragged = this;
+        });
+
+        item.addEventListener('touchmove', function (e) {
+            e.preventDefault();
+
+            const touch = e.touches[0];
+
+            this.style.position = 'fixed';
+            this.style.left = touch.clientX - 30 + 'px';
+            this.style.top = touch.clientY - 30 + 'px';
+            this.style.zIndex = 999;
+        });
+
+        item.addEventListener('touchend', function (e) {
+
+            const touch = e.changedTouches[0];
+            const target = document.elementFromPoint(touch.clientX, touch.clientY);
+
+            const dropzone = target.closest('.drop-box');
+
+            if (dropzone) {
+
+                dropzone.innerHTML = '';
+                dropzone.appendChild(this);
+
+                // simpan jawaban
+                const key = dropzone.dataset.ans;
+                const val = this.dataset.val;
+
+                userAnswer[2].drop[key] = val;
+
+            }
+
+            // reset posisi
+            this.style.position = '';
+            this.style.left = '';
+            this.style.top = '';
+            this.style.zIndex = '';
+
+        });
+
+    });
+
+    // ======================
+    // DROP DESKTOP
+    // ======================
+    document.querySelectorAll('.drop-box').forEach(box => {
+
+        box.addEventListener('dragover', function (e) {
+            e.preventDefault();
+        });
+
+        box.addEventListener('drop', function () {
+            this.innerHTML = '';
+            this.appendChild(dragged);
+
+            const key = this.dataset.ans;
+            const val = dragged.dataset.val;
+
+            userAnswer[2].drop[key] = val;
+        });
+
+    });
+
+}},
             {
   render: () => `
     <p><strong>4. Diketahui matriks berikut</strong></p>
