@@ -19,6 +19,7 @@
 @include('layouts.header')
 
 <div class="d-flex">
+    
     @include('layouts.sidebar_guru')
 
     <div class="main-content flex-grow-1 p-4">
@@ -93,7 +94,9 @@
             <tr>
                 <td>{{ $index + 1 }}</td>
                 <td class="text-start">{{ $item->name }}</td>
-                <td>{{ $item->kelas }}</td>
+                <td>
+    {{ \App\Models\Kelas::where('id', $item->class_id)->value('name') ?? '-' }}
+</td>
                 <td>{{ $item->email }}</td>
                 <td>{{ $item->login_count }}x</td>
 
@@ -119,7 +122,7 @@
                 <td style="min-width: 180px;">
 
                     <button 
-                        onclick="openEditModal('{{ $item->id }}','{{ $item->name }}','{{ $item->kelas }}','{{ $item->email }}')" 
+                        onclick="openEditModal('{{ $item->id }}','{{ $item->name }}','{{ \App\Models\Kelas::where('id', $item->class_id)->value('name') ?? '-' }}','{{ $item->email }}')" 
                         class="btn btn-warning btn-sm me-1">
                         <i class="fas fa-edit"></i>
                     </button>

@@ -13,6 +13,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\DataNilaiExport;
 use App\Exports\DataSiswaExport;
 use Illuminate\Http\Request;
+use App\Models\Kelas;
 
 
 class DashboardguruController extends Controller
@@ -355,19 +356,24 @@ public function edit($id)
     return view('data_siswa.edit', compact('user'));
 }
 
+
+
 public function update(Request $request, $id)
 {
     $user = User::findOrFail($id);
 
+    // 🔥 ambil ID dari nama kelas
+    $kelas = Kelas::where('name', $request->kelas)->first();
+
     $user->update([
         'name' => $request->name,
-        'kelas' => $request->kelas,
+        'class_id' => $kelas->id ?? null, // 🔥 INI KUNCI
         'email' => $request->email,
     ]);
 
     return response()->json([
-    'success' => true
-]);
+        'success' => true
+    ]);
 }
 
 public function destroy($id)
@@ -381,20 +387,23 @@ public function destroy($id)
 }
 
 
+
+
 public function store(Request $request)
 {
     try {
 
-        // VALIDASI
         $request->validate([
             'name' => 'required',
             'kelas' => 'required',
             'email' => 'required|email|unique:users,email',
         ]);
 
+        $kelas = Kelas::where('name', $request->kelas)->first();
+
         User::create([
             'name' => $request->name,
-            'kelas' => $request->kelas,
+            'class_id' => $kelas->id ?? null, // 🔥 INI KUNCI
             'email' => $request->email,
             'password' => bcrypt('123456'),
             'role' => 'siswa'

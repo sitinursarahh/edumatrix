@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Kelas; // 🔥 WAJIB
 
 class User extends Authenticatable
 {
@@ -70,4 +71,10 @@ protected $casts = [
             'password' => 'hashed',
         ];
     }
+    
+
+public function kelas()
+{
+    return $this->belongsTo(Kelas::class, 'class_id');
+}
 }

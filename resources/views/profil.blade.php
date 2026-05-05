@@ -72,7 +72,14 @@
 
                             <!-- Kelas & Email -->
                             <div class="mt-3">
-                                <p><strong>Kelas:</strong> {{ auth()->user()->kelas }}</p>
+                                @php
+    $kelas = \App\Models\Kelas::where('id', auth()->user()->class_id)->first();
+@endphp
+
+<p>
+    <strong>Kelas:</strong>
+    {{ $kelas->name ?? '-' }}
+</p>
                                 <p><strong>Email:</strong> {{ auth()->user()->email }}</p>
                             </div>
 
@@ -233,10 +240,15 @@
     </div>
 
     <div class="row mb-2">
-        <div class="col">
-            <label>Kelas</label>
-            <input type="text" name="kelas" value="{{ auth()->user()->kelas }}">
-        </div>
+    <div class="col">
+        <label>Kelas</label>
+
+        @php
+            $kelas = \App\Models\Kelas::find(auth()->user()->class_id);
+        @endphp
+
+        <input type="text" name="kelas" value="{{ $kelas->name ?? '' }}">
+    </div>
 
         <div class="col">
             <label>Email</label>

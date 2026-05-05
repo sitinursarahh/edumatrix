@@ -85,7 +85,9 @@
             <tr>
                 <td>{{ $index + 1 }}</td>
                 <td class="text-start">{{ $item->name }}</td>
-                <td>{{ $item->kelas }}</td>
+                <td>
+    {{ \App\Models\Kelas::where('id', $item->class_id)->value('name') ?? '-' }}
+</td>
 
                 @foreach($quizzes as $quiz)
                 <td>

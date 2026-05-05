@@ -8,58 +8,41 @@ use Illuminate\Support\Facades\DB;
 use App\Models\ActivityLog;
 use App\Models\UserProgress;
 use App\Models\Quiz;
+use App\Models\Kelas;
 
 class ProfileController extends Controller
 {
     public function index()
 {
-    $user = auth()->user();
+    $user = auth()->user()->load('kelas'); // 🔥 load relasi
 
-    // =============================
-    // Activity Log
-    // =============================
     ActivityLog::create([
         'user_id' => $user->id,
         'activity_type' => 'profil',
         'description' => 'Mengakses halaman profil'
     ]);
 
-    // =============================
-    // 🔥 HITUNG PROGRESS (FIX)
-    // =============================
     $ujiSlug = 'uji-kompetensi';
+    $totalSubMateri = 70;
 
-    // 🔹 TOTAL MATERI (FIX - JANGAN DARI USER)
-    $totalSubMateri = 70; // ⬅️ ganti sesuai jumlah materi kamu
-
-    // 🔹 AMBIL PROGRESS USER
     $progress = UserProgress::where('user_id', $user->id)
         ->pluck('sub_materi_slug')
         ->unique()
         ->toArray();
 
-    // 🔹 HITUNG MATERI SELESAI (TANPA UJI)
     $materiSelesai = collect($progress)
         ->filter(fn($slug) => $slug !== $ujiSlug)
         ->count();
 
-    // 🔹 PROGRESS MATERI (70%)
     $progressMateri = $totalSubMateri > 0
         ? ($materiSelesai / $totalSubMateri) * 70
         : 0;
 
-    // 🔹 CEK UJI
     $ujiSelesai = in_array($ujiSlug, $progress);
-
-    // 🔹 PROGRESS UJI (30%)
     $progressUji = $ujiSelesai ? 30 : 0;
 
-    // 🔹 FINAL PROGRESS
     $progressPercent = min(100, round($progressMateri + $progressUji));
 
-    // =============================
-    // AMBIL NILAI PER QUIZ
-    // =============================
     $quizzes = Quiz::orderBy('id')->get();
     $nilaiPerQuiz = [];
 
@@ -73,44 +56,52 @@ class ProfileController extends Controller
     }
 
     return view('profil', compact(
+        'user', // 🔥 INI WAJIB
         'progressPercent',
         'quizzes',
         'nilaiPerQuiz'
     ));
 }
-    public function update(Request $request)
-    {
-        $user = auth()->user();
+    
 
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email',
-            'kelas' => 'nullable|string|max:255',
-            'photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
-        ]);
+public function update(Request $request)
+{
+    $user = auth()->user();
 
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->kelas = $request->kelas;
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email',
+        'kelas' => 'nullable|string|max:255', // 🔥 GANTI
+        'photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+    ]);
 
-        // =============================
-        // Upload Foto
-        // =============================
-        if ($request->hasFile('photo')) {
+    $user->name = $request->name;
+    $user->email = $request->email;
 
-            if ($user->profile_photo_path) {
-                Storage::disk('public')->delete($user->profile_photo_path);
-            }
+    // 🔥 CONVERT NAMA → ID
+    if ($request->kelas) {
+        $kelas = Kelas::where('name', $request->kelas)->first();
+        $user->class_id = $kelas->id ?? null;
+    }
 
-            $file = $request->file('photo');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            $path = $file->storeAs('profile_photos', $filename, 'public');
+    // =============================
+    // Upload Foto
+    // =============================
+    if ($request->hasFile('photo')) {
 
-            $user->profile_photo_path = $path;
+        if ($user->profile_photo_path) {
+            Storage::disk('public')->delete($user->profile_photo_path);
         }
 
-        $user->save();
+        $file = $request->file('photo');
+        $filename = time() . '.' . $file->getClientOriginalExtension();
+        $path = $file->storeAs('profile_photos', $filename, 'public');
 
-        return back()->with('success', 'Profil berhasil diperbarui.');
+        $user->profile_photo_path = $path;
     }
+
+    $user->save();
+
+    return back()->with('success', 'Profil berhasil diperbarui.');
+}
 }

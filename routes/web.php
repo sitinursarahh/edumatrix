@@ -52,9 +52,9 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
-Route::get('/profil', function () {
-    return view('profil');
-})->name('profil');
+// Route::get('/profil', function () {
+//     return view('profil');
+// })->name('profil');
 
 Route::get('/edit_profil', function () {
     return view('edit_profil');
