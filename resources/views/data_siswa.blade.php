@@ -63,14 +63,16 @@
 
     <!-- KANAN -->
     <div class="export-wrapper">
-        <button class="btn btn-danger me-2">
-            <i class="fas fa-file-pdf"></i> Export PDF
-        </button>
 
-        <button class="btn btn-success">
-            <i class="fas fa-file-excel"></i> Export Excel
-        </button>
-    </div>
+    <a href="{{ route('dataSiswa.exportPDF') }}" class="btn btn-danger me-2">
+        <i class="fas fa-file-pdf"></i> Export PDF
+    </a>
+
+    <a href="{{ route('dataSiswa.exportExcel') }}" class="btn btn-success">
+        <i class="fas fa-file-excel"></i> Export Excel
+    </a>
+
+</div>
 
 </div>
 

@@ -70,7 +70,9 @@
     <tr>
         <td>{{ $i+1 }}</td>
         <td class="nama">{{ $item->user->name ?? '-' }}</td>
-        <td>{{ $item->user->kelas ?? '-' }}</td>
+        <td>
+    {{ \App\Models\Kelas::where('id', $item->user->class_id ?? null)->value('name') ?? '-' }}
+</td>
 
         <td>{{ $item->jawaban_1 ?? '-' }}</td>
         <td>{{ $item->jawaban_2 ?? '-' }}</td>

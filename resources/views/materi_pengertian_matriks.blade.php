@@ -2610,6 +2610,54 @@ maka tentukan nilai elemen matriks <strong>\\( B \\)</strong> di bawah ini!
 
         ];
 
+        function initDrag() {
+
+    let dragged = null;
+
+    document.querySelectorAll('.drag-item').forEach(item => {
+
+        // desktop
+        item.addEventListener('dragstart', function () {
+            dragged = this;
+        });
+
+        // mobile
+        item.addEventListener('touchstart', function () {
+            dragged = this;
+        });
+
+        item.addEventListener('touchmove', function (e) {
+            e.preventDefault();
+
+            const touch = e.touches[0];
+
+            this.style.position = 'absolute';
+            this.style.left = touch.pageX - 40 + 'px';
+            this.style.top = touch.pageY - 40 + 'px';
+            this.style.zIndex = 999;
+        });
+
+        item.addEventListener('touchend', function (e) {
+
+            const touch = e.changedTouches[0];
+            const target = document.elementFromPoint(touch.clientX, touch.clientY);
+
+            const dropzone = target.closest('.drop-slot');
+
+            if (dropzone) {
+                dropzone.innerHTML = '';
+                dropzone.appendChild(this);
+            }
+
+            this.style.position = 'relative';
+            this.style.left = '';
+            this.style.top = '';
+            this.style.zIndex = '';
+        });
+
+    });
+}
+
 
 
         function updateQuizProgress() {
@@ -2726,6 +2774,7 @@ if (soal[4].check()) score++;
             completed = 0;
 
             renderSoal();
+            initDrag();
             updateQuizProgress();
             hasil.textContent = '';
             quizFinished = false;
@@ -2809,6 +2858,7 @@ btnReset.onclick = () => {
 
   // render ulang tampilan
   renderSoal();
+  initDrag();
 
   // hapus feedback
   hasil.textContent = '';
@@ -2851,6 +2901,7 @@ btnReset.onclick = () => {
 
     idx++;
     renderSoal();
+    initDrag();
     return;
   }
 
@@ -2945,6 +2996,7 @@ if (
         userAnswer[4] = { a22:'', a41:'', a53:'', a32:'' };
 
         renderSoal();
+        initDrag();
         updateQuizProgress();
       },
       '🎉'
@@ -2999,6 +3051,7 @@ function showPopup(message, onClose = null, icon = '') {
   if (idx > 0) {
     idx--;
     renderSoal();
+    initDrag();
   }
 };
 
@@ -3007,6 +3060,7 @@ function showPopup(message, onClose = null, icon = '') {
     INIT
     ===================================================== */
     renderSoal();
+    initDrag();
     updateQuizProgress();
 
         });

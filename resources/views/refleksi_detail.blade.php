@@ -107,7 +107,22 @@
             <tr>
                 <td>{{ $i+1 }}</td>
                 <td>{{ $item->user->name ?? '-' }}</td>
-                <td>{{ $item->user->kelas ?? '-' }}</td>
+                <td>
+    @php
+        $classId = $item->class_id ?? null;
+
+        // kalau class_id tidak ada tapi ada user_id, coba ambil dari user
+        if (!$classId && isset($item->user_id)) {
+            $classId = \App\Models\User::where('id', $item->user_id)->value('class_id');
+        }
+
+        $kelas = $classId
+            ? \App\Models\Kelas::where('id', $classId)->value('name')
+            : null;
+    @endphp
+
+    {{ $kelas ?? '-' }}
+</td>
 
                 @if($materi)
                     @foreach($soal as $index => $s)

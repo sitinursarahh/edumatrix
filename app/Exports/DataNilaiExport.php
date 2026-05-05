@@ -5,52 +5,70 @@ namespace App\Exports;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Quiz;
+use App\Models\Kelas;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class DataNilaiExport implements FromCollection
+class DataNilaiExport implements FromCollection, WithHeadings
 {
+    protected $kelas;
 
-protected $kelas;
-
-public function __construct($kelas = null)
-{
-    $this->kelas = $kelas;
-}
-    public function collection()
-{
-    $quizzes = Quiz::orderBy('id')->get();
-
-    // 🔥 Query siswa dengan filter kelas
-    $query = User::where('role', 'siswa');
-
-    if ($this->kelas) {
-        $query->where('kelas', $this->kelas);
+    public function __construct($kelas = null)
+    {
+        $this->kelas = $kelas;
     }
 
-    $siswa = $query->orderBy('name', 'asc')->get();
+    public function collection()
+    {
+        $quizzes = Quiz::orderBy('id')->get();
+        $kelasMap = Kelas::pluck('name', 'id');
 
-    $data = [];
+        $query = User::where('role', 'siswa');
 
-    foreach ($siswa as $item) {
+        if ($this->kelas) {
+            $query->where('class_id', $this->kelas);
+        }
 
-        $row = [
-            'Nama' => $item->name,
-            'Kelas' => $item->kelas,
+        $siswa = $query->orderBy('name', 'asc')->get();
+
+        $data = [];
+
+        foreach ($siswa as $item) {
+
+            $row = [
+                $item->name,
+                $kelasMap[$item->class_id] ?? '-',
+            ];
+
+            foreach ($quizzes as $quiz) {
+
+                $nilai = DB::table('hasil_kuis')
+                    ->where('id_user', $item->id)
+                    ->where('id_kuis', $quiz->id)
+                    ->max('nilai');
+
+                $row[] = $nilai ?? '-';
+            }
+
+            $data[] = $row;
+        }
+
+        return collect($data);
+    }
+
+    public function headings(): array
+    {
+        $quizzes = Quiz::orderBy('id')->get();
+
+        $headings = [
+            'Nama',
+            'Kelas',
         ];
 
         foreach ($quizzes as $quiz) {
-
-            $nilai = DB::table('hasil_kuis')
-                ->where('id_user', $item->id)
-                ->where('id_kuis', $quiz->id)
-                ->max('nilai');
-
-            $row[$quiz->title] = $nilai ?? '-';
+            $headings[] = $quiz->title;
         }
 
-        $data[] = $row;
+        return $headings;
     }
-
-    return collect($data);
-}
 }

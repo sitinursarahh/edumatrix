@@ -3,10 +3,14 @@
 namespace App\Exports;
 
 use App\Models\Refleksi;
+use App\Models\Kelas;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithCustomStartCell;
+use Maatwebsite\Excel\Concerns\WithEvents;
+use Maatwebsite\Excel\Events\AfterSheet;
 
-class RefleksiExport implements FromCollection, WithHeadings
+class RefleksiExport implements FromCollection, WithHeadings, WithCustomStartCell, WithEvents
 {
     protected $materi;
 
@@ -23,17 +27,19 @@ class RefleksiExport implements FromCollection, WithHeadings
             $query->where('materi_kode', $this->materi);
         }
 
-        return $query->get()->map(function ($item, $i) {
+        $kelasMap = Kelas::pluck('name', 'id');
+
+        return $query->get()->map(function ($item, $i) use ($kelasMap) {
             return [
-                'No' => $i + 1,
-                'Nama' => $item->user->name ?? '-',
-                'Kelas' => $item->user->kelas ?? '-',
-                'Soal 1' => $item->jawaban_1,
-                'Soal 2' => $item->jawaban_2,
-                'Soal 3' => $item->jawaban_3,
-                'Soal 4' => $item->jawaban_4,
-                'Soal 5' => $item->jawaban_5,
-                'Soal 6' => $item->jawaban_6,
+                $i + 1,
+                $item->user->name ?? '-',
+                $kelasMap[$item->user->class_id ?? 0] ?? '-',
+                $item->jawaban_1 ?? '-',
+                $item->jawaban_2 ?? '-',
+                $item->jawaban_3 ?? '-',
+                $item->jawaban_4 ?? '-',
+                $item->jawaban_5 ?? '-',
+                $item->jawaban_6 ?? '-',
             ];
         });
     }
@@ -50,6 +56,34 @@ class RefleksiExport implements FromCollection, WithHeadings
             'Soal 4',
             'Soal 5',
             'Soal 6',
+        ];
+    }
+
+    public function startCell(): string
+    {
+        return 'A3';
+    }
+
+    public function registerEvents(): array
+    {
+        return [
+            AfterSheet::class => function ($event) {
+
+                $judul = 'DATA REFLEKSI ' . strtoupper(str_replace('_', ' ', $this->materi));
+
+                $event->sheet->setCellValue('A1', $judul);
+                $event->sheet->mergeCells('A1:I1');
+
+                $event->sheet->getStyle('A1')->applyFromArray([
+                    'font' => [
+                        'bold' => true,
+                        'size' => 14,
+                    ],
+                    'alignment' => [
+                        'horizontal' => 'center',
+                    ],
+                ]);
+            },
         ];
     }
 }

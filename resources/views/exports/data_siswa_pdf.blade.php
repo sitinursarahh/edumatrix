@@ -36,8 +36,8 @@
             </td>
 
             <td style="text-align:center;">
-                {{ $item->kelas }}
-            </td>
+    {{ \App\Models\Kelas::where('id', $item->class_id)->value('name') ?? '-' }}
+</td>
 
             <td>
                 {{ $item->email }}
