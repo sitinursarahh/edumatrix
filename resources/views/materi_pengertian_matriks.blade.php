@@ -2774,7 +2774,6 @@ if (soal[4].check()) score++;
             completed = 0;
 
             renderSoal();
-            initDrag();
             updateQuizProgress();
             hasil.textContent = '';
             quizFinished = false;
@@ -2824,6 +2823,7 @@ document.getElementById('totalQuestion-2').textContent = soal.length;
   if (soal[idx].afterRender) soal[idx].afterRender();
   if (soal[idx].restore) soal[idx].restore();
 
+  initDrag();
   if (window.MathJax) MathJax.typesetPromise();
 
   btnPrev.style.visibility = idx === 0 ? 'hidden' : 'visible';
@@ -2858,7 +2858,6 @@ btnReset.onclick = () => {
 
   // render ulang tampilan
   renderSoal();
-  initDrag();
 
   // hapus feedback
   hasil.textContent = '';
@@ -2901,7 +2900,6 @@ btnReset.onclick = () => {
 
     idx++;
     renderSoal();
-    initDrag();
     return;
   }
 
@@ -2996,7 +2994,6 @@ if (
         userAnswer[4] = { a22:'', a41:'', a53:'', a32:'' };
 
         renderSoal();
-        initDrag();
         updateQuizProgress();
       },
       '🎉'
@@ -3051,7 +3048,6 @@ function showPopup(message, onClose = null, icon = '') {
   if (idx > 0) {
     idx--;
     renderSoal();
-    initDrag();
   }
 };
 
@@ -3060,7 +3056,6 @@ function showPopup(message, onClose = null, icon = '') {
     INIT
     ===================================================== */
     renderSoal();
-    initDrag();
     updateQuizProgress();
 
         });

@@ -2939,3 +2939,6 @@ math-field {
 .materi-slide:first-child .slide-nav {
     justify-content: flex-end !important;
 }
+.drag-item {
+    touch-action: none;
+}
