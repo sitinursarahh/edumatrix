@@ -78,18 +78,18 @@
     </div>
 
     <div class="input-group" id="token-siswa" style="display: none;">
-        <label>Kelas</label>
-        <select name="kelas" id="kelas-input" disabled required>
-            <option value="">-- Pilih Kelas --</option>
-            <option value="XI IPA 1">XI IPA 1</option>
-            <option value="XI IPA 2">XI IPA 2</option>
-            <option value="XI IPS 1">XI IPS 1</option>
-            <option value="XI IPS 2">XI IPS 2</option>
-        </select>
+    <label>Kelas</label>
+    <select name="kelas" id="kelas-input" disabled required>
+        <option value="">-- Pilih Kelas --</option>
+        <option value="1">XI IPA 1</option>
+        <option value="2">XI IPA 2</option>
+        <option value="3">XI IPS 1</option>
+        <option value="4">XI IPS 2</option>
+    </select>
 
-        <label>Token Kelas</label>
-        <input type="text" name="token_siswa" id="token-siswa-input" disabled>
-    </div>
+    <label>Token Kelas</label>
+    <input type="text" name="token_siswa" id="token-siswa-input" disabled>
+</div>
 
     <div class="input-group" id="token-guru" style="display: none;">
         <label>Token Guru</label>

@@ -70,17 +70,17 @@ public function index($classId)
     // =======================
     if ($user->role == 'siswa') {
 
-        $latestMessageTime = Message::where('class_id', $classId)
-            ->latest()
-            ->value('created_at');
-
-        if ($latestMessageTime) {
-            $user->last_seen_chat_at = now();
-            $user->save();
-        }
-
-        return view('chat', compact('messages', 'classId'));
+    // kalau ada message baru → update last seen
+    if ($messages->isNotEmpty()) {
+        $user->last_seen_chat_at = now();
+        $user->save();
     }
+
+    return view('chat', [
+        'messages' => $messages ?? collect(),
+        'classId' => $classId
+    ]);
+}
 
     // =======================
     // GURU
@@ -117,10 +117,19 @@ public function roomSelector()
     $user = auth()->user();
 
     // ======================
-    // SISWA (JANGAN DIUBAH)
+    // SISWA
     // ======================
     if ($user->role == 'siswa') {
-        return redirect('/chat/' . $user->class_id);
+
+        // kalau tidak punya kelas → tetap tampil halaman kosong
+        if (!$user->class_id) {
+            return view('chat', [
+                'messages' => collect(),
+                'classId' => 0
+            ]);
+        }
+
+        return redirect()->route('chat.index', $user->class_id);
     }
 
     // ======================

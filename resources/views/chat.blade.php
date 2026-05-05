@@ -44,6 +44,12 @@
         <div id="chat-box"
              class="flex-grow-1 overflow-auto p-4">
 
+             @if($messages->isEmpty())
+    <div class="text-center mt-5">
+        <p>Belum ada chat di kelas ini</p>
+    </div>
+@endif
+
             @foreach($messages as $msg)
                 @php
                     $isMe = $msg->user_id == auth()->id();
@@ -58,7 +64,7 @@
     @if($msg->user && $msg->user->profile_photo_path)
         <img src="{{ asset('storage/'.$msg->user->profile_photo_path) }}" class="chat-avatar">
     @else
-        <img src="{{ asset('img/default.png') }}" class="chat-avatar>
+        <img src="{{ asset('img/icon_profil_kosong.jpg') }}" class="chat-avatar">
     @endif
 @endif
 
@@ -188,12 +194,12 @@
     </script>
 
 <script>
-    window.classId = {{ $classId }};
-    window.userId = {{ auth()->id() }};
+    window.classId = {{ $classId ?? 'null' }};
+    window.userId = {{ auth()->id() ?? 'null' }};
 </script>
 <script>
     window.currentUserName = "{{ auth()->user()->name }}";
-    window.currentUserPhoto = "{{ auth()->user()->profile_photo_path }}";
+    window.currentUserPhoto = "{{ auth()->user()->profile_photo_path ?? '' }}";
 </script>
 @vite(['resources/js/app.js'])
 
