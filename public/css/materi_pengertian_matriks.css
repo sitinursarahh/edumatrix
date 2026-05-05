@@ -2939,26 +2939,28 @@ math-field {
 .materi-slide:first-child .slide-nav {
     justify-content: flex-end !important;
 }
-.drag-item {
-    touch-action: none;
-}
+/* ===============================
+   DRAG FIX UNIVERSAL
+=============================== */
+
 .opsi {
-    touch-action: none;
-    user-select: none;
-    cursor: grab;
+    touch-action: none; /* 🔥 WAJIB untuk mobile */
 }
 
+.opsi.dragging {
+    opacity: 0.7;
+    transform: scale(1.05);
+}
+
+/* biar tidak ke-highlight biru */
+.opsi,
 .drop-box {
-    min-height: 40px;
-    border: 2px dashed #aaa;
-}
-.opsi {
-    user-select: none;
     -webkit-user-select: none;
-    -ms-user-select: none;
+    user-select: none;
+}
 
-    -webkit-touch-callout: none; /* iOS fix */
-    -webkit-user-drag: none;
-
-    touch-action: none;
+/* efek hover desktop */
+.drop-box.hovered {
+    background: #e8f5e9;
+    border-color: #4caf50;
 }

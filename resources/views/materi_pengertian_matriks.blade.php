@@ -2426,23 +2426,28 @@ userAnswer[1] = { name:'', matrixLatex:'', ordoRow:'', ordoCol:'' };
 
     let dragged = null;
 
-    document.querySelectorAll('.opsi').forEach(item => {
+    const opsis = document.querySelectorAll('.opsi');
+    const dropBoxes = document.querySelectorAll('.drop-box');
+    const opsiContainer = document.querySelector('.opsi-jawaban');
 
-        // 🔥 FIX: cegah teks terseleksi (INI YANG KAMU BUTUH)
+    // ======================
+    // OPSI (DRAG SOURCE)
+    // ======================
+    opsis.forEach(item => {
+
+        // cegah teks ke-select
         item.addEventListener('selectstart', e => e.preventDefault());
 
-        // ======================
-        // DESKTOP
-        // ======================
-        item.addEventListener('dragstart', function () {
+        // ===== DESKTOP =====
+        item.addEventListener('dragstart', function (e) {
             dragged = this;
+            e.dataTransfer.setData('text/plain', this.dataset.val);
         });
 
-        // ======================
-        // MOBILE
-        // ======================
-        item.addEventListener('touchstart', function (e) {
+        // ===== MOBILE =====
+        item.addEventListener('touchstart', function () {
             dragged = this;
+            this.classList.add('dragging');
         });
 
         item.addEventListener('touchmove', function (e) {
@@ -2451,9 +2456,10 @@ userAnswer[1] = { name:'', matrixLatex:'', ordoRow:'', ordoCol:'' };
             const touch = e.touches[0];
 
             this.style.position = 'fixed';
-            this.style.left = touch.clientX - 30 + 'px';
-            this.style.top = touch.clientY - 30 + 'px';
-            this.style.zIndex = 999;
+            this.style.left = touch.clientX - this.offsetWidth / 2 + 'px';
+            this.style.top = touch.clientY - this.offsetHeight / 2 + 'px';
+            this.style.zIndex = 9999;
+            this.style.pointerEvents = 'none'; // 🔥 penting biar elementFromPoint kena target
         });
 
         item.addEventListener('touchend', function (e) {
@@ -2461,50 +2467,77 @@ userAnswer[1] = { name:'', matrixLatex:'', ordoRow:'', ordoCol:'' };
             const touch = e.changedTouches[0];
             const target = document.elementFromPoint(touch.clientX, touch.clientY);
 
-            const dropzone = target.closest('.drop-box');
+            const dropzone = target?.closest('.drop-box');
 
             if (dropzone) {
-
                 dropzone.innerHTML = '';
                 dropzone.appendChild(this);
 
                 const key = dropzone.dataset.ans;
-                const val = this.dataset.val;
+                userAnswer[2].drop[key] = this.dataset.val;
+            } else {
+                // balik ke container
+                opsiContainer.appendChild(this);
 
-                userAnswer[2].drop[key] = val;
-
+                Object.keys(userAnswer[2].drop).forEach(k => {
+                    if (userAnswer[2].drop[k] === this.dataset.val) {
+                        delete userAnswer[2].drop[k];
+                    }
+                });
             }
 
-            // reset posisi (WAJIB)
+            // reset style
             this.style.position = '';
             this.style.left = '';
             this.style.top = '';
             this.style.zIndex = '';
+            this.style.pointerEvents = '';
 
+            this.classList.remove('dragging');
             dragged = null;
         });
 
     });
 
     // ======================
-    // DROP DESKTOP
+    // DROP BOX
     // ======================
-    document.querySelectorAll('.drop-box').forEach(box => {
+    dropBoxes.forEach(box => {
 
-        box.addEventListener('dragover', function (e) {
+        // DESKTOP
+        box.addEventListener('dragover', e => e.preventDefault());
+
+        box.addEventListener('drop', function (e) {
             e.preventDefault();
-        });
 
-        box.addEventListener('drop', function () {
+            if (!dragged) return;
+
             this.innerHTML = '';
             this.appendChild(dragged);
 
             const key = this.dataset.ans;
-            const val = dragged.dataset.val;
-
-            userAnswer[2].drop[key] = val;
+            userAnswer[2].drop[key] = dragged.dataset.val;
         });
 
+    });
+
+    // ======================
+    // BALIK KE OPSI CONTAINER
+    // ======================
+    opsiContainer.addEventListener('dragover', e => e.preventDefault());
+
+    opsiContainer.addEventListener('drop', function (e) {
+        e.preventDefault();
+
+        if (!dragged) return;
+
+        this.appendChild(dragged);
+
+        Object.keys(userAnswer[2].drop).forEach(k => {
+            if (userAnswer[2].drop[k] === dragged.dataset.val) {
+                delete userAnswer[2].drop[k];
+            }
+        });
     });
 
 }},
@@ -2659,54 +2692,6 @@ maka tentukan nilai elemen matriks <strong>\\( B \\)</strong> di bawah ini!
 }
 
         ];
-
-        function initDrag() {
-
-    let dragged = null;
-
-    document.querySelectorAll('.drag-item').forEach(item => {
-
-        // desktop
-        item.addEventListener('dragstart', function () {
-            dragged = this;
-        });
-
-        // mobile
-        item.addEventListener('touchstart', function () {
-            dragged = this;
-        });
-
-        item.addEventListener('touchmove', function (e) {
-            e.preventDefault();
-
-            const touch = e.touches[0];
-
-            this.style.position = 'absolute';
-            this.style.left = touch.pageX - 40 + 'px';
-            this.style.top = touch.pageY - 40 + 'px';
-            this.style.zIndex = 999;
-        });
-
-        item.addEventListener('touchend', function (e) {
-
-            const touch = e.changedTouches[0];
-            const target = document.elementFromPoint(touch.clientX, touch.clientY);
-
-            const dropzone = target.closest('.drop-slot');
-
-            if (dropzone) {
-                dropzone.innerHTML = '';
-                dropzone.appendChild(this);
-            }
-
-            this.style.position = 'relative';
-            this.style.left = '';
-            this.style.top = '';
-            this.style.zIndex = '';
-        });
-
-    });
-}
 
 
 
@@ -2873,7 +2858,6 @@ document.getElementById('totalQuestion-2').textContent = soal.length;
   if (soal[idx].afterRender) soal[idx].afterRender();
   if (soal[idx].restore) soal[idx].restore();
 
-  initDrag();
   if (window.MathJax) MathJax.typesetPromise();
 
   btnPrev.style.visibility = idx === 0 ? 'hidden' : 'visible';

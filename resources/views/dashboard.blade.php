@@ -40,7 +40,7 @@
 
         <!-- Welcome Box -->
        <div class="p-4 mb-4" style="background: var(--c3); border-radius: 12px;">
-    <div class="d-flex justify-content-between align-items-center">
+    <div class="welcome-box d-flex justify-content-between align-items-center">
         <div>
             <h2 class="fw-bold">SELAMAT DATANG,</h2>
             <h4>{{ auth()->user()->name }}</h4>

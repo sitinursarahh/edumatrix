@@ -499,3 +499,18 @@ body {
 
     margin-left: 6px; /* 🔥 DEKATKAN KE TEKS */
 }
+/* =========================
+   RESPONSIVE WELCOME BOX
+   ========================= */
+@media (max-width: 768px) {
+    .welcome-box {
+        flex-direction: column !important;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .welcome-box img {
+        width: 140px !important;
+        height: 140px !important;
+    }
+}
