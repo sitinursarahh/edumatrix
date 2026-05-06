@@ -246,6 +246,8 @@
 
     <!-- KIRI: TABEL -->
     <div class="matrix-left">
+
+    <div class="table-responsive-materi">
         <table class="tabel-matriks tabel-matriks-kiri">
             <tr>
                 <th>Toko</th>
@@ -268,7 +270,12 @@
                 <td>5</td>
             </tr>
         </table>
-        <p class="image-caption">Tabel 1.1 Toko Alat Tulis</p>
+    </div>
+
+    <p class="image-caption">Tabel 1.1 Toko Alat Tulis</p>
+
+
+
     </div>
 
     <!-- KANAN: PENJELASAN + MATRIKS -->
@@ -2624,45 +2631,35 @@ maka tentukan nilai elemen matriks <strong>\\( B \\)</strong> di bawah ini!
   <div style="display:flex; align-items:center; gap:12px;">
 
     <!-- B = -->
-    <div style="font-size:24px;">
-      \\( B = \\)
+    <div class="matrix-responsive-wrapper">
+
+    <!-- B = -->
+    <div class="matrix-equal-text">
+        \\( B = \\)
     </div>
 
-    <!-- Matriks -->
-    <div style="display:flex; align-items:stretch;">
+    <!-- matrix -->
+    <div class="matrix-responsive">
 
-      <!-- Kurung kiri -->
-      <div style="
-        border-left:3px solid black;
-        border-top:3px solid black;
-        border-bottom:3px solid black;
-        width:10px;
-      "></div>
+        <!-- kurung kiri -->
+        <div class="matrix-bracket-side left"></div>
 
-      <!-- Grid Input -->
-      <div style="
-        display:grid;
-        grid-template-columns:75px 75px;
-        gap:18px 22px;
-        padding:0 15px;
-      ">
+        <!-- grid -->
+        <div class="matrix-grid-responsive">
 
-        <input class="quiz-input small" id="a22" style="height:45px;"  placeholder="...">
-        <input class="quiz-input small" id="a41" style="height:45px;"  placeholder="...">
-        <input class="quiz-input small" id="a53" style="height:45px;"  placeholder="...">
-        <input class="quiz-input small" id="a32" style="height:45px;"  placeholder="...">
+            <input class="quiz-input matrix-input-responsive" id="a22" placeholder="...">
+            <input class="quiz-input matrix-input-responsive" id="a41" placeholder="...">
+            <input class="quiz-input matrix-input-responsive" id="a53" placeholder="...">
+            <input class="quiz-input matrix-input-responsive" id="a32" placeholder="...">
 
-      </div>
+        </div>
 
-      <!-- Kurung kanan -->
-      <div style="
-        border-right:3px solid black;
-        border-top:3px solid black;
-        border-bottom:3px solid black;
-        width:10px;
-      "></div>
+        <!-- kurung kanan -->
+        <div class="matrix-bracket-side right"></div>
 
     </div>
+
+</div>
 
   </div>
 

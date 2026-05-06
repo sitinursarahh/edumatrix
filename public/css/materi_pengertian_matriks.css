@@ -143,17 +143,20 @@ body.sidebar-collapsed #sidebar_materi {
 }
 
 .tabel-matriks {
-    width: 320px; /* 🔥 tambahin lebar */
-    margin: 15px auto; /* ⬅️ jangan auto biar tetap kiri */
+    width: 100%;
     border-collapse: collapse;
-    font-size: 16px;
+    font-size: clamp(11px, 2.2vw, 16px);
+
+    table-layout: fixed; /* 🔥 penting */
 }
 
 .tabel-matriks th,
 .tabel-matriks td {
     border: 1px solid #000;
-    padding: 8px 20px; /* kasih ruang biar rapi */
+    padding: clamp(4px, 1vw, 8px);
     text-align: center;
+
+    word-break: break-word;
 }
 
 .tabel-matriks th {
@@ -2471,14 +2474,14 @@ math-field {
    TABEL → MATRIKS (KONVERSI)
 =============================== */
 
-.matrix-convert-wrapper {
+/* .matrix-convert-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 30px;
     margin: 25px 0;
     flex-wrap: wrap;
-}
+} */
 
 /* panah */
 .matrix-arrow {
@@ -2578,7 +2581,8 @@ math-field {
 
 /* kiri */
 .matrix-left {
-    flex: 0 0 auto;
+    flex: 0 1 auto;
+    min-width: 0;
 }
 
 /* kanan */
@@ -2629,20 +2633,9 @@ math-field {
 }
 
 /* 🔥 WRAPPER KHUSUS MATRIX */
-.math-matrix,
-.matrix-display,
-.matrix-wrapper {
-    width: 100%;
-    overflow-x: auto; /* ⬅️ kunci responsive */
-    overflow-y: hidden;
-    text-align: center;
-}
-
-/* biar tetap rapi di tengah */
-.math-matrix mjx-container {
-    display: inline-block;
-    max-width: 100%;
-}
+/* ===============================
+   RESPONSIVE MATHJAX MATRIX
+=============================== */
 
 /* ===============================
    FIX RESPONSIVE MATRIX INTERAKTIF
@@ -2963,4 +2956,220 @@ math-field {
 .drop-box.hovered {
     background: #e8f5e9;
     border-color: #4caf50;
+}
+/* wrapper utama */
+.matrix-responsive-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+
+    margin-top: 30px;
+    width: 100%;
+}
+
+/* teks B = */
+.matrix-equal-text {
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+/* wrapper matrix */
+.matrix-responsive {
+    display: flex;
+    align-items: stretch;
+}
+
+/* kurung */
+.matrix-bracket-side {
+    width: 10px;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.matrix-bracket-side.left {
+    border-left: 3px solid #000;
+}
+
+.matrix-bracket-side.right {
+    border-right: 3px solid #000;
+}
+
+.matrix-bracket-side::before,
+.matrix-bracket-side::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 3px;
+    background: #000;
+}
+
+.matrix-bracket-side.left::before {
+    top: 0;
+    left: 0;
+}
+
+.matrix-bracket-side.left::after {
+    bottom: 0;
+    left: 0;
+}
+
+.matrix-bracket-side.right::before {
+    top: 0;
+    right: 0;
+}
+
+.matrix-bracket-side.right::after {
+    bottom: 0;
+    right: 0;
+}
+
+/* grid */
+.matrix-grid-responsive {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(60px, 80px));
+
+    gap: 16px 20px;
+    padding: 0 14px;
+}
+
+/* input */
+.matrix-input-responsive {
+    width: 100% !important;
+    height: 42px;
+
+    text-align: center;
+    font-size: 15px;
+
+    box-sizing: border-box;
+
+    background: #c1856d !important;
+    color: white !important;
+}
+
+/* HP */
+@media (max-width: 576px) {
+    .matrix-responsive-wrapper {
+        gap: 8px;
+    }
+
+    .matrix-equal-text {
+        font-size: 20px;
+    }
+
+    .matrix-grid-responsive {
+        grid-template-columns: repeat(2, minmax(45px, 60px));
+        gap: 10px 12px;
+        padding: 0 8px;
+    }
+
+    .matrix-input-responsive {
+        height: 36px;
+        font-size: 13px;
+    }
+
+    .matrix-bracket-side {
+        width: 7px;
+    }
+
+    .matrix-bracket-side::before,
+    .matrix-bracket-side::after {
+        width: 7px;
+    }
+}
+
+/* ===============================
+   TABLE RESPONSIVE
+=============================== */
+
+/* HP */
+/* ===============================
+   TABLE RESPONSIVE FIX
+=============================== */
+
+.tabel-matriks {
+    width: auto; /* ⬅️ jangan full layar */
+    max-width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+
+    font-size: 16px;
+}
+
+.tabel-matriks th,
+.tabel-matriks td {
+    border: 1px solid #000;
+    padding: 8px 18px;
+    text-align: center;
+}
+
+/* HP */
+/* ===============================
+   CENTER TABLE ON MOBILE
+=============================== */
+@media (max-width: 576px) {
+    .matrix-left {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* 🔥 center */
+    }
+
+    .tabel-matriks {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+/* ===============================
+   MATHJAX RESPONSIVE AUTO SCALE
+=============================== */
+/* ===============================
+   MATHJAX RESPONSIVE AUTO SCALE
+=============================== */
+
+.math-matrix {
+    width: 100%;
+
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+
+    overflow: hidden;
+    margin: 20px auto !important;
+
+    text-align: center !important;
+}
+
+/* paksa MathJax center */
+.math-matrix mjx-container {
+    display: block !important;
+    width: fit-content !important;
+
+    margin-left: auto !important;
+    margin-right: auto !important;
+
+    transition: transform 0.2s ease;
+    transform-origin: center center !important;
+}
+
+/* tablet */
+@media (max-width: 768px) {
+    .math-matrix mjx-container {
+        transform: scale(0.88);
+    }
+}
+
+/* hp */
+@media (max-width: 576px) {
+    .math-matrix mjx-container {
+        transform: scale(0.7);
+    }
+}
+
+/* hp kecil */
+@media (max-width: 400px) {
+    .math-matrix mjx-container {
+        transform: scale(0.5);
+    }
 }
