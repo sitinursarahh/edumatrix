@@ -1224,3 +1224,10 @@ textarea {
     -webkit-user-select: none;
     user-select: none;
 }
+.table-cuaca {
+    text-align: center;
+}
+
+.table-cuaca .tabel-matriks {
+    margin: 0 auto;
+}

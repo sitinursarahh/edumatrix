@@ -326,7 +326,7 @@ if (!in_array('matriks-baris', $unlocked)) {
                     <li>Martapura</li>
                 </ol>
                 <!-- ===== Tabel Data ===== -->
-                <div class="table-responsive mb-3">
+                <div class="table-responsive table-cuaca mb-3">
                     <table class="tabel-matriks">
                         <thead>
                             <tr>
@@ -558,7 +558,7 @@ if (!in_array('matriks-baris', $unlocked)) {
                     <li>Telur</li>
                 </ol>
                 <!-- ===== Tabel Data ===== -->
-                <div class="table-responsive mb-3">
+                <div class="table-responsive table-cuaca mb-3">
                     <table class="tabel-matriks">
                         <thead>
                             <tr>
@@ -635,7 +635,7 @@ if (!in_array('matriks-baris', $unlocked)) {
                     Jumlah sepatu pada setiap tingkat adalah sebagai berikut:
                 </p>
                 <!-- ===== Tabel Data ===== -->
-                <div class="table-responsive mb-3">
+                <div class="table-responsive table-cuaca mb-3">
                     <table class="tabel-matriks">
                         <thead>
                             <tr>
@@ -1234,7 +1234,7 @@ if (!in_array('matriks-baris', $unlocked)) {
                 <p>diamati dua orang siswa, yaitu Ali dan Sidiq, dengan dua jenis kegiatan, yaitu masuk kelas dan mengumpulkan tugas. 
                     Tabel berikut menunjukkan kondisi yang terjadi.</p>
                     <!-- ===== Tabel Data ===== -->
-                <div class="table-responsive mb-3">
+                <div class="table-responsive table-cuaca mb-3">
                     <table class="tabel-matriks">
                         <thead>
                             <tr>
@@ -1395,7 +1395,7 @@ if (!in_array('matriks-baris', $unlocked)) {
                     <li>Jarak bersifat dua arah dan sama (A ke B = B ke A)</li>
                 </ul>
                 <!-- ===== Tabel Data ===== -->
-                <div class="table-responsive mb-3">
+                <div class="table-responsive table-cuaca mb-3">
                     <table class="tabel-matriks">
                         <thead>
                             <tr>
@@ -1507,7 +1507,7 @@ if (!in_array('matriks-baris', $unlocked)) {
                     bentuk tabel dengan orientasi halaman landscape seperti di bawah ini.
                 </p>
                 <!-- ===== Tabel Data ===== -->
-                <div class="table-responsive mb-3">
+                <div class="table-responsive table-cuaca mb-3">
                     <table class="tabel-matriks">
                         <thead>
                             <tr>
