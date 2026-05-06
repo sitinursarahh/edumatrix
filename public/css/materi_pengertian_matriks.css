@@ -3175,56 +3175,50 @@ math-field {
 }
 
 /* =========================================
-   FIX FINAL MARI MENCOBA 2 MOBILE
+   FIX HP — TABLE SCROLL + INPUT KE BAWAH
 ========================================= */
 
 @media (max-width: 576px) {
-    /* container quiz */
+    /* quiz */
     #mari-mencoba-2 .quiz-container {
-        overflow-x: hidden !important;
         padding: 22px 14px !important;
+        overflow-x: hidden !important;
     }
 
-    /* =========================
+    /* ======================
        TABLE SCROLL
-    ========================= */
+    ====================== */
 
     #mari-mencoba-2 .table-scroll {
-        width: 100% !important;
-        overflow-x: auto !important;
+        width: 100%;
+        overflow-x: auto;
         -webkit-overflow-scrolling: touch;
     }
 
     #mari-mencoba-2 .data-siswa {
-        width: 420px !important;
-        min-width: 420px !important;
+        min-width: 320px !important;
+        width: max-content !important;
         margin: 10px auto !important;
     }
 
-    /* =========================
-       MATRIX INPUT KE BAWAH
-    ========================= */
+    /* ======================
+       MATRIX KE BAWAH
+    ====================== */
 
     #mari-mencoba-2 .matrix-center-row {
-        display: flex !important;
         flex-direction: column !important;
-
         align-items: center !important;
-        justify-content: center !important;
-
-        gap: 16px !important;
+        gap: 14px !important;
 
         width: 100% !important;
     }
 
-    /* nama matrix */
+    /* nama matriks */
     #mari-mencoba-2 .matrix-name {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
+        justify-content: center;
     }
 
-    /* wrapper mathfield */
+    /* mathfield wrapper */
     #mari-mencoba-2 .matrix-input {
         width: 100% !important;
 
@@ -3235,27 +3229,19 @@ math-field {
     /* mathfield */
     #mari-mencoba-2 math-field {
         width: 100% !important;
-        max-width: 260px !important;
+        max-width: 240px !important;
 
-        min-width: unset !important;
+        min-width: 0 !important;
 
         font-size: 18px !important;
 
         overflow-x: auto !important;
-
-        box-sizing: border-box !important;
     }
 
-    /* ORDO */
+    /* ordo */
     #mari-mencoba-2 .ordo-input {
-        display: flex !important;
         flex-wrap: wrap !important;
-
         justify-content: center !important;
-        align-items: center !important;
-
-        gap: 6px !important;
-
-        text-align: center !important;
+        text-align: center;
     }
 }
