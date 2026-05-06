@@ -3161,39 +3161,70 @@ math-field {
         transform: scale(0.5);
     }
 }
+/* =========================================
+   RESPONSIVE FINAL FIX
+========================================= */
+
 @media (max-width: 576px) {
-    #mari-mencoba-2 .table-scroll {
+    [data-section="mari-mencoba-2"] .table-scroll {
+        width: 100%;
         overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    [data-section="mari-mencoba-2"] .data-siswa {
+        min-width: 420px !important;
+        width: max-content !important;
+    }
+
+    [data-section="mari-mencoba-2"] .matrix-center-row {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 14px;
         width: 100%;
     }
 
-    #mari-mencoba-2 .data-siswa {
-        min-width: 420px;
-    }
-
-    #mari-mencoba-2 .matrix-center-row {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    #mari-mencoba-2 .matrix-input {
-        width: 100%;
-        display: flex;
+    [data-section="mari-mencoba-2"] .matrix-name {
         justify-content: center;
     }
 
-    #mari-mencoba-2 math-field {
-        min-width: 0 !important;
+    [data-section="mari-mencoba-2"] .matrix-input {
         width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        margin: 0 auto !important;
+    }
+
+    [data-section="mari-mencoba-2"] math-field {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+
         padding-right: 0 !important;
-        font-size: 20px;
+
+        overflow-x: auto !important;
+
+        box-sizing: border-box !important;
+
+        font-size: 20px !important;
     }
 
-    #mari-mencoba-2 .quiz-buttons {
+    [data-section="mari-mencoba-2"] .ordo-input {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 8px;
+        text-align: center;
+    }
+
+    [data-section="mari-mencoba-2"] .quiz-buttons {
+        display: flex;
         flex-direction: column;
+        gap: 10px;
     }
 
-    #mari-mencoba-2 .quiz-buttons button {
+    [data-section="mari-mencoba-2"] .quiz-buttons button {
         width: 100%;
     }
 }
