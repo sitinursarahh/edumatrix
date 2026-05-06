@@ -2422,41 +2422,125 @@ document.addEventListener("DOMContentLoaded", () => {
                 },
 
                 afterRender: () => {
-                    userAnswer[0].drop = userAnswer[0].drop || {};
-                    let dragged = null;
 
-                    document.querySelectorAll('.opsi1').forEach(op => {
-                        op.addEventListener('dragstart', e => {
-                            dragged = op;
-                            e.dataTransfer.setDragImage(op, op.offsetWidth / 2, op.offsetHeight / 2);
-                        });
-                    });
+    userAnswer[0].drop = userAnswer[0].drop || {};
 
-                    document.querySelectorAll('.drop-box1').forEach(box => {
-                        box.addEventListener('dragover', e => e.preventDefault());
-                        box.addEventListener('drop', e => {
-                            e.preventDefault();
-                            if (!box.children.length && dragged) {
-                                box.appendChild(dragged);
-                                userAnswer[0].drop[box.dataset.ans] = dragged.dataset.val;
-                            }
-                        });
-                    });
+    let dragged = null;
 
-                    const opsiContainer = document.querySelector('.opsi-jawaban-1');
-                    opsiContainer.addEventListener('dragover', e => e.preventDefault());
-                    opsiContainer.addEventListener('drop', e => {
-                        e.preventDefault();
-                        if (dragged) {
-                            opsiContainer.appendChild(dragged);
-                            Object.keys(userAnswer[0].drop).forEach(k => {
-                                if (userAnswer[0].drop[k] === dragged.dataset.val) {
-                                    delete userAnswer[0].drop[k];
-                                }
-                            });
-                        }
-                    });
-                }
+    const opsis = document.querySelectorAll('.opsi1');
+    const dropBoxes = document.querySelectorAll('.drop-box1');
+    const opsiContainer = document.querySelector('.opsi-jawaban-1');
+
+    opsis.forEach(item => {
+
+        item.addEventListener('selectstart', e => e.preventDefault());
+
+        /* DESKTOP */
+        item.addEventListener('dragstart', function(e){
+            dragged = this;
+            e.dataTransfer.setData('text/plain', this.dataset.val);
+        });
+
+        /* HP */
+        item.addEventListener('touchstart', function(){
+            dragged = this;
+            this.classList.add('dragging');
+        });
+
+        item.addEventListener('touchmove', function(e){
+
+            e.preventDefault();
+
+            const touch = e.touches[0];
+
+            this.style.position = 'fixed';
+            this.style.left = touch.clientX - this.offsetWidth/2 + 'px';
+            this.style.top = touch.clientY - this.offsetHeight/2 + 'px';
+            this.style.zIndex = 9999;
+            this.style.pointerEvents = 'none';
+
+        });
+
+        item.addEventListener('touchend', function(e){
+
+            const touch = e.changedTouches[0];
+            const target = document.elementFromPoint(touch.clientX, touch.clientY);
+
+            const box = target?.closest('.drop-box1');
+
+            if(box){
+
+                box.innerHTML = '';
+                box.appendChild(this);
+
+                userAnswer[0].drop[box.dataset.ans] = this.dataset.val;
+
+            }else{
+
+                opsiContainer.appendChild(this);
+
+                Object.keys(userAnswer[0].drop).forEach(k=>{
+                    if(userAnswer[0].drop[k] === this.dataset.val){
+                        delete userAnswer[0].drop[k];
+                    }
+                });
+
+            }
+
+            this.style.position='';
+            this.style.left='';
+            this.style.top='';
+            this.style.zIndex='';
+            this.style.pointerEvents='';
+
+            this.classList.remove('dragging');
+
+            dragged = null;
+
+        });
+
+    });
+
+    /* DROP BOX */
+    dropBoxes.forEach(box=>{
+
+        box.addEventListener('dragover', e=>e.preventDefault());
+
+        box.addEventListener('drop', function(e){
+
+            e.preventDefault();
+
+            if(!dragged) return;
+
+            this.innerHTML='';
+            this.appendChild(dragged);
+
+            userAnswer[0].drop[this.dataset.ans] = dragged.dataset.val;
+
+        });
+
+    });
+
+    /* BALIK KE PILIHAN */
+    opsiContainer.addEventListener('dragover', e=>e.preventDefault());
+
+    opsiContainer.addEventListener('drop', function(e){
+
+        e.preventDefault();
+
+        if(!dragged) return;
+
+        this.appendChild(dragged);
+
+        Object.keys(userAnswer[0].drop).forEach(k=>{
+            if(userAnswer[0].drop[k] === dragged.dataset.val){
+                delete userAnswer[0].drop[k];
+            }
+        });
+
+    });
+
+}
             },
 
 
@@ -2576,41 +2660,125 @@ document.addEventListener("DOMContentLoaded", () => {
                 },
 
                 afterRender: () => {
-                    userAnswer[1].drop = userAnswer[1].drop || {};
-                    let dragged = null;
 
-                    document.querySelectorAll('.opsi1').forEach(op => {
-                        op.addEventListener('dragstart', e => {
-                            dragged = op;
-                            e.dataTransfer.setDragImage(op, op.offsetWidth / 2, op.offsetHeight / 2);
-                        });
-                    });
+    userAnswer[1].drop = userAnswer[1].drop || {};
 
-                    document.querySelectorAll('.drop-box1').forEach(box => {
-                        box.addEventListener('dragover', e => e.preventDefault());
-                        box.addEventListener('drop', e => {
-                            e.preventDefault();
-                            if (!box.children.length && dragged) {
-                                box.appendChild(dragged);
-                                userAnswer[1].drop[box.dataset.ans] = dragged.dataset.val;
-                            }
-                        });
-                    });
+    let dragged = null;
 
-                    const opsiContainer = document.querySelector('.opsi-jawaban-1');
-                    opsiContainer.addEventListener('dragover', e => e.preventDefault());
-                    opsiContainer.addEventListener('drop', e => {
-                        e.preventDefault();
-                        if (dragged) {
-                            opsiContainer.appendChild(dragged);
-                            Object.keys(userAnswer[1].drop).forEach(k => {
-                                if (userAnswer[1].drop[k] === dragged.dataset.val) {
-                                    delete userAnswer[1].drop[k];
-                                }
-                            });
-                        }
-                    });
-                }
+    const opsis = document.querySelectorAll('.opsi1');
+    const dropBoxes = document.querySelectorAll('.drop-box1');
+    const opsiContainer = document.querySelector('.opsi-jawaban-1');
+
+    opsis.forEach(item => {
+
+        item.addEventListener('selectstart', e => e.preventDefault());
+
+        /* DESKTOP */
+        item.addEventListener('dragstart', function(e){
+            dragged = this;
+            e.dataTransfer.setData('text/plain', this.dataset.val);
+        });
+
+        /* HP */
+        item.addEventListener('touchstart', function(){
+            dragged = this;
+            this.classList.add('dragging');
+        });
+
+        item.addEventListener('touchmove', function(e){
+
+            e.preventDefault();
+
+            const touch = e.touches[0];
+
+            this.style.position = 'fixed';
+            this.style.left = touch.clientX - this.offsetWidth/2 + 'px';
+            this.style.top = touch.clientY - this.offsetHeight/2 + 'px';
+            this.style.zIndex = 9999;
+            this.style.pointerEvents = 'none';
+
+        });
+
+        item.addEventListener('touchend', function(e){
+
+            const touch = e.changedTouches[0];
+            const target = document.elementFromPoint(touch.clientX, touch.clientY);
+
+            const box = target?.closest('.drop-box1');
+
+            if(box){
+
+                box.innerHTML = '';
+                box.appendChild(this);
+
+                userAnswer[1].drop[box.dataset.ans] = this.dataset.val;
+
+            }else{
+
+                opsiContainer.appendChild(this);
+
+                Object.keys(userAnswer[1].drop).forEach(k=>{
+                    if(userAnswer[1].drop[k] === this.dataset.val){
+                        delete userAnswer[1].drop[k];
+                    }
+                });
+
+            }
+
+            this.style.position='';
+            this.style.left='';
+            this.style.top='';
+            this.style.zIndex='';
+            this.style.pointerEvents='';
+
+            this.classList.remove('dragging');
+
+            dragged = null;
+
+        });
+
+    });
+
+    /* DROP BOX */
+    dropBoxes.forEach(box=>{
+
+        box.addEventListener('dragover', e=>e.preventDefault());
+
+        box.addEventListener('drop', function(e){
+
+            e.preventDefault();
+
+            if(!dragged) return;
+
+            this.innerHTML='';
+            this.appendChild(dragged);
+
+            userAnswer[1].drop[this.dataset.ans] = dragged.dataset.val;
+
+        });
+
+    });
+
+    /* BALIK KE PILIHAN */
+    opsiContainer.addEventListener('dragover', e=>e.preventDefault());
+
+    opsiContainer.addEventListener('drop', function(e){
+
+        e.preventDefault();
+
+        if(!dragged) return;
+
+        this.appendChild(dragged);
+
+        Object.keys(userAnswer[1].drop).forEach(k=>{
+            if(userAnswer[1].drop[k] === dragged.dataset.val){
+                delete userAnswer[1].drop[k];
+            }
+        });
+
+    });
+
+}
             },
 
 
