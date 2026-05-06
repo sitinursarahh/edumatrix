@@ -3175,69 +3175,87 @@ math-field {
 }
 
 /* =========================================
-   MARI MENCOBA 2 RESPONSIVE FINAL
+   FIX FINAL MARI MENCOBA 2 MOBILE
 ========================================= */
 
 @media (max-width: 576px) {
-    /* quiz container */
+    /* container quiz */
     #mari-mencoba-2 .quiz-container {
-        overflow-x: hidden;
-        padding: 22px 14px;
+        overflow-x: hidden !important;
+        padding: 22px 14px !important;
     }
 
     /* =========================
        TABLE SCROLL
     ========================= */
 
-    #mari-mencoba-2 .data-siswa {
-        min-width: 420px;
-    }
-
     #mari-mencoba-2 .table-scroll {
-        width: 100%;
-        overflow-x: auto;
+        width: 100% !important;
+        overflow-x: auto !important;
         -webkit-overflow-scrolling: touch;
     }
 
+    #mari-mencoba-2 .data-siswa {
+        width: 420px !important;
+        min-width: 420px !important;
+        margin: 10px auto !important;
+    }
+
     /* =========================
-       MATRIX INPUT TURUN
+       MATRIX INPUT KE BAWAH
     ========================= */
 
     #mari-mencoba-2 .matrix-center-row {
-        flex-direction: column;
-        align-items: center;
-        gap: 14px;
+        display: flex !important;
+        flex-direction: column !important;
+
+        align-items: center !important;
+        justify-content: center !important;
+
+        gap: 16px !important;
+
+        width: 100% !important;
     }
 
     /* nama matrix */
     #mari-mencoba-2 .matrix-name {
-        justify-content: center;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
     }
 
-    /* math field */
+    /* wrapper mathfield */
     #mari-mencoba-2 .matrix-input {
-        width: 100%;
-        display: flex;
-        justify-content: center;
+        width: 100% !important;
+
+        display: flex !important;
+        justify-content: center !important;
     }
 
+    /* mathfield */
     #mari-mencoba-2 math-field {
         width: 100% !important;
-        max-width: 260px;
+        max-width: 260px !important;
 
         min-width: unset !important;
 
         font-size: 18px !important;
 
-        overflow-x: auto;
-        box-sizing: border-box;
+        overflow-x: auto !important;
+
+        box-sizing: border-box !important;
     }
 
-    /* ordo */
+    /* ORDO */
     #mari-mencoba-2 .ordo-input {
-        flex-wrap: wrap;
-        justify-content: center;
-        text-align: center;
-        gap: 6px;
+        display: flex !important;
+        flex-wrap: wrap !important;
+
+        justify-content: center !important;
+        align-items: center !important;
+
+        gap: 6px !important;
+
+        text-align: center !important;
     }
 }
