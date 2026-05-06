@@ -2253,34 +2253,28 @@ render: () => `
 <p><strong>2. Data jumlah siswa laki-laki dan perempuan pada tiga kelas ditunjukkan berikut:</strong></p>
 
 <div class="table-scroll">
-
-<table class="data-siswa">
-<tr>
-    <th>Kelas</th>
-    <th>Laki-Laki</th>
-    <th>Perempuan</th>
-</tr>
-
-<tr>
-    <td>XA</td>
-    <td>10</td>
-    <td>15</td>
-</tr>
-
-<tr>
-    <td>XB</td>
-    <td>12</td>
-    <td>14</td>
-</tr>
-
-<tr>
-    <td>XC</td>
-    <td>9</td>
-    <td>16</td>
-</tr>
-
-</table>
-
+    <table class="data-siswa">
+        <tr>
+            <th>Kelas</th>
+            <th>Laki-Laki</th>
+            <th>Perempuan</th>
+        </tr>
+        <tr>
+            <td>XA</td>
+            <td>10</td>
+            <td>15</td>
+        </tr>
+        <tr>
+            <td>XB</td>
+            <td>12</td>
+            <td>14</td>
+        </tr>
+        <tr>
+            <td>XC</td>
+            <td>9</td>
+            <td>16</td>
+        </tr>
+    </table>
 </div>
 
 <p>Tuliskan data dalam bentuk matriks, dan tentukan ordo matriks tersebut.</p>

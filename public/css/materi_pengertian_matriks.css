@@ -3173,75 +3173,58 @@ math-field {
         transform: scale(0.5);
     }
 }
-
 /* =========================================
-   FIX HP — TABLE SCROLL + INPUT KE BAWAH
+   RESPONSIVE KHUSUS MARI MENCOBA NO 2
 ========================================= */
 
 @media (max-width: 576px) {
-    /* quiz */
-    #mari-mencoba-2 .quiz-container {
-        padding: 22px 14px !important;
-        overflow-x: hidden !important;
+    /* table bisa discroll horizontal */
+    #mari-mencoba-2 .data-siswa {
+        min-width: 420px;
     }
-
-    /* ======================
-       TABLE SCROLL
-    ====================== */
 
     #mari-mencoba-2 .table-scroll {
         width: 100%;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
+        margin-bottom: 18px;
     }
 
-    #mari-mencoba-2 .data-siswa {
-        min-width: 320px !important;
-        width: max-content !important;
-        margin: 10px auto !important;
-    }
-
-    /* ======================
-       MATRIX KE BAWAH
-    ====================== */
-
+    /* matrix + nama dijadikan kebawah */
     #mari-mencoba-2 .matrix-center-row {
-        flex-direction: column !important;
-        align-items: center !important;
-        gap: 14px !important;
-
-        width: 100% !important;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
     }
 
-    /* nama matriks */
-    #mari-mencoba-2 .matrix-name {
-        justify-content: center;
-    }
-
-    /* mathfield wrapper */
-    #mari-mencoba-2 .matrix-input {
-        width: 100% !important;
-
-        display: flex !important;
-        justify-content: center !important;
-    }
-
-    /* mathfield */
+    /* math field jangan keluar kotak */
     #mari-mencoba-2 math-field {
         width: 100% !important;
-        max-width: 240px !important;
-
         min-width: 0 !important;
-
-        font-size: 18px !important;
-
-        overflow-x: auto !important;
+        max-width: 100%;
+        box-sizing: border-box;
     }
 
-    /* ordo */
+    /* wrapper matrix full aman */
+    #mari-mencoba-2 .matrix-input {
+        width: 100% !important;
+        max-width: 100%;
+    }
+
+    /* input ordo turun kebawah */
     #mari-mencoba-2 .ordo-input {
-        flex-wrap: wrap !important;
-        justify-content: center !important;
-        text-align: center;
+        flex-wrap: wrap;
+        row-gap: 10px;
+        line-height: 1.5;
+    }
+
+    /* tombol jadi kebawah */
+    #mari-mencoba-2 .quiz-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #mari-mencoba-2 .quiz-buttons button {
+        width: 100%;
     }
 }
