@@ -1467,7 +1467,8 @@ body.sidebar-collapsed #sidebar_materi {
 
 /* NONAKTIFKAN SCROLL KONTEN */
 .main-content {
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .slide-nav {
@@ -1750,9 +1751,6 @@ body.sidebar-collapsed #sidebar_materi {
 /* quiz-question jadi konteks center */
 
 /* matrix tetap inline */
-[data-section="mari-mencoba-2"] .matrix-input {
-    display: inline-flex;
-}
 
 /* ordo KEMBALIKAN ke kiri */
 [data-section="mari-mencoba-2"] .ordo-input {
@@ -1769,12 +1767,6 @@ body.sidebar-collapsed #sidebar_materi {
     position: relative;
 }
 
-#mari-mencoba-2 .matrix-input {
-    display: block !important; /* ⬅️ UBAH DARI inline-flex */
-    width: fit-content !important; /* lebar mengikuti isi */
-    margin: 16px auto !important; /* ⬅️ CENTER SECARA SAH */
-}
-
 /* =================================
    MATRIX CENTER — FINAL FIX
 ================================= */
@@ -1784,10 +1776,6 @@ body.sidebar-collapsed #sidebar_materi {
     justify-content: center;
     width: 100%;
     margin: 16px 0;
-}
-
-.matrix-center .matrix-input {
-    display: inline-flex;
 }
 
 /* ⛔ SEMBUNYIKAN SEMUA QUIZ SECARA GLOBAL */
@@ -3173,86 +3161,39 @@ math-field {
         transform: scale(0.5);
     }
 }
-/* =========================================
-   FIX FINAL RESPONSIVE MARI MENCOBA 2
-========================================= */
-
 @media (max-width: 576px) {
-    /* container jangan overflow */
-    #mari-mencoba-2 .quiz-container {
-        width: 100% !important;
-        max-width: 100% !important;
-        padding: 20px 14px !important;
-        overflow-x: hidden !important;
-        box-sizing: border-box;
-    }
-
-    /* table wrapper */
     #mari-mencoba-2 .table-scroll {
-        width: 100%;
         overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        margin-bottom: 18px;
+        width: 100%;
     }
 
-    /* table tetap lebar normal lalu discroll */
     #mari-mencoba-2 .data-siswa {
-        min-width: 420px !important;
-        width: max-content !important;
+        min-width: 420px;
     }
 
-    /* matrix + nama jadi vertikal */
     #mari-mencoba-2 .matrix-center-row {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: stretch !important;
-        width: 100% !important;
-        gap: 14px !important;
+        flex-direction: column;
+        align-items: center;
     }
 
-    /* nama matrix center */
-    #mari-mencoba-2 .matrix-name {
+    #mari-mencoba-2 .matrix-input {
+        width: 100%;
+        display: flex;
         justify-content: center;
     }
 
-    /* wrapper mathfield */
-    #mari-mencoba-2 .matrix-input {
-        width: 100% !important;
-        max-width: 100% !important;
-        margin: 0 auto !important;
-    }
-
-    /* FIX UTAMA */
     #mari-mencoba-2 math-field {
         min-width: 0 !important;
         width: 100% !important;
-        max-width: 100% !important;
-
         padding-right: 0 !important;
-
-        overflow-x: auto !important;
-
-        font-size: 22px !important;
-
-        box-sizing: border-box !important;
+        font-size: 20px;
     }
 
-    /* ordo turun */
-    #mari-mencoba-2 .ordo-input {
-        display: flex !important;
-        flex-wrap: wrap !important;
-        justify-content: center !important;
-        gap: 8px !important;
-        text-align: center;
-    }
-
-    /* tombol full */
     #mari-mencoba-2 .quiz-buttons {
-        flex-direction: column !important;
-        gap: 10px;
+        flex-direction: column;
     }
 
     #mari-mencoba-2 .quiz-buttons button {
-        width: 100% !important;
+        width: 100%;
     }
 }
