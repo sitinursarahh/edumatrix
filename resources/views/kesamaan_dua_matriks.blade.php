@@ -884,41 +884,129 @@ document.addEventListener('DOMContentLoaded', () => {
             },
 
             afterRender: () => {
-                userAnswer[0].drop = userAnswer[0].drop || {};
-                let dragged = null;
+    userAnswer[0].drop = userAnswer[0].drop || {};
 
-                document.querySelectorAll('.opsi1').forEach(op => {
-                    op.addEventListener('dragstart', e => {
-                        dragged = op;
-                        e.dataTransfer.setDragImage(op, op.offsetWidth / 2, op.offsetHeight / 2);
-                    });
-                });
+    let dragged = null;
 
-                document.querySelectorAll('.drop-box1').forEach(box => {
-                    box.addEventListener('dragover', e => e.preventDefault());
-                    box.addEventListener('drop', e => {
-                        e.preventDefault();
-                        if (!box.children.length && dragged) {
-                            box.appendChild(dragged);
-                            userAnswer[0].drop[box.dataset.ans] = dragged.dataset.val;
-                        }
-                    });
-                });
+    const opsis = document.querySelectorAll('.opsi1');
+    const dropBoxes = document.querySelectorAll('.drop-box1');
+    const opsiContainer = document.querySelector('.opsi-jawaban-1');
 
-                const opsiContainer = document.querySelector('.opsi-jawaban-1');
-                opsiContainer.addEventListener('dragover', e => e.preventDefault());
-                opsiContainer.addEventListener('drop', e => {
-                    e.preventDefault();
-                    if (dragged) {
-                        opsiContainer.appendChild(dragged);
-                        Object.keys(userAnswer[0].drop).forEach(k => {
-                            if (userAnswer[0].drop[k] === dragged.dataset.val) {
-                                delete userAnswer[0].drop[k];
-                            }
-                        });
+    // ======================
+    // OPSI JAWABAN
+    // ======================
+    opsis.forEach(op => {
+
+        // cegah teks terseleksi
+        op.addEventListener('selectstart', e => e.preventDefault());
+
+        // ===== DESKTOP =====
+        op.addEventListener('dragstart', e => {
+            dragged = op;
+            e.dataTransfer.setData('text/plain', op.dataset.val);
+            e.dataTransfer.setDragImage(op, op.offsetWidth / 2, op.offsetHeight / 2);
+        });
+
+        // ===== MOBILE =====
+        op.addEventListener('touchstart', function () {
+            dragged = this;
+            this.classList.add('dragging');
+        });
+
+        op.addEventListener('touchmove', function (e) {
+            e.preventDefault();
+
+            const touch = e.touches[0];
+
+            this.style.position = 'fixed';
+            this.style.left = (touch.clientX - this.offsetWidth / 2) + 'px';
+            this.style.top = (touch.clientY - this.offsetHeight / 2) + 'px';
+            this.style.zIndex = '9999';
+            this.style.pointerEvents = 'none';
+        });
+
+        op.addEventListener('touchend', function (e) {
+
+            const touch = e.changedTouches[0];
+            const target = document.elementFromPoint(touch.clientX, touch.clientY);
+
+            const dropzone = target?.closest('.drop-box1');
+
+            if (dropzone) {
+
+                // kosongkan dulu box
+                dropzone.innerHTML = '';
+                dropzone.appendChild(this);
+
+                const key = dropzone.dataset.ans;
+                userAnswer[0].drop[key] = this.dataset.val;
+
+            } else {
+
+                // balik ke tempat opsi
+                opsiContainer.appendChild(this);
+
+                Object.keys(userAnswer[0].drop).forEach(k => {
+                    if (userAnswer[0].drop[k] === this.dataset.val) {
+                        delete userAnswer[0].drop[k];
                     }
                 });
             }
+
+            // reset style
+            this.style.position = '';
+            this.style.left = '';
+            this.style.top = '';
+            this.style.zIndex = '';
+            this.style.pointerEvents = '';
+
+            this.classList.remove('dragging');
+            dragged = null;
+        });
+
+    });
+
+    // ======================
+    // DROP BOX
+    // ======================
+    dropBoxes.forEach(box => {
+
+        // DESKTOP
+        box.addEventListener('dragover', e => e.preventDefault());
+
+        box.addEventListener('drop', e => {
+            e.preventDefault();
+
+            if (!dragged) return;
+
+            box.innerHTML = '';
+            box.appendChild(dragged);
+
+            userAnswer[0].drop[box.dataset.ans] = dragged.dataset.val;
+        });
+
+    });
+
+    // ======================
+    // KEMBALI KE OPSI
+    // ======================
+    opsiContainer.addEventListener('dragover', e => e.preventDefault());
+
+    opsiContainer.addEventListener('drop', e => {
+        e.preventDefault();
+
+        if (!dragged) return;
+
+        opsiContainer.appendChild(dragged);
+
+        Object.keys(userAnswer[0].drop).forEach(k => {
+            if (userAnswer[0].drop[k] === dragged.dataset.val) {
+                delete userAnswer[0].drop[k];
+            }
+        });
+    });
+
+}
         },
 
 

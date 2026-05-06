@@ -601,3 +601,23 @@ mjx-container {
         flex: 1; /* biar seimbang kiri-kanan */
     }
 }
+/* ===============================
+   DRAG HP FIX - KESAMAAN MATRIKS
+   tempel paling bawah CSS
+=============================== */
+
+.opsi1 {
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.opsi1.dragging {
+    opacity: 0.75;
+    transform: scale(1.05);
+}
+
+.drop-box1 {
+    -webkit-user-select: none;
+    user-select: none;
+}
