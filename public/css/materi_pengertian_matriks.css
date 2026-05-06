@@ -3220,11 +3220,14 @@ math-field {
 
     [data-section="mari-mencoba-2"] .quiz-buttons {
         display: flex;
-        flex-direction: column;
+        flex-direction: row; /* balik horizontal */
+        justify-content: center;
         gap: 10px;
+        flex-wrap: wrap; /* kalau sempit baru turun */
     }
 
     [data-section="mari-mencoba-2"] .quiz-buttons button {
-        width: 100%;
+        width: auto !important; /* jangan full */
+        min-width: 120px;
     }
 }
