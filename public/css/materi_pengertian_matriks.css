@@ -3163,7 +3163,7 @@ math-field {
 /* hp */
 @media (max-width: 576px) {
     .math-matrix mjx-container {
-        transform: scale(0.7);
+        transform: scale(0.6);
     }
 }
 
