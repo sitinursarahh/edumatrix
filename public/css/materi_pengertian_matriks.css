@@ -3175,34 +3175,38 @@ math-field {
 }
 
 /* =========================================
-   MARI MENCOBA 2 RESPONSIVE FIX HP
+   MARI MENCOBA 2 RESPONSIVE FINAL
 ========================================= */
 
 @media (max-width: 576px) {
-    /* container quiz */
+    /* quiz container */
     #mari-mencoba-2 .quiz-container {
-        width: 100% !important;
-        padding: 22px 14px;
         overflow-x: hidden;
+        padding: 22px 14px;
     }
 
-    /* tabel responsive */
-    #mari-mencoba-2 table.data-siswa {
-        width: 100% !important;
-        max-width: 100%;
-        font-size: 13px;
+    /* =========================
+       TABLE SCROLL
+    ========================= */
+
+    #mari-mencoba-2 .data-siswa {
+        min-width: 420px;
     }
 
-    #mari-mencoba-2 table.data-siswa th,
-    #mari-mencoba-2 table.data-siswa td {
-        padding: 8px 6px;
+    #mari-mencoba-2 .table-scroll {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
-    /* matrix row jadi turun */
+    /* =========================
+       MATRIX INPUT TURUN
+    ========================= */
+
     #mari-mencoba-2 .matrix-center-row {
         flex-direction: column;
         align-items: center;
-        gap: 12px;
+        gap: 14px;
     }
 
     /* nama matrix */
@@ -3210,33 +3214,23 @@ math-field {
         justify-content: center;
     }
 
-    /* math field wrapper */
+    /* math field */
     #mari-mencoba-2 .matrix-input {
         width: 100%;
-        max-width: 100%;
-        display: flex !important;
+        display: flex;
         justify-content: center;
     }
 
-    /* FIX math-field */
     #mari-mencoba-2 math-field {
         width: 100% !important;
-        max-width: 240px !important;
+        max-width: 260px;
 
         min-width: unset !important;
 
         font-size: 18px !important;
 
-        padding: 8px !important;
-
-        overflow-x: auto !important;
-
+        overflow-x: auto;
         box-sizing: border-box;
-    }
-
-    /* toolbar mathlive */
-    #mari-mencoba-2 math-field::part(virtual-keyboard-toggle) {
-        transform: scale(0.8);
     }
 
     /* ordo */
@@ -3245,25 +3239,5 @@ math-field {
         justify-content: center;
         text-align: center;
         gap: 6px;
-    }
-
-    /* tombol */
-    #mari-mencoba-2 .quiz-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    #mari-mencoba-2 .quiz-buttons button {
-        width: 100%;
-        max-width: 220px;
-    }
-
-    /* nav */
-    #mari-mencoba-2 .quiz-nav {
-        gap: 10px;
-    }
-
-    #mari-mencoba-2 .quiz-nav button {
-        min-width: 100px;
     }
 }
