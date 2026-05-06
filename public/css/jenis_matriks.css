@@ -1231,3 +1231,95 @@ textarea {
 .table-cuaca .tabel-matriks {
     margin: 0 auto;
 }
+
+/* =========================
+   MATRIX SIMETRIS HP FIX
+========================= */
+@media (max-width: 576px) {
+    .matrix-center-container .matrix-diagonal-wrapper {
+        flex-direction: column !important;
+        flex-wrap: nowrap;
+        align-items: center !important;
+        gap: 14px;
+    }
+
+    .matrix-center-container .matrix-diagonal-info {
+        margin-left: 0 !important;
+        margin-top: 6px;
+        text-align: left;
+        width: fit-content;
+    }
+
+    .matrix-center-container .matrix-diagonal-info p {
+        justify-content: flex-start;
+        font-size: 14px;
+    }
+}
+
+/* =========================
+   FIX KHUSUS ANIMASI TRANSPOS HP
+   tempel PALING BAWAH CSS
+========================= */
+
+@media (max-width: 576px) {
+    /* rapatkan antar blok */
+    .matrix-tutorial-stack {
+        gap: 14px !important;
+        align-items: center;
+    }
+
+    /* panah lebih kecil */
+    .matrix-arrow {
+        font-size: 34px !important;
+        line-height: 1;
+    }
+
+    /* label D3x5 dan D5x3 lebih kecil */
+    .matrix-label {
+        font-size: 15px;
+        margin-right: 2px;
+    }
+
+    /* jarak semua isi frame dirapatkan */
+    .matrix-frame {
+        gap: 1px !important;
+    }
+
+    /* matriks kiri diperkecil lagi */
+    .matrix-html td {
+        width: 22px !important;
+        height: 22px !important;
+        font-size: 11px !important;
+        padding: 0;
+    }
+
+    /* matriks kanan diperkecil lagi */
+    .matrix-html-transpos td {
+        width: 22px !important;
+        height: 22px !important;
+        font-size: 11px !important;
+        padding: 0;
+    }
+
+    /* kurung siku kiri (3x5) */
+    .matrix-tutorial-box .math-bracket-3 {
+        font-size: 54px !important;
+        margin: 0 -2px !important;
+        line-height: 0.9;
+    }
+
+    /* kurung siku kanan (5x3) */
+    .math-bracket-4 {
+        font-size: 92px !important;
+        margin: 0 -3px !important;
+        line-height: 0.9;
+        transform: scaleX(0.62);
+    }
+
+    /* rapatkan box */
+    .matrix-tutorial-box {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+}

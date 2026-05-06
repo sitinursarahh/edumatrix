@@ -1573,7 +1573,7 @@ if (!in_array('matriks-baris', $unlocked)) {
                     85 & 80 & 88 \\
                     78 & 70 & 92 \\
                     82 & 76 & 91 \\
-                    88 & 79 & 94 
+                    88 & 79 & 94
                     \end{bmatrix}
                     \]
                 </div> -->
