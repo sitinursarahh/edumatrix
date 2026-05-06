@@ -3173,3 +3173,97 @@ math-field {
         transform: scale(0.5);
     }
 }
+
+/* =========================================
+   MARI MENCOBA 2 RESPONSIVE FIX HP
+========================================= */
+
+@media (max-width: 576px) {
+    /* container quiz */
+    #mari-mencoba-2 .quiz-container {
+        width: 100% !important;
+        padding: 22px 14px;
+        overflow-x: hidden;
+    }
+
+    /* tabel responsive */
+    #mari-mencoba-2 table.data-siswa {
+        width: 100% !important;
+        max-width: 100%;
+        font-size: 13px;
+    }
+
+    #mari-mencoba-2 table.data-siswa th,
+    #mari-mencoba-2 table.data-siswa td {
+        padding: 8px 6px;
+    }
+
+    /* matrix row jadi turun */
+    #mari-mencoba-2 .matrix-center-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+
+    /* nama matrix */
+    #mari-mencoba-2 .matrix-name {
+        justify-content: center;
+    }
+
+    /* math field wrapper */
+    #mari-mencoba-2 .matrix-input {
+        width: 100%;
+        max-width: 100%;
+        display: flex !important;
+        justify-content: center;
+    }
+
+    /* FIX math-field */
+    #mari-mencoba-2 math-field {
+        width: 100% !important;
+        max-width: 240px !important;
+
+        min-width: unset !important;
+
+        font-size: 18px !important;
+
+        padding: 8px !important;
+
+        overflow-x: auto !important;
+
+        box-sizing: border-box;
+    }
+
+    /* toolbar mathlive */
+    #mari-mencoba-2 math-field::part(virtual-keyboard-toggle) {
+        transform: scale(0.8);
+    }
+
+    /* ordo */
+    #mari-mencoba-2 .ordo-input {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+        gap: 6px;
+    }
+
+    /* tombol */
+    #mari-mencoba-2 .quiz-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #mari-mencoba-2 .quiz-buttons button {
+        width: 100%;
+        max-width: 220px;
+    }
+
+    /* nav */
+    #mari-mencoba-2 .quiz-nav {
+        gap: 10px;
+    }
+
+    #mari-mencoba-2 .quiz-nav button {
+        min-width: 100px;
+    }
+}
