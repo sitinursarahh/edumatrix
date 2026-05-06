@@ -80,6 +80,7 @@ window.MathJax = {
                         <strong>Sifat - Sifat Penjumlahan Matriks</strong>
                     </div>
                     <div class="box-masalah-content">
+                      <br>
                         <p>
                         Misalkan terdapat matriks \( A \), \( B \), \( C \), dan \( O \) yang semuanya memiliki
                         ordo sama, maka penjumlahan matriks memenuhi sifat-sifat berikut:
@@ -233,7 +234,7 @@ window.MathJax = {
                       <p>Data penjualan:</p>
                       <p class="text-center">Hari Senin</p>
                       <!-- ===== Tabel Data ===== -->
-                      <div class="table-responsive mb-3">
+                      <div class="table-responsive table-cuaca mb-3">
                           <table class="tabel-matriks">
                               <thead>
                                   <tr>
@@ -263,7 +264,7 @@ window.MathJax = {
 
                       <p class="text-center">Hari Selasa</p>
                       <!-- ===== Tabel Data ===== -->
-                      <div class="table-responsive mb-3">
+                      <div class="table-responsive table-cuaca mb-3">
                           <table class="tabel-matriks">
                               <thead>
                                   <tr>
@@ -311,21 +312,21 @@ window.MathJax = {
                       <li>
                         Nyatakan data penjualan buah hari Senin dan hari Selasa ke dalam bentuk matriks \( A \) dan \( B \).
                         <p>Matriks hasil penjualan dapat ditulis sebagai:</p>
-                        <div class="text-center my-3 matrix-display-big">
-                          \(
-                          A =
-                          \begin{bmatrix}
-                          25 & 18 \\
-                          30 & 20
-                          \end{bmatrix}
-                          \qquad
-                          B =
-                          \begin{bmatrix}
-                          28 & 16 \\
-                          27 & 22
-                          \end{bmatrix}
-                          \)
-                      </div>
+                        <div class="text-center my-3 matrix-display-big matrix-ab-wrap">
+\(
+A =
+\begin{bmatrix}
+25 & 18 \\
+30 & 20
+\end{bmatrix}
+\qquad
+B =
+\begin{bmatrix}
+28 & 16 \\
+27 & 22
+\end{bmatrix}
+\)
+</div>
                       </li>
                       <li>
                         Tentukan hasil penjumlahan matriks \( A \) + \( B \) untuk mengetahui total penjualan buah selama dua hari.
@@ -509,6 +510,7 @@ window.MathJax = {
                   </div>
 
                   <div class="box-masalah-content">
+                    <br>
                     <p>
                       Misalkan terdapat matriks \( A \), \( B \), \( C \), dan \( O \) yang semuanya
                       memiliki ordo sama, maka pengurangan matriks memenuhi sifat-sifat berikut:

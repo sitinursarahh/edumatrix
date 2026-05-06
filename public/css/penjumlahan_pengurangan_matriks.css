@@ -692,3 +692,45 @@
     display: inline-table;
     margin: 0 -2px;
 }
+/* =====================================
+   MATRIX A B RESPONSIVE FIX TOTAL
+===================================== */
+
+.matrix-display-big {
+    width: 100%;
+    text-align: center;
+    overflow: visible;
+}
+
+/* desktop normal */
+.matrix-ab-wrap mjx-container {
+    display: inline-block !important;
+    max-width: 100%;
+}
+
+/* HP */
+@media (max-width: 576px) {
+    /* paksa tampil per blok */
+    .matrix-ab-wrap mjx-math {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    /* tiap baris A dan B */
+    .matrix-ab-wrap mjx-mrow {
+        display: block;
+    }
+
+    .matrix-ab-wrap mjx-container {
+        font-size: 72% !important;
+    }
+}
+
+/* HP kecil */
+@media (max-width: 390px) {
+    .matrix-ab-wrap mjx-container {
+        font-size: 64% !important;
+    }
+}
