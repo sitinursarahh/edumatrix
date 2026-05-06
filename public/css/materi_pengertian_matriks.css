@@ -3236,14 +3236,15 @@ math-field {
 =============================== */
 
     [data-section="mari-mencoba"] .quiz-buttons {
-        display: flex !important;
-        flex-direction: column !important; /* atas bawah */
-        align-items: center;
-        gap: 14px;
+        display: flex;
+        flex-direction: row; /* balik horizontal */
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap; /* kalau sempit baru turun */
     }
 
     [data-section="mari-mencoba"] .quiz-buttons button {
-        width: auto !important;
-        min-width: 220px;
+        width: auto !important; /* jangan full */
+        min-width: 120px;
     }
 }
