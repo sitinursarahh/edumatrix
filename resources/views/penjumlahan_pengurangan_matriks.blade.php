@@ -124,21 +124,14 @@ window.MathJax = {
                     <section class="materi-slide" data-section="penjumlahan-matriks-2">
                     <p><strong>Contoh 1 :</strong></p>
                     <p>Diketahui matriks-matriks berikut ini.</p>
-                    <div class="text-center my-3 matrix-display-big">
-                        \(
-                        A =
-                        \begin{bmatrix}
-                        3 & 5 & 2 \\
-                        4 & 1 & 6
-                        \end{bmatrix}
-                        \qquad
-                        B =
-                        \begin{bmatrix}
-                        2 & 3 & 4 \\
-                        5 & 2 & 1
-                        \end{bmatrix}
-                        \)
-                    </div>
+                    <div class="matrix-responsive-container">
+    <div class="matrix-item">
+    \( A = \begin{bmatrix} 3 & 5 & 2 \\ 4 & 1 & 6 \end{bmatrix}, \)
+</div>
+    <div class="matrix-item">
+        \( B = \begin{bmatrix} 2 & 3 & 4 \\ 5 & 2 & 1 \end{bmatrix} \)
+    </div>
+</div>
                     <p>Tentukan jumlah matriks \(A\) dan matriks \(B\).</p>
                     <br>
                     <p><strong>Penyelesaian :</strong></p>
@@ -314,20 +307,13 @@ window.MathJax = {
                       <li>
                         Nyatakan data penjualan buah hari Senin dan hari Selasa ke dalam bentuk matriks \( A \) dan \( B \).
                         <p>Matriks hasil penjualan dapat ditulis sebagai:</p>
-                        <div class="text-center my-3 matrix-display-big matrix-ab-wrap">
-\(
-A =
-\begin{bmatrix}
-25 & 18 \\
-30 & 20
-\end{bmatrix}
-\qquad
-B =
-\begin{bmatrix}
-28 & 16 \\
-27 & 22
-\end{bmatrix}
-\)
+                        <div class="matrix-responsive-container">
+    <div class="matrix-item">
+        \( A = \begin{bmatrix} 25 & 18 \\ 30 & 20 \end{bmatrix}, \)
+    </div>
+    <div class="matrix-item">
+        \( B = \begin{bmatrix} 28 & 16 \\ 27 & 22 \end{bmatrix} \)
+    </div>
 </div>
                       </li>
                       <li>
