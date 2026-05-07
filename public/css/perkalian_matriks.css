@@ -440,38 +440,59 @@ pembatas */
     display: inline-block; /* 🔥 pastikan sejajar */
 }
 /* ===============================
-   FIX PERKALIAN AB (MOBILE)
+   FIX ANIMASI MATRIX MOBILE
 =============================== */
 @media (max-width: 600px) {
-    .tutorial-ab .matrix-tutorial-box {
-        flex-wrap: wrap; /* 🔥 biar turun, tidak keluar */
-        justify-content: center;
-        gap: 6px;
-    }
-
-    .tutorial-ab .matrix-frame {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    /* 🔥 kecilkan teks rumus */
+    /* container utama */
     .tutorial-ab {
-        font-size: 14px;
+        font-size: 11px;
+        overflow-x: auto;
+        padding: 0 4px;
     }
 
-    /* 🔥 kecilkan isi matriks */
+    /* box tutorial */
+    .tutorial-ab .matrix-tutorial-box {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        width: max-content;
+        margin: auto;
+    }
+
+    /* frame matriks */
+    .tutorial-ab .matrix-frame {
+        transform: scale(0.78);
+        transform-origin: center top;
+    }
+
+    /* isi angka matriks */
     .tutorial-ab .matrix-html td {
-        font-size: 15px;
-        padding: 3px 6px;
+        font-size: 12px;
+        padding: 1px 3px;
+        white-space: nowrap;
     }
 
-    /* 🔥 kecilkan label */
+    /* label A = B = */
     .tutorial-ab .matrix-label {
-        font-size: 1rem;
+        font-size: 12px;
     }
 
-    /* 🔥 kecilkan ekspresi 4×(2)+... */
+    /* ekspresi perhitungan */
     .tutorial-ab .row-tutorial {
-        line-height: 1.3;
+        font-size: 10px;
+        line-height: 1.2;
+        white-space: nowrap;
+    }
+
+    /* tanda kurung matrix */
+    .tutorial-ab .matrix-bracket {
+        font-size: 40px;
+    }
+
+    /* operator × dan = */
+    .tutorial-ab .matrix-operator {
+        font-size: 16px;
     }
 }
