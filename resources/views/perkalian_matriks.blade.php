@@ -546,7 +546,7 @@ Selanjutnya
                       </p>
                       <p>Jumlah truk yang digunakan untuk mengirim tiap jenis barang dari setiap gudang ditunjukkan pada tabel berikut. </p>
                       <!-- ===== Tabel Data ===== -->
-                      <div class="table-responsive mb-3">
+                      <div class="table-scroll-horizontal mb-3">
                           <table class="tabel-matriks">
                               <thead>
                                   <tr>
@@ -584,7 +584,7 @@ Selanjutnya
                       </div>
                       <p>Selain itu, diketahui juga kapasitas rata-rata muatan tiap truk untuk masing-masing jenis barang.</p>
                       <!-- ===== Tabel Data ===== -->
-                      <div class="table-responsive mb-3">
+                      <div class="table-responsive table-cuaca mb-3">
                           <table class="tabel-matriks">
                               <thead>
                                   <tr>

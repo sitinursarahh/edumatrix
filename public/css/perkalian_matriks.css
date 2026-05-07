@@ -533,3 +533,49 @@ pembatas */
         width: 6px;
     }
 }
+.table-cuaca {
+    text-align: center;
+}
+
+.table-cuaca .tabel-matriks {
+    margin: 0 auto;
+}
+/* ===============================
+   TABEL SCROLL KHUSUS
+=============================== */
+.table-scroll-horizontal {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    display: block;
+}
+
+/* tabel tetap lebar normal */
+.table-scroll-horizontal .tabel-matriks {
+    min-width: 520px;
+    width: max-content;
+
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+/* isi tabel */
+.table-scroll-horizontal .tabel-matriks th,
+.table-scroll-horizontal .tabel-matriks td {
+    white-space: nowrap;
+    padding: 12px 18px;
+    text-align: center;
+}
+
+/* khusus HP */
+@media (max-width: 600px) {
+    .table-scroll-horizontal .tabel-matriks {
+        min-width: 520px;
+    }
+
+    .table-scroll-horizontal .tabel-matriks th,
+    .table-scroll-horizontal .tabel-matriks td {
+        font-size: 14px;
+    }
+}
