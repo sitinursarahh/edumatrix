@@ -92,10 +92,12 @@ window.MathJax = {
                             \( A + B = B + A \).
                         </li>
                         <li>
-                            <strong>Sifat asosiatif:</strong>
-                            pengelompokan penjumlahan tidak mengubah hasil, yakni
-                            \( (A + B) + C = A + (B + C) \).
-                        </li>
+    <strong>Sifat asosiatif:</strong>
+    pengelompokan penjumlahan tidak mengubah hasil, yakni
+    <span class="math-responsive-inline">
+        \( (A + B) + C = A + (B + C) \)
+    </span>
+</li>
                         <li>
                             <strong>Matriks O:</strong>
                             terdapat matriks \( O \) yang jika dijumlahkan dengan \( A \) tidak

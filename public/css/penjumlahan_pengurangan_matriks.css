@@ -692,3 +692,30 @@
     display: inline-table;
     margin: 0 -2px;
 }
+/* Container rumus yang fleksibel */
+.math-responsive-inline {
+    display: inline-block;
+    vertical-align: middle;
+    max-width: 100%;
+    padding: 2px 5px;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+/* Saat di layar HP (max-width 576px atau 768px) */
+@media (max-width: 768px) {
+    .math-responsive-inline {
+        display: block; /* Turun ke bawah hanya di HP */
+        width: 100%;
+        overflow-x: auto; /* Bisa digeser kiri-kanan jika rumus kepanjangan */
+        white-space: nowrap; /* Mencegah rumus terpotong ke bawah di dalam kotaknya */
+        -webkit-overflow-scrolling: touch;
+        margin-top: 5px;
+    }
+}
+
+/* Menjaga ukuran container MathJax agar tidak berantakan */
+.math-responsive-inline mjx-container {
+    margin: 0 !important;
+    display: inline-block !important;
+}
