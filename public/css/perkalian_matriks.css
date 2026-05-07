@@ -443,82 +443,93 @@ pembatas */
    FIX MATRIX MOBILE FINAL
 =============================== */
 @media (max-width: 600px) {
-    /* container utama */
     .tutorial-ab {
         width: 100%;
         overflow-x: auto;
-        padding: 0 6px;
+        padding: 0 10px;
         box-sizing: border-box;
     }
 
-    /* wrapper tutorial */
     .tutorial-ab .matrix-tutorial-box {
-        width: max-content;
-        min-width: 100%;
-
         display: flex;
         flex-direction: column;
         align-items: center;
+        gap: 10px;
 
-        gap: 8px;
-        margin: auto;
+        min-width: fit-content;
+        width: 100%;
     }
 
-    /* frame matrix */
+    /* FRAME */
     .tutorial-ab .matrix-frame {
-        /* 🔥 jangan center paksa */
-        display: inline-flex;
-
+        display: flex;
         align-items: center;
-        gap: 2px;
+        justify-content: center;
 
-        width: max-content;
+        width: fit-content;
+        margin: auto;
 
-        overflow-x: visible;
+        padding: 0 8px;
+        box-sizing: border-box;
     }
 
-    /* tabel matrix */
+    /* TABEL */
     .tutorial-ab .matrix-html {
         border-collapse: collapse;
     }
 
-    /* isi matrix */
+    /* ISI MATRIX */
     .tutorial-ab .matrix-html td {
-        font-size: 11px;
-        padding: 2px 3px;
+        font-size: 10px;
+        padding: 2px 4px;
         text-align: center;
         white-space: nowrap;
     }
 
-    /* bracket */
+    /* BRACKET */
     .tutorial-ab .matrix-bracket {
-        font-size: 34px;
+        font-size: 28px;
         line-height: 1;
         flex-shrink: 0;
     }
 
-    /* operator */
-    .tutorial-ab .matrix-operator {
-        font-size: 15px;
-    }
-
-    /* label */
+    /* LABEL */
     .tutorial-ab .matrix-label {
         font-size: 11px;
     }
 
-    /* rumus perhitungan */
-    .tutorial-ab .row-tutorial {
-        font-size: 10px;
-        line-height: 1.3;
+    /* × dan = */
+    .tutorial-ab .matrix-operator {
+        font-size: 14px;
+    }
 
-        white-space: nowrap;
+    /* RUMUS */
+    .tutorial-ab .row-tutorial {
+        font-size: 9px;
+        line-height: 1.4;
+
+        /* 🔥 INI KUNCI */
+        white-space: normal;
+
+        word-break: break-word;
+        overflow-wrap: break-word;
 
         text-align: center;
     }
 
     /* hasil */
     .tutorial-ab .matrix-result {
-        width: max-content;
+        overflow-x: auto;
+        max-width: 100%;
+    }
+
+    /* bracket-frame bawaanmu */
+    .tutorial-ab .bracket-frame {
+        padding: 0 10px;
+    }
+
+    .tutorial-ab .bracket-frame::before,
+    .tutorial-ab .bracket-frame::after {
+        width: 6px;
     }
 }
