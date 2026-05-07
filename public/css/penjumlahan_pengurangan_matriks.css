@@ -575,13 +575,13 @@
     display: none;
 }
 
-.matrix-center-fix {
+/* .matrix-center-fix {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     width: 100%;
-}
+} */
 
 /* 🔥 BESARKAN FONT MATRiks */
 .matrix-center-fix mjx-container {
@@ -773,5 +773,46 @@
     .matrix-item {
         width: 100%; /* Biar centering-nya rapi di HP */
         text-align: center;
+    }
+}
+
+.matrix-center-fix {
+    display: flex;
+    justify-content: center; /* Mengetengahkan secara horizontal */
+    align-items: center; /* Mengetengahkan secara vertikal */
+    text-align: center;
+    width: 100%;
+    margin: 15px 0;
+    overflow: hidden; /* Agar tidak ada scroll di level ini */
+}
+
+/* Pembungkus agar bisa di-scroll di HP */
+.matrix-scroll-wrapper {
+    max-width: 100%; /* Jangan paksa width 100% agar bisa di-center */
+    display: inline-block; /* KUNCI: Agar lebar mengikuti isi dan bisa diketengahkan oleh parent */
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding: 10px 20px;
+    -webkit-overflow-scrolling: touch;
+    text-align: center; /* Memastikan konten di dalamnya center */
+}
+
+/* 🔥 BESARKAN FONT MATRIKS */
+.matrix-center-fix mjx-container {
+    font-size: 130% !important;
+    text-align: center !important;
+    margin: 0 auto !important; /* Memastikan MathJax berada di tengah */
+    display: inline-block !important; /* Penting agar margin auto bekerja */
+}
+
+/* Pengaturan khusus untuk layar HP */
+@media (max-width: 600px) {
+    .matrix-center-fix mjx-container {
+        font-size: 110% !important;
+    }
+    .matrix-scroll-wrapper {
+        display: block; /* Di HP balikkan ke block agar scrollbar memenuhi lebar layar */
+        width: 100%;
     }
 }

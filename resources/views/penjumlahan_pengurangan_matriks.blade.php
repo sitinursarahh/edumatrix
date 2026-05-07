@@ -637,7 +637,7 @@ window.MathJax = {
                       <p>Data stok minuman pada hari Senin dan Selasa disajikan dalam tabel berikut.</p>
                       <p class="text-center">Hari Senin</p>
                       <!-- ===== Tabel Data ===== -->
-                      <div class="table-responsive mb-3">
+                      <div class="table-responsive table-cuaca mb-3">
                           <table class="tabel-matriks">
                               <thead>
                                   <tr>
@@ -667,7 +667,7 @@ window.MathJax = {
 
                       <p class="text-center">Hari Selasa</p>
                       <!-- ===== Tabel Data ===== -->
-                      <div class="table-responsive mb-3">
+                      <div class="table-responsive table-cuaca mb-3">
                           <table class="tabel-matriks">
                               <thead>
                                   <tr>
@@ -698,26 +698,31 @@ window.MathJax = {
                       <br>
                       <p><strong>Penyelesaian :</strong></p>
                       <!-- <p>Misalkan:</p> -->
-                      <div class="text-center my-3 matrix-center-fix">
-                        \[
-                        A =
-                        \begin{bmatrix}
-                        52 & 31 \\
-                        47 & 26
-                        \end{bmatrix}
-                        \quad \text{(stok hari Senin)}
-                        \]
-                      </div>
-                      <div class="text-center my-3 matrix-center-fix">
-                        \[
-                        B =
-                        \begin{bmatrix}
-                        45 & 28 \\
-                        40 & 20
-                        \end{bmatrix}
-                        \quad \text{(stok hari Selasa)}
-                        \]
-                      </div>
+                      <div class="matrix-center-fix">
+    <div class="matrix-scroll-wrapper">
+        \[
+        A =
+        \begin{bmatrix}
+        52 & 31 \\
+        47 & 26
+        \end{bmatrix}
+        \quad \text{(stok hari Senin)}
+        \]
+    </div>
+</div>
+
+<div class="matrix-center-fix">
+    <div class="matrix-scroll-wrapper">
+        \[
+        B =
+        \begin{bmatrix}
+        45 & 28 \\
+        40 & 20
+        \end{bmatrix}
+        \quad \text{(stok hari Selasa)}
+        \]
+    </div>
+</div>
                       <p>Ket:</p>
                       <p>Kolom 1 Air Mineral</p>
                       <p>Kolom 2 Teh Botol</p>
