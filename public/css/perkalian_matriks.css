@@ -579,3 +579,16 @@ pembatas */
         font-size: 14px;
     }
 }
+
+/* ===============================
+   DRAG MOBILE FIX
+=============================== */
+
+.opsi1 {
+    touch-action: none;
+}
+
+.opsi1.dragging {
+    opacity: 0.7;
+    transform: scale(1.05);
+}
