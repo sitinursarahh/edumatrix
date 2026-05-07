@@ -442,215 +442,36 @@ pembatas */
 /* ===============================
    FIX PERKALIAN AB (MOBILE)
 =============================== */
-/* ===============================
-   WRAPPER SCROLL
-=============================== */
-
-.tutorial-ab {
-    width: 100%;
-
-    overflow-x: auto;
-    overflow-y: hidden;
-
-    -webkit-overflow-scrolling: touch;
-
-    touch-action: pan-x; /* 🔥 KUNCI HP */
-
-    padding: 10px 0;
-
-    box-sizing: border-box;
-}
-
-/* ===============================
-   AREA DALAM
-=============================== */
-
-.tutorial-ab .matrix-tutorial-box {
-    display: inline-flex; /* 🔥 BUKAN flex */
-
-    align-items: center;
-    justify-content: flex-start;
-
-    gap: 10px;
-
-    min-width: max-content;
-
-    padding: 10px 28px;
-
-    box-sizing: border-box;
-}
-
-/* ===============================
-   ROW
-=============================== */
-
-.tutorial-ab .row-tutorial {
-    display: inline-flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    min-width: max-content;
-
-    padding-left: 18px;
-    padding-right: 18px;
-}
-
-/* ===============================
-   FRAME
-=============================== */
-
-.tutorial-ab .matrix-frame {
-    display: flex;
-    align-items: center;
-
-    flex-shrink: 0;
-}
-
-/* ===============================
-   KURUNG
-=============================== */
-
-.tutorial-ab .bracket-frame {
-    position: relative;
-
-    display: flex;
-    align-items: stretch;
-
-    flex-shrink: 0;
-
-    padding: 0 16px;
-
-    box-sizing: border-box;
-}
-
-/* kiri kanan kurung */
-.tutorial-ab .bracket-frame::before,
-.tutorial-ab .bracket-frame::after {
-    content: "";
-
-    position: absolute;
-
-    top: 1px;
-    bottom: 1px;
-
-    width: 8px;
-}
-
-/* kiri */
-.tutorial-ab .bracket-frame::before {
-    left: 6px;
-
-    border-left: 3px solid #000;
-    border-top: 3px solid #000;
-    border-bottom: 3px solid #000;
-}
-
-/* kanan */
-.tutorial-ab .bracket-frame::after {
-    right: 6px;
-
-    border-right: 3px solid #000;
-    border-top: 3px solid #000;
-    border-bottom: 3px solid #000;
-}
-
-/* ===============================
-   TABEL MATRIKS
-=============================== */
-
-.tutorial-ab .matrix-html {
-    border-collapse: collapse;
-}
-
-.tutorial-ab .matrix-html td {
-    padding: 4px 10px;
-
-    font-size: 18px;
-    line-height: 1.2;
-
-    text-align: center;
-
-    white-space: nowrap;
-}
-
-/* ===============================
-   LABEL
-=============================== */
-
-.tutorial-ab .matrix-label {
-    font-size: 1.2rem;
-    font-weight: 600;
-
-    flex-shrink: 0;
-}
-
-/* ===============================
-   TABLET
-=============================== */
-
-@media (max-width: 1024px) {
-    .tutorial-ab .matrix-html td {
-        font-size: 16px;
-        padding: 4px 8px;
-    }
-
-    .tutorial-ab .matrix-label {
-        font-size: 1rem;
-    }
-}
-
-/* ===============================
-   HP
-=============================== */
-
-@media (max-width: 768px) {
-    .tutorial-ab {
-        overflow-x: auto;
-        overflow-y: hidden;
-
-        touch-action: pan-x;
-
-        -webkit-overflow-scrolling: touch;
-    }
-
+@media (max-width: 600px) {
     .tutorial-ab .matrix-tutorial-box {
+        flex-wrap: wrap; /* 🔥 biar turun, tidak keluar */
+        justify-content: center;
         gap: 6px;
-
-        padding: 10px 20px;
     }
 
-    .tutorial-ab .row-tutorial {
-        gap: 6px;
-
-        padding-left: 22px;
-        padding-right: 22px;
+    .tutorial-ab .matrix-frame {
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
-    .tutorial-ab .matrix-html td {
+    /* 🔥 kecilkan teks rumus */
+    .tutorial-ab {
         font-size: 14px;
+    }
+
+    /* 🔥 kecilkan isi matriks */
+    .tutorial-ab .matrix-html td {
+        font-size: 15px;
         padding: 3px 6px;
     }
 
+    /* 🔥 kecilkan label */
     .tutorial-ab .matrix-label {
-        font-size: 0.95rem;
+        font-size: 1rem;
     }
 
-    .tutorial-ab .bracket-frame {
-        padding: 0 14px;
-    }
-
-    .tutorial-ab .bracket-frame::before,
-    .tutorial-ab .bracket-frame::after {
-        width: 6px;
-    }
-
-    .tutorial-ab .bracket-frame::before {
-        left: 5px;
-    }
-
-    .tutorial-ab .bracket-frame::after {
-        right: 5px;
+    /* 🔥 kecilkan ekspresi 4×(2)+... */
+    .tutorial-ab .row-tutorial {
+        line-height: 1.3;
     }
 }
