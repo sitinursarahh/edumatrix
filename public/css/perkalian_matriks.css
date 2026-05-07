@@ -440,19 +440,22 @@ pembatas */
     display: inline-block; /* 🔥 pastikan sejajar */
 }
 /* ===============================
-   FIX MATRIX MOBILE
+   FIX ANIMASI MATRIX MOBILE
 =============================== */
 @media (max-width: 600px) {
+    /* container utama */
     .tutorial-ab {
         overflow-x: auto;
         padding: 0 10px;
+        font-size: 11px;
     }
 
-    /* box utama */
+    /* box tutorial */
     .tutorial-ab .matrix-tutorial-box {
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
         gap: 8px;
         width: 100%;
     }
@@ -463,13 +466,18 @@ pembatas */
         justify-content: center;
         align-items: center;
         gap: 2px;
+
         max-width: 100%;
         overflow-x: auto;
+
+        padding: 0 8px;
+        box-sizing: border-box;
     }
 
     /* tabel matriks */
     .tutorial-ab .matrix-html {
         border-collapse: collapse;
+        margin: 0 auto;
     }
 
     /* isi matriks */
@@ -477,29 +485,40 @@ pembatas */
         font-size: 12px;
         padding: 2px 4px;
         white-space: nowrap;
+        text-align: center;
     }
 
-    /* bracket matrix */
+    /* tanda kurung matrix */
     .tutorial-ab .matrix-bracket {
-        font-size: 42px;
+        font-size: 34px;
         line-height: 1;
         flex-shrink: 0;
     }
 
-    /* operator */
+    /* operator × dan = */
     .tutorial-ab .matrix-operator {
         font-size: 16px;
+    }
+
+    /* label A = B = */
+    .tutorial-ab .matrix-label {
+        font-size: 12px;
     }
 
     /* ekspresi perhitungan */
     .tutorial-ab .row-tutorial {
         font-size: 10px;
-        line-height: 1.3;
-        white-space: nowrap;
+        line-height: 1.4;
+
+        white-space: normal;
+        word-break: break-word;
+
+        text-align: center;
     }
 
-    /* label */
-    .tutorial-ab .matrix-label {
-        font-size: 12px;
+    /* hasil operasi */
+    .tutorial-ab .matrix-result {
+        overflow-x: auto;
+        max-width: 100%;
     }
 }
