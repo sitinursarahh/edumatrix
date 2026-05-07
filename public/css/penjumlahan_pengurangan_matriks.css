@@ -809,7 +809,7 @@
 /* Pengaturan khusus untuk layar HP */
 @media (max-width: 600px) {
     .matrix-center-fix mjx-container {
-        font-size: 110% !important;
+        font-size: 100% !important;
     }
     .matrix-scroll-wrapper {
         display: block; /* Di HP balikkan ke block agar scrollbar memenuhi lebar layar */
