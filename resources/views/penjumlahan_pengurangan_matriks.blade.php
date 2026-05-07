@@ -1357,23 +1357,31 @@ document.addEventListener('DOMContentLoaded', () => {
   render: () => `
     <p><strong>1. Diketahui matriks \\( E \\) dan \\( F \\) di bawah ini!</strong></p>
 
-    <div class="matrix-center my-3">
-      \\[
-      E =
-      \\begin{bmatrix}
-      3 & 12 & -1 \\\\
-      11 & 6 & 9 \\\\
-      2 & -6 & 3
-      \\end{bmatrix}
-      \\quad
-      F =
-      \\begin{bmatrix}
-      3 & 1 & 3 \\\\
-      8 & 15 & 7 \\\\
-      4 & -2 & 3
-      \\end{bmatrix}
-      \\]
+    <div class="matrix-mobile-wrapper">
+
+    <div class="matrix-box">
+        \\[
+        E =
+        \\begin{bmatrix}
+        3 & 12 & -1 \\\\
+        11 & 6 & 9 \\\\
+        2 & -6 & 3
+        \\end{bmatrix}
+        \\]
     </div>
+
+    <div class="matrix-box">
+        \\[
+        F =
+        \\begin{bmatrix}
+        3 & 1 & 3 \\\\
+        8 & 15 & 7 \\\\
+        4 & -2 & 3
+        \\end{bmatrix}
+        \\]
+    </div>
+
+</div>
 
     <p><strong>Berapakah hasil dari \\( E + F \\)?</strong></p>
 

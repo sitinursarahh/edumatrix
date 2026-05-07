@@ -428,52 +428,63 @@
 /* ===============================
    C21 INLINE — ALIGN FINAL FIX
 =============================== */
+/* ===============================
+   C21 RESPONSIVE FIX
+=============================== */
 
 .c21-inline {
     display: flex;
-    align-items: center; /* ⬅️ BUKAN baseline */
-    gap: 8px;
-    margin-top: 12px;
-}
-
-/* teks MathJax */
-.c21-text {
-    font-weight: 600;
-    display: flex;
     align-items: center;
+    justify-content: center;
+
+    flex-wrap: wrap; /* 🔥 KUNCI */
+    gap: 10px;
+
+    width: 100%;
+    margin-top: 14px;
 }
 
-/* operator umum */
+/* teks */
+.c21-text,
 .c21-operator {
-    font-weight: 600;
-    font-size: 1rem;
-    line-height: 1;
     display: flex;
     align-items: center;
-}
-
-/* KHUSUS tanda "=" kedua */
-.c21-operator.equal {
-    position: relative;
-    top: -2px; /* ⬅️ NAIKKAN SEDIKIT */
+    font-weight: 600;
 }
 
 /* input */
 .input-mini {
-    width: 44px !important;
-    height: 30px;
-    font-size: 0.95rem;
+    width: 56px;
+    height: 38px;
+
     text-align: center;
-    padding: 0;
-    border-radius: 6px;
 
-    display: flex;
-    align-items: center;
+    border: 2px solid #9a3f3f;
+    border-radius: 10px;
 
-    position: relative;
-    top: -2px; /* ⬅️ SAMA DENGAN "=" */
+    font-size: 1rem;
+
+    box-sizing: border-box;
 }
 
+/* MODE HP */
+@media (max-width: 600px) {
+    .c21-inline {
+        gap: 6px;
+    }
+
+    .input-mini {
+        width: 48px;
+        height: 36px;
+
+        font-size: 0.95rem;
+    }
+
+    .c21-text,
+    .c21-operator {
+        font-size: 0.95rem;
+    }
+}
 /* ================= POPUP QUIZ (ENHANCED) ================= */
 .quiz-modal {
     position: fixed;
@@ -814,5 +825,48 @@
     .matrix-scroll-wrapper {
         display: block; /* Di HP balikkan ke block agar scrollbar memenuhi lebar layar */
         width: 100%;
+    }
+}
+
+.matrix-mobile-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+
+    width: 100%;
+    margin: 20px 0;
+}
+
+.matrix-box {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    padding: 8px 12px;
+
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ukuran matriks */
+.matrix-box mjx-container {
+    font-size: 100% !important;
+}
+
+/* mode HP */
+@media (max-width: 768px) {
+    .matrix-mobile-wrapper {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .matrix-box {
+        width: 100%;
+        text-align: center;
+    }
+
+    .matrix-box mjx-container {
+        font-size: 95% !important;
     }
 }
