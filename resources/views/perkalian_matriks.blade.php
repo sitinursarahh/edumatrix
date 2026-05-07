@@ -1182,8 +1182,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // === KLIK SELESAI → RESET TOTAL ===
     if(finished){
       document
-        .querySelectorAll('.tutorial-cpq .matrix-result td, .tutorial-cpq .matrix-final td')
-        .forEach(td => td.textContent = '');
+  .querySelectorAll(`
+    .tutorial-cpq .matrix-result td,
+    .tutorial-cpq .matrix-mid td,
+    .tutorial-cpq .matrix-final td
+  `)
+  .forEach(td => td.textContent = '');
 
       row = col = step = 0;
       started = false;

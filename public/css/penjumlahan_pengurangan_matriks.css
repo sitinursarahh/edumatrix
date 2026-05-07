@@ -435,9 +435,10 @@
 .c21-inline {
     display: flex;
     align-items: center;
-    justify-content: center;
 
-    flex-wrap: wrap; /* 🔥 KUNCI */
+    justify-content: flex-start; /* 🔥 desktop kiri */
+
+    flex-wrap: wrap;
     gap: 10px;
 
     width: 100%;
@@ -470,6 +471,7 @@
 /* MODE HP */
 @media (max-width: 600px) {
     .c21-inline {
+        justify-content: center; /* 🔥 HP tengah */
         gap: 6px;
     }
 
