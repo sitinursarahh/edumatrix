@@ -611,19 +611,22 @@ math-field {
         font-size: 16px;
     }
 }
-.math-mobile {
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
+.rumus-bawah {
+    display: inline;
 }
 
-.math-content {
-    display: inline-block;
-    min-width: max-content;
-}
+@media (max-width: 768px) {
+    .kofaktor-rumus {
+        line-height: 1.8;
+    }
 
-.math-content mjx-container {
-    display: inline-block;
-    min-width: max-content;
+    .rumus-atas,
+    .rumus-bawah {
+        display: block;
+    }
+
+    .rumus-bawah {
+        margin-left: 20px;
+        margin-top: 4px;
+    }
 }

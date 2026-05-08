@@ -749,15 +749,17 @@
                           <div class="matrix-explanation" id="cofExplanation">
                             Tekan <b>Mulai</b> untuk melihat langkah penyelesaian
                           </div>
-                          <div class="math-mobile">
-    <div class="math-content">
-        Kofaktor
+                          <p class="kofaktor-rumus">
+    Kofaktor
 
-        \(
-        C_{11} = (-1)^{1+1} M_{11} = (-1) \cdot 1 = 1
-        \)
-    </div>
-</div>
+    <span class="rumus-atas">
+        \( C_{11} = (-1)^{1+1} M_{11} \)
+    </span>
+
+    <span class="rumus-bawah">
+        \( = (-1) \cdot 1 = 1 \)
+    </span>
+</p>
                           </li>
                           <br>
                           <div class="slide-nav mt-4 text-end">
