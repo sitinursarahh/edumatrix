@@ -846,7 +846,17 @@
                             Tekan <b>Mulai</b> untuk melihat langkah penyelesaian
                           </div>
 
-                          <p>Kofaktor \( C_{12} = (-1)^{1+2} M_{12} = (-1) \cdot (-3) = 3 \)</p>
+                         <p class="kofaktor-rumus">
+    Kofaktor
+
+    <span class="rumus-atas">
+        \( C_{12} = (-1)^{1+2} M_{12} \)
+    </span>
+
+    <span class="rumus-bawah">
+        \( = (-1) \cdot (-3) = 3 \)
+    </span>
+</p>
                           <br>
                           <p>Minor \( M_{13} \) :</p>
                           <p>Hilangkan baris ke-1 dan kolom ke-3:</p>
@@ -920,7 +930,17 @@
                           <div class="matrix-explanation" id="expM13">
                             Tekan <b>Mulai</b> untuk melihat langkah penyelesaian
                           </div>
-                          <p>Kofaktor \( C_{13} = (-1)^{1+3} M_{13} = (1) \cdot (-9) = -9 \)</p>
+                          <p class="kofaktor-rumus">
+    Kofaktor
+
+    <span class="rumus-atas">
+        \( C_{13} = (-1)^{1+3} M_{13} \)
+    </span>
+
+    <span class="rumus-bawah">
+        \( = (1) \cdot (-9) = -9 \)
+    </span>
+</p>
 
 
 
