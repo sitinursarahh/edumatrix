@@ -618,7 +618,12 @@ math-field {
     -webkit-overflow-scrolling: touch;
 }
 
-.math-mobile p {
+.math-content {
+    display: inline-block;
     min-width: max-content;
-    margin-bottom: 0;
+}
+
+.math-content mjx-container {
+    display: inline-block;
+    min-width: max-content;
 }

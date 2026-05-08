@@ -750,10 +750,13 @@
                             Tekan <b>Mulai</b> untuk melihat langkah penyelesaian
                           </div>
                           <div class="math-mobile">
-    <p>
-        Kofaktor 
-        \( C_{11} = (-1)^{1+1} M_{11} = (-1) \cdot 1 = 1 \)
-    </p>
+    <div class="math-content">
+        Kofaktor
+
+        \(
+        C_{11} = (-1)^{1+1} M_{11} = (-1) \cdot 1 = 1
+        \)
+    </div>
 </div>
                           </li>
                           <br>
