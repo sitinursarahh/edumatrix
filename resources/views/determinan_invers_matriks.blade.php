@@ -946,14 +946,42 @@
 
                           <ol start="3">
                             <li>
-                              Substitusikan ke rumus ekspansi<br>
-                              \( |Q| = a_{11} \cdot C_{11} + a_{12} \cdot C_{12} + a_{13} \cdot C_{13} \)<br>
-                              \( |Q| = (2)(1) + (4)(3) + (1)(-9) \)<br>
-                              \( |Q| = 2 + 12 - 9 = 5 \)<br>
-                              <p><strong>Jadi, determinan matriks Q dengan metode ekspansi kofaktor adalah 5.</strong></p>
-                              
+    Substitusikan ke rumus ekspansi
 
-                            </li>
+    <p class="kofaktor-rumus">
+
+        <span class="rumus-atas">
+            \( |Q| = a_{11} \cdot C_{11} + a_{12} \cdot C_{12} \)
+        </span>
+
+        <span class="rumus-bawah">
+            \( + \ a_{13} \cdot C_{13} \)
+        </span>
+
+    </p>
+
+    <p class="kofaktor-rumus">
+
+        <span class="rumus-atas">
+            \( |Q| = (2)(1) + (4)(3) \)
+        </span>
+
+        <span class="rumus-bawah">
+            \( + \ (1)(-9) \)
+        </span>
+
+    </p>
+
+    <p class="kofaktor-rumus">
+        \( |Q| = 2 + 12 - 9 = 5 \)
+    </p>
+
+    <p>
+        <strong>
+            Jadi, determinan matriks Q dengan metode ekspansi kofaktor adalah 5.
+        </strong>
+    </p>
+</li>
                           </ol>
                           <div class="slide-nav mt-4 text-end">
                               <button class="btn btn-outline-secondary btn-prev-slide">Sebelumnya</button>
