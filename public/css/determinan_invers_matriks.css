@@ -611,3 +611,14 @@ math-field {
         font-size: 16px;
     }
 }
+.math-mobile {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+.math-mobile p {
+    min-width: max-content;
+    margin-bottom: 0;
+}

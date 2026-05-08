@@ -132,6 +132,7 @@
                     </div>
                     <div class="box-masalah-content">
                         <ul>
+                          <br>
                         <li>
                             Misalkan matriks \( A \) dan \( B \) adalah matriks persegi
                             berordo \( n \times n \), dan \( k \) adalah konstanta,
@@ -748,7 +749,12 @@
                           <div class="matrix-explanation" id="cofExplanation">
                             Tekan <b>Mulai</b> untuk melihat langkah penyelesaian
                           </div>
-                          <p>Kofaktor \( C_{11} = (-1)^{1+1} M_{11} = (-1) \cdot 1 = 1\)</p>
+                          <div class="math-mobile">
+    <p>
+        Kofaktor 
+        \( C_{11} = (-1)^{1+1} M_{11} = (-1) \cdot 1 = 1 \)
+    </p>
+</div>
                           </li>
                           <br>
                           <div class="slide-nav mt-4 text-end">
@@ -961,6 +967,7 @@
                             </div>
 
                             <div class="box-masalah-content">
+                              <br>
                                 <p>
                                     Matriks
                                     \(
