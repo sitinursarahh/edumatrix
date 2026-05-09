@@ -163,7 +163,11 @@ window.MathJax = {
             <span>
                 <strong>Sifat asosiatif:</strong>
                 pengelompokan penjumlahan tidak mengubah hasil,
-                yakni \( (A + B) + C = A + (B + C) \).
+                yakni yakni
+
+<span class="math-responsive-inline">
+    \( (A + B) + C = A + (B + C) \)
+</span>
             </span>
 
             <button class="btn-bukti"
