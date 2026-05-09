@@ -1018,3 +1018,25 @@
         width: fit-content;
     }
 }
+/* DESKTOP */
+.math-asosiatif .bagian-atas,
+.math-asosiatif .bagian-bawah {
+    display: inline;
+}
+
+/* HP */
+@media (max-width: 768px) {
+    .math-asosiatif {
+        display: block;
+        margin-top: 6px;
+    }
+
+    .math-asosiatif .bagian-atas,
+    .math-asosiatif .bagian-bawah {
+        display: block;
+    }
+
+    .math-asosiatif .bagian-bawah {
+        margin-top: 4px;
+    }
+}

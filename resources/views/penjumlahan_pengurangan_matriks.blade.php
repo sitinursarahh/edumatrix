@@ -161,14 +161,20 @@ window.MathJax = {
 
         <div class="sifat-header">
             <span>
-                <strong>Sifat asosiatif:</strong>
-                pengelompokan penjumlahan tidak mengubah hasil,
-                yakni yakni
+    <strong>Sifat asosiatif:</strong>
+    pengelompokan penjumlahan tidak mengubah hasil,
+    yakni
 
-<span class="math-responsive-inline">
-    \( (A + B) + C = A + (B + C) \)
+    <span class="math-asosiatif">
+        <span class="bagian-atas">
+            \( (A + B) + C = \)
+        </span>
+
+        <span class="bagian-bawah">
+            \( A + (B + C) \)
+        </span>
+    </span>
 </span>
-            </span>
 
             <button class="btn-bukti"
                 onclick="toggleBukti('bukti-asosiatif')">
