@@ -1191,6 +1191,7 @@
                                 <strong>Invers Matriks Berordo 3 × 3</strong>
                             </div>
                             <div class="box-masalah-content">
+                              <br>
                                 <p>
                                     Matriks
                                     \(
@@ -1398,7 +1399,17 @@
                               <div class="matrix-explanation" id="invM11Explanation">
                                 Tekan <b>Mulai</b> untuk melihat langkah penyelesaian
                               </div>
-                              <p>Kofaktor \( C_{11} = (-1)^{1+1} M_{11} = 1 \cdot 1 = 1\)</p>
+                              <p class="kofaktor-rumus">
+    Kofaktor
+
+    <span class="rumus-atas">
+        \( C_{11} = (-1)^{1+1} M_{11} \)
+    </span>
+
+    <span class="rumus-bawah">
+        \( = 1 \cdot 1 = 1 \)
+    </span>
+</p>
                             </li>
                           </ol>
                           <div class="slide-nav mt-4 text-end">
@@ -1486,10 +1497,17 @@
                           <div class="matrix-explanation" id="invM12Explanation">
                             Tekan <b>Mulai</b> untuk melihat langkah penyelesaian
                           </div>
-                          <p>
-                            Kofaktor
-                            \( C_{12} = (-1)^{1+2} M_{12} = (-1) \cdot 10 = -10 \)
-                          </p>
+                          <p class="kofaktor-rumus">
+    Kofaktor
+
+    <span class="rumus-atas">
+        \( C_{12} = (-1)^{1+2} M_{12} \)
+    </span>
+
+    <span class="rumus-bawah">
+        \( = (-1) \cdot 10 = -10 \)
+    </span>
+</p>
                           <br>
                           <p>Minor \( M_{13} \) :</p>
                           <p>Hilangkan baris ke-1 dan kolom ke-3:</p>
@@ -1567,10 +1585,17 @@
                           <div class="matrix-explanation" id="invM13Explanation">
                             Tekan <b>Mulai</b> untuk melihat langkah penyelesaian
                           </div>
-                          <p>
-                            Kofaktor
-                            \( C_{13} = (-1)^{1+3} M_{13} = 1 \cdot (-2) = -2 \)
-                          </p>
+                          <p class="kofaktor-rumus">
+    Kofaktor
+
+    <span class="rumus-atas">
+        \( C_{13} = (-1)^{1+3} M_{13} \)
+    </span>
+
+    <span class="rumus-bawah">
+        \( = 1 \cdot (-2) = -2 \)
+    </span>
+</p>
                           <div class="slide-nav mt-4 text-end">
                               <button class="btn btn-outline-secondary btn-prev-slide">Sebelumnya</button>
                               <button class="btn btn-primary btn-next-slide" onclick="unlockMateri('invers-6')">Selanjutnya</button>
@@ -1656,10 +1681,17 @@
                           <div class="matrix-explanation" id="invM21Explanation">
                             Tekan <b>Mulai</b> untuk melihat langkah penyelesaian
                           </div>
-                          <p>
-                            Kofaktor
-                            \( C_{21} = (-1)^{2+1} M_{21} = (-1) \cdot (-2) = 2 \)
-                          </p>
+                          <p class="kofaktor-rumus">
+    Kofaktor
+
+    <span class="rumus-atas">
+        \( C_{21} = (-1)^{2+1} M_{21} \)
+    </span>
+
+    <span class="rumus-bawah">
+        \( = (-1) \cdot (-2) = 2 \)
+    </span>
+</p>
                           <br>
                           <p>Minor \( M_{22} \) :</p>
                           <p>Hilangkan baris ke-2 dan kolom ke-2:</p>
@@ -1826,10 +1858,17 @@
                           <div class="matrix-explanation" id="invM23Explanation">
                             Tekan <b>Mulai</b> untuk melihat langkah penyelesaian
                           </div>
-                          <p>
-                            Kofaktor
-                            \( C_{23} = (-1)^{2+3} M_{23} = (-1) \cdot 4 = -4 \)
-                          </p>
+                          <p class="kofaktor-rumus">
+    Kofaktor
+
+    <span class="rumus-atas">
+        \( C_{23} = (-1)^{2+3} M_{23} \)
+    </span>
+
+    <span class="rumus-bawah">
+        \( = (-1) \cdot 4 = -4 \)
+    </span>
+</p>
                           <br>
                           <p>Minor \( M_{31} \) :</p>
                           <p>Hilangkan baris ke-3 dan kolom ke-1:</p>
@@ -1996,10 +2035,17 @@
                           <div class="matrix-explanation" id="invM32Explanation">
                             Tekan <b>Mulai</b> untuk melihat langkah penyelesaian
                           </div>
-                          <p>
-                            Kofaktor
-                            \( C_{32} = (-1)^{3+2} M_{32} = (-1) \cdot (-13) = 13 \)
-                          </p>
+                          <p class="kofaktor-rumus">
+    Kofaktor <br>
+
+    <span class="rumus-atas">
+        \( C_{32} = (-1)^{3+2} M_{32} \)
+    </span>
+
+    <span class="rumus-bawah">
+        \( = (-1) \cdot (-13) = 13 \)
+    </span>
+</p>
                           <br>
                           <p>Minor \( M_{33} \) :</p>
                           <p>Hilangkan baris ke-3 dan kolom ke-3:</p>
@@ -2077,10 +2123,17 @@
                           <div class="matrix-explanation" id="invM33Explanation">
                             Tekan <b>Mulai</b> untuk melihat langkah penyelesaian
                           </div>
-                          <p>
-                            Kofaktor
-                            \( C_{33} = (-1)^{3+3} M_{33} = 1 \cdot (11) = 11 \)
-                          </p>
+                          <p class="kofaktor-rumus">
+    Kofaktor <br>
+
+    <span class="rumus-atas">
+        \( C_{33} = (-1)^{3+3} M_{33} \)
+    </span>
+
+    <span class="rumus-bawah">
+        \( = 1 \cdot (11) = 11 \)
+    </span>
+</p>
                           <div class="slide-nav mt-4 text-end">
                               <button class="btn btn-outline-secondary btn-prev-slide">Sebelumnya</button>
                               <button class="btn btn-primary btn-next-slide" onclick="unlockMateri('invers-9')">Selanjutnya</button>
