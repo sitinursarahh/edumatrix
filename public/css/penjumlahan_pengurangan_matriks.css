@@ -874,18 +874,19 @@
 }
 
 .sifat-list li {
-    margin-bottom: 18px;
+    margin-bottom: 22px;
 }
 
+/* HEADER SIFAT */
 .sifat-header {
     display: flex;
     align-items: center;
-
-    gap: 8px; /* jarak kecil teks & tombol */
+    gap: 8px;
 
     flex-wrap: wrap;
 }
 
+/* TOMBOL */
 .btn-bukti {
     background: #0d6efd;
     color: white;
@@ -902,13 +903,14 @@
 
     transition: 0.25s;
 
-    white-space: nowrap; /* tombol tidak pecah */
+    white-space: nowrap;
 }
 
 .btn-bukti:hover {
     background: #0b5ed7;
 }
 
+/* BOX PEMBUKTIAN */
 .box-bukti {
     display: none;
 
@@ -917,8 +919,102 @@
 
     border: 2px dashed #3b5998;
     background: #fdfdfd;
+
+    width: 100%;
+    max-width: 100%;
+
+    box-sizing: border-box;
+
+    overflow-x: hidden; /* 🔥 jangan keluar kotak */
 }
 
+/* SAAT MUNCUL */
 .box-bukti.show {
     display: block;
+}
+
+/* PARAGRAF */
+.box-bukti p {
+    line-height: 1.8;
+    word-wrap: break-word;
+}
+
+/* MATRIX CENTER */
+.box-bukti .matrix-center-fix {
+    width: 100%;
+    max-width: 100%;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    padding: 6px 0;
+
+    -webkit-overflow-scrolling: touch;
+
+    display: flex;
+    justify-content: center;
+}
+
+/* MATHJAX */
+.box-bukti mjx-container {
+    max-width: 100% !important;
+
+    display: inline-block !important;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+/* =========================
+   TABLET
+========================= */
+@media (max-width: 992px) {
+    .box-bukti {
+        padding: 14px;
+    }
+
+    .btn-bukti {
+        font-size: 12px;
+    }
+}
+
+/* =========================
+   HP
+========================= */
+@media (max-width: 768px) {
+    .sifat-header {
+        align-items: flex-start;
+    }
+
+    .btn-bukti {
+        margin-top: 4px;
+    }
+
+    .box-bukti {
+        padding: 14px;
+
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+    .box-bukti mjx-container {
+        font-size: 92% !important;
+    }
+}
+
+/* =========================
+   HP KECIL
+========================= */
+@media (max-width: 480px) {
+    .box-bukti {
+        padding: 12px;
+    }
+
+    .box-bukti mjx-container {
+        font-size: 85% !important;
+    }
+
+    .btn-bukti {
+        width: fit-content;
+    }
 }
