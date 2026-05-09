@@ -85,32 +85,325 @@ window.MathJax = {
                         Misalkan terdapat matriks \( A \), \( B \), \( C \), dan \( O \) yang semuanya memiliki
                         ordo sama, maka penjumlahan matriks memenuhi sifat-sifat berikut:
                         </p>
-                        <ul>
-                        <li>
-                            <strong>Sifat komutatif:</strong>
-                            urutan penjumlahan tidak memengaruhi hasil, yaitu
-                            \( A + B = B + A \).
-                        </li>
-                        <li>
-    <strong>Sifat asosiatif:</strong>
-    pengelompokan penjumlahan tidak mengubah hasil, yakni
-    <span class="math-responsive-inline">
-        \( (A + B) + C = A + (B + C) \)
-    </span>
-</li>
-                        <li>
-                            <strong>Matriks O:</strong>
-                            terdapat matriks \( O \) yang jika dijumlahkan dengan \( A \) tidak
-                            mengubah nilai \( A \), yaitu
-                            \( A + O = O + A = A \).
-                        </li>
-                        <li>
-                            <strong>Matriks lawan:</strong>
-                            setiap matriks \( A \) memiliki pasangan matriks \( -A \) sehingga
-                            jika dijumlahkan hasilnya adalah matriks \( O \), yaitu
-                            \( A + (-A) = O \).
-                        </li>
-                        </ul>
+                        <ul class="sifat-list">
+
+    <!-- ================= KOMUTATIF ================= -->
+    <li>
+
+        <div class="sifat-header">
+            <span>
+                <strong>Sifat komutatif:</strong>
+                urutan penjumlahan tidak memengaruhi hasil,
+                yaitu \( A + B = B + A \).
+            </span>
+
+            <button class="btn-bukti"
+                onclick="toggleBukti('bukti-komutatif')">
+                Cek Pembuktian
+            </button>
+        </div>
+
+        <div class="box-bukti" id="bukti-komutatif">
+
+            <p><strong>Diketahui:</strong></p>
+
+            <div class="matrix-center-fix">
+                \(
+                A =
+                \begin{bmatrix}
+                1 & 2 \\
+                3 & 4
+                \end{bmatrix}
+                ,
+                \quad
+                B =
+                \begin{bmatrix}
+                2 & 1 \\
+                0 & 3
+                \end{bmatrix}
+                \)
+            </div>
+
+            <p><strong>Jawaban:</strong></p>
+
+            <div class="matrix-center-fix">
+                \(
+                A + B =
+                \begin{bmatrix}
+                3 & 3 \\
+                3 & 7
+                \end{bmatrix}
+                \)
+            </div>
+
+            <div class="matrix-center-fix">
+                \(
+                B + A =
+                \begin{bmatrix}
+                3 & 3 \\
+                3 & 7
+                \end{bmatrix}
+                \)
+            </div>
+
+            <p>
+                Jadi, hasilnya
+                \( A + B = B + A \),
+                maka penjumlahan matriks memiliki sifat komutatif.
+            </p>
+
+        </div>
+
+    </li>
+
+    <!-- ================= ASOSIATIF ================= -->
+    <li>
+
+        <div class="sifat-header">
+            <span>
+                <strong>Sifat asosiatif:</strong>
+                pengelompokan penjumlahan tidak mengubah hasil,
+                yakni \( (A + B) + C = A + (B + C) \).
+            </span>
+
+            <button class="btn-bukti"
+                onclick="toggleBukti('bukti-asosiatif')">
+                Cek Pembuktian
+            </button>
+        </div>
+
+        <div class="box-bukti" id="bukti-asosiatif">
+
+            <p><strong>Diketahui:</strong></p>
+
+            <div class="matrix-center-fix">
+                \(
+                A =
+                \begin{bmatrix}
+                1 & 2 \\
+                3 & 4
+                \end{bmatrix}
+                ,
+                \quad
+                B =
+                \begin{bmatrix}
+                2 & 1 \\
+                0 & 3
+                \end{bmatrix}
+                ,
+                \quad
+                C =
+                \begin{bmatrix}
+                4 & 3 \\
+                2 & 1
+                \end{bmatrix}
+                \)
+            </div>
+
+            <p><strong>Jawaban:</strong></p>
+
+            <div class="matrix-center-fix">
+                \(
+                (A+B)+C =
+                \left(
+                \begin{bmatrix}
+                1 & 2 \\
+                3 & 4
+                \end{bmatrix}
+                +
+                \begin{bmatrix}
+                2 & 1 \\
+                0 & 3
+                \end{bmatrix}
+                \right)
+                +
+                \begin{bmatrix}
+                4 & 3 \\
+                2 & 1
+                \end{bmatrix}
+                =
+                \begin{bmatrix}
+                7 & 6 \\
+                5 & 8
+                \end{bmatrix}
+                \)
+            </div>
+
+            <div class="matrix-center-fix">
+                \(
+                A+(B+C) =
+                \begin{bmatrix}
+                1 & 2 \\
+                3 & 4
+                \end{bmatrix}
+                +
+                \left(
+                \begin{bmatrix}
+                2 & 1 \\
+                0 & 3
+                \end{bmatrix}
+                +
+                \begin{bmatrix}
+                4 & 3 \\
+                2 & 1
+                \end{bmatrix}
+                \right)
+                =
+                \begin{bmatrix}
+                7 & 6 \\
+                5 & 8
+                \end{bmatrix}
+                \)
+            </div>
+
+            <p>
+                Jadi, hasilnya
+                \( (A+B)+C = A+(B+C) \),
+                maka penjumlahan matriks memiliki sifat asosiatif.
+            </p>
+
+        </div>
+
+    </li>
+
+    <!-- ================= MATRIKS O ================= -->
+    <li>
+
+        <div class="sifat-header">
+            <span>
+                <strong>Matriks O:</strong>
+                terdapat matriks \( O \) yang jika dijumlahkan
+                dengan \( A \) tidak mengubah nilai \( A \),
+                yaitu \( A + O = O + A = A \).
+            </span>
+
+            <button class="btn-bukti"
+                onclick="toggleBukti('bukti-o')">
+                Cek Pembuktian
+            </button>
+        </div>
+
+        <div class="box-bukti" id="bukti-o">
+
+            <p><strong>Diketahui:</strong></p>
+
+            <div class="matrix-center-fix">
+                \(
+                A =
+                \begin{bmatrix}
+                1 & 2 \\
+                3 & 4
+                \end{bmatrix}
+                ,
+                \quad
+                O =
+                \begin{bmatrix}
+                0 & 0 \\
+                0 & 0
+                \end{bmatrix}
+                \)
+            </div>
+
+            <p><strong>Jawaban:</strong></p>
+
+            <div class="matrix-center-fix">
+                \(
+                A + O =
+                \begin{bmatrix}
+                1 & 2 \\
+                3 & 4
+                \end{bmatrix}
+                \)
+            </div>
+
+            <div class="matrix-center-fix">
+                \(
+                O + A =
+                \begin{bmatrix}
+                1 & 2 \\
+                3 & 4
+                \end{bmatrix}
+                \)
+            </div>
+
+            <p>
+                Jadi, hasilnya
+                \( A + O = O + A = A \),
+                maka penjumlahan matriks memiliki sifat Matriks O.
+            </p>
+
+        </div>
+
+    </li>
+
+    <!-- ================= MATRIKS LAWAN ================= -->
+    <li>
+
+        <div class="sifat-header">
+            <span>
+                <strong>Matriks lawan:</strong>
+                setiap matriks \( A \) memiliki pasangan matriks
+                \( -A \) sehingga jika dijumlahkan hasilnya adalah
+                matriks \( O \), yaitu \( A + (-A) = O \).
+            </span>
+
+            <button class="btn-bukti"
+                onclick="toggleBukti('bukti-lawan')">
+                Cek Pembuktian
+            </button>
+        </div>
+
+        <div class="box-bukti" id="bukti-lawan">
+
+            <p><strong>Diketahui:</strong></p>
+
+            <div class="matrix-center-fix">
+                \(
+                A =
+                \begin{bmatrix}
+                1 & 2 \\
+                3 & 4
+                \end{bmatrix}
+                \)
+            </div>
+
+            <p>
+                Matriks lawan dari \( A \) adalah:
+            </p>
+
+            <div class="matrix-center-fix">
+                \(
+                -A =
+                \begin{bmatrix}
+                -1 & -2 \\
+                -3 & -4
+                \end{bmatrix}
+                \)
+            </div>
+
+            <p><strong>Jawaban:</strong></p>
+
+            <div class="matrix-center-fix">
+                \(
+                A + (-A) =
+                \begin{bmatrix}
+                0 & 0 \\
+                0 & 0
+                \end{bmatrix}
+                \)
+            </div>
+
+            <p>
+                Jadi, hasilnya
+                \( A + (-A) = O \),
+                maka penjumlahan matriks memiliki sifat Matriks Lawan.
+            </p>
+
+        </div>
+
+    </li>
+
+</ul>
                     </div>
                     </div>
                     <br>
@@ -504,34 +797,271 @@ window.MathJax = {
                       memiliki ordo sama, maka pengurangan matriks memenuhi sifat-sifat berikut:
                     </p>
 
-                    <ul>
-                      <li>
-                        <strong>Tidak bersifat komutatif:</strong>
-                        urutan pengurangan berpengaruh terhadap hasil, artinya
-                        \( A - B \neq B - A \).
-                      </li>
+                    <ul class="sifat-list">
 
-                      <li>
-                        <strong>Bersifat asosiatif terhadap lawan matriks:</strong>
-                        pengurangan dapat ditulis sebagai penjumlahan dengan lawan matriks,
-                        yaitu
-                        \( A - B = A + (-B) \).
-                      </li>
+    <!-- ================= TIDAK KOMUTATIF ================= -->
+    <li>
 
-                      <li>
-                        <strong>Matriks O:</strong>
-                        jika sebuah matriks dikurangi dengan matriks \( O \), hasilnya tetap sama,
-                        yaitu
-                        \( A - O = A \).
-                      </li>
+        <div class="sifat-header">
+            <span>
+                <strong>Tidak bersifat komutatif:</strong>
+                urutan pengurangan berpengaruh terhadap hasil,
+                artinya \( A - B \neq B - A \).
+            </span>
 
-                      <li>
-                        <strong>Matriks terhadap dirinya sendiri:</strong>
-                        jika suatu matriks dikurangi dengan dirinya sendiri, hasilnya adalah
-                        matriks \( O \), yaitu
-                        \( A - A = O \).
-                      </li>
-                    </ul>
+            <button class="btn-bukti"
+                onclick="toggleBukti('bukti-tidak-komutatif')">
+                Cek Pembuktian
+            </button>
+        </div>
+
+        <div class="box-bukti" id="bukti-tidak-komutatif">
+
+            <p><strong>Diketahui:</strong></p>
+
+            <div class="matrix-center-fix">
+                \(
+                A =
+                \begin{bmatrix}
+                1 & 2 \\
+                3 & 4
+                \end{bmatrix}
+                ,
+                \quad
+                B =
+                \begin{bmatrix}
+                2 & 1 \\
+                0 & 3
+                \end{bmatrix}
+                \)
+            </div>
+
+            <p><strong>Jawaban:</strong></p>
+
+            <div class="matrix-center-fix">
+                \(
+                A - B =
+                \begin{bmatrix}
+                -1 & 1 \\
+                3 & 1
+                \end{bmatrix}
+                \)
+            </div>
+
+            <div class="matrix-center-fix">
+                \(
+                B - A =
+                \begin{bmatrix}
+                1 & -1 \\
+                -3 & -1
+                \end{bmatrix}
+                \)
+            </div>
+
+            <p>
+                Jadi, hasilnya
+                \( A - B \neq B - A \),
+                maka pengurangan matriks tidak bersifat komutatif.
+            </p>
+
+        </div>
+
+    </li>
+
+    <!-- ================= ASOSIATIF LAWAN ================= -->
+    <li>
+
+        <div class="sifat-header">
+            <span>
+                <strong>Bersifat asosiatif terhadap lawan matriks:</strong>
+                pengurangan dapat ditulis sebagai penjumlahan
+                dengan lawan matriks,
+                yaitu \( A - B = A + (-B) \).
+            </span>
+
+            <button class="btn-bukti"
+                onclick="toggleBukti('bukti-asosiatif-lawan')">
+                Cek Pembuktian
+            </button>
+        </div>
+
+        <div class="box-bukti" id="bukti-asosiatif-lawan">
+
+            <p><strong>Diketahui:</strong></p>
+
+            <div class="matrix-center-fix">
+                \(
+                A =
+                \begin{bmatrix}
+                1 & 2 \\
+                3 & 4
+                \end{bmatrix}
+                ,
+                \quad
+                B =
+                \begin{bmatrix}
+                2 & 1 \\
+                0 & 3
+                \end{bmatrix}
+                \)
+            </div>
+
+            <p><strong>Jawaban:</strong></p>
+
+            <div class="matrix-center-fix">
+                \(
+                A - B =
+                \begin{bmatrix}
+                -1 & 1 \\
+                3 & 1
+                \end{bmatrix}
+                \)
+            </div>
+
+            <div class="matrix-center-fix">
+                \(
+                A + (-B) =
+                \begin{bmatrix}
+                -1 & 1 \\
+                3 & 1
+                \end{bmatrix}
+                \)
+            </div>
+
+            <p>
+                Jadi, hasilnya
+                \( A - B = A + (-B) \),
+                maka pengurangan matriks bersifat asosiatif terhadap lawan matriks.
+            </p>
+
+        </div>
+
+    </li>
+
+    <!-- ================= MATRIKS O ================= -->
+    <li>
+
+        <div class="sifat-header">
+            <span>
+                <strong>Matriks O:</strong>
+                jika sebuah matriks dikurangi dengan matriks \( O \),
+                hasilnya tetap sama, yaitu
+                \( A - O = A \).
+            </span>
+
+            <button class="btn-bukti"
+                onclick="toggleBukti('bukti-pengurangan-o')">
+                Cek Pembuktian
+            </button>
+        </div>
+
+        <div class="box-bukti" id="bukti-pengurangan-o">
+
+            <p><strong>Diketahui:</strong></p>
+
+            <div class="matrix-center-fix">
+                \(
+                A =
+                \begin{bmatrix}
+                1 & 2 \\
+                3 & 4
+                \end{bmatrix}
+                ,
+                \quad
+                O =
+                \begin{bmatrix}
+                0 & 0 \\
+                0 & 0
+                \end{bmatrix}
+                \)
+            </div>
+
+            <p><strong>Jawaban:</strong></p>
+
+            <div class="matrix-center-fix">
+                \(
+                A - O =
+                \begin{bmatrix}
+                1 & 2 \\
+                3 & 4
+                \end{bmatrix}
+                \)
+            </div>
+
+            <div class="matrix-center-fix">
+                \(
+                O - A =
+                \begin{bmatrix}
+                1 & 2 \\
+                3 & 4
+                \end{bmatrix}
+                \)
+            </div>
+
+            <p>
+                Jadi, hasilnya
+                \( A - O = O - A = A \),
+                maka pengurangan matriks memiliki sifat Matriks O.
+            </p>
+
+        </div>
+
+    </li>
+
+    <!-- ================= DIRI SENDIRI ================= -->
+    <li>
+
+        <div class="sifat-header">
+            <span>
+                <strong>Matriks terhadap dirinya sendiri:</strong>
+                jika suatu matriks dikurangi dengan dirinya sendiri,
+                hasilnya adalah matriks \( O \),
+                yaitu \( A - A = O \).
+            </span>
+
+            <button class="btn-bukti"
+                onclick="toggleBukti('bukti-diri-sendiri')">
+                Cek Pembuktian
+            </button>
+        </div>
+
+        <div class="box-bukti" id="bukti-diri-sendiri">
+
+            <p><strong>Diketahui:</strong></p>
+
+            <div class="matrix-center-fix">
+                \(
+                A =
+                \begin{bmatrix}
+                1 & 2 \\
+                3 & 4
+                \end{bmatrix}
+                \)
+            </div>
+
+            <p><strong>Jawaban:</strong></p>
+
+            <div class="matrix-center-fix">
+                \(
+                A - A =
+                \begin{bmatrix}
+                0 & 0 \\
+                0 & 0
+                \end{bmatrix}
+                \)
+            </div>
+
+            <p>
+                Jadi, hasilnya
+                \( A - A = O \),
+                maka pengurangan matriks memiliki sifat Matriks terhadap dirinya sendiri.
+            </p>
+
+        </div>
+
+    </li>
+
+</ul>
                   </div>
                 </div>
                 <br>
@@ -2684,6 +3214,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 function closePopup() {
     document.getElementById("lockedPopup").style.display = "none";
+}
+</script>
+
+<script>
+function toggleBukti(id) {
+
+    const box = document.getElementById(id);
+
+    box.classList.toggle('show');
 }
 </script>
 </body>
