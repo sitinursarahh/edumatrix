@@ -220,7 +220,7 @@
 
     </div>
 
-<script>
+<!-- <script>
     /* SIDEBAR TOGGLE */
     const sidebar = document.getElementById('sidebar');
     const content = document.querySelector('.main-content');
@@ -245,9 +245,45 @@
             profileMenu.style.display = 'none';
         }
     });
+</script> -->
+
+<script>
+
+    /* SIDEBAR TOGGLE */
+    const sidebar = document.getElementById('sidebar');
+    const content = document.querySelector('.main-content');
+    const toggleSidebar = document.getElementById('sidebarToggle');
+
+    /* AUTO COLLAPSE SAAT MOBILE */
+    if (window.innerWidth <= 768) {
+
+        sidebar.classList.add('collapsed');
+        content.classList.add('expanded');
+    }
+
+    /* TOGGLE */
+    toggleSidebar.addEventListener('click', () => {
+
+        sidebar.classList.toggle('collapsed');
+        content.classList.toggle('expanded');
+    });
+
+    /* PROFILE DROPDOWN */
+    const profileToggle = document.getElementById('profileToggle');
+    const profileMenu = document.getElementById('profileMenu');
+
+    profileToggle.addEventListener('click', () => {
+        profileMenu.style.display =
+            profileMenu.style.display === 'block' ? 'none' : 'block';
+    });
+
+    document.addEventListener('click', function(e) {
+        if (!profileToggle.contains(e.target) && !profileMenu.contains(e.target)) {
+            profileMenu.style.display = 'none';
+        }
+    });
+
 </script>
-
-
 
 </body>
 </html>
