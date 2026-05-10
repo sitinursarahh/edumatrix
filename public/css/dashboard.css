@@ -514,3 +514,20 @@ body {
         height: 140px !important;
     }
 }
+/* MOBILE */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 80px !important;
+    }
+
+    .main-content {
+        margin-left: 80px !important;
+        width: calc(100% - 80px) !important;
+    }
+
+    .sidebar .sidebar-link span,
+    .sidebar .logo-text,
+    .sidebar .menu-text {
+        display: none;
+    }
+}

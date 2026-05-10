@@ -254,14 +254,7 @@
     const content = document.querySelector('.main-content');
     const toggleSidebar = document.getElementById('sidebarToggle');
 
-    /* AUTO COLLAPSE SAAT MOBILE */
-    if (window.innerWidth <= 768) {
-
-        sidebar.classList.add('collapsed');
-        content.classList.add('expanded');
-    }
-
-    /* TOGGLE */
+    /* TOGGLE SIDEBAR */
     toggleSidebar.addEventListener('click', () => {
 
         sidebar.classList.toggle('collapsed');
@@ -273,12 +266,21 @@
     const profileMenu = document.getElementById('profileMenu');
 
     profileToggle.addEventListener('click', () => {
+
         profileMenu.style.display =
-            profileMenu.style.display === 'block' ? 'none' : 'block';
+            profileMenu.style.display === 'block'
+            ? 'none'
+            : 'block';
     });
 
+    /* TUTUP DROPDOWN SAAT KLIK LUAR */
     document.addEventListener('click', function(e) {
-        if (!profileToggle.contains(e.target) && !profileMenu.contains(e.target)) {
+
+        if (
+            !profileToggle.contains(e.target) &&
+            !profileMenu.contains(e.target)
+        ) {
+
             profileMenu.style.display = 'none';
         }
     });
