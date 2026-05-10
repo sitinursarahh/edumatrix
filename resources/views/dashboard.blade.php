@@ -249,12 +249,23 @@
 
 <script>
 
-    /* SIDEBAR TOGGLE */
     const sidebar = document.getElementById('sidebar');
     const content = document.querySelector('.main-content');
+
+    /* AUTO COLLAPSE MOBILE */
+    if (window.innerWidth <= 768) {
+
+        sidebar.classList.add('collapsed');
+        content.classList.add('expanded');
+    }
+
+</script>
+
+<script>
+
+    /* SIDEBAR TOGGLE */
     const toggleSidebar = document.getElementById('sidebarToggle');
 
-    /* TOGGLE SIDEBAR */
     toggleSidebar.addEventListener('click', () => {
 
         sidebar.classList.toggle('collapsed');
