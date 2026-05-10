@@ -36,29 +36,56 @@
                 box-shadow: 0 6px 20px rgba(0, 0, 0, 0.20);
             ">
                 <!-- Welcome Box -->
-            <div class="p-4 mb-4" style="background: var(--c3); border-radius: 12px;">
-            <div class="d-flex justify-content-between align-items-center">
-                <div>
-                    <h2 class="fw-bold">SELAMAT DATANG,</h2>
-                    <h4>{{ auth()->user()->name }}</h4>
-                    <br>
-                    <div class="mt-2 d-flex align-items-center gap-2 position-relative">
-            <span class="fw-semibold">Token Kelas:</span>
-            <div class="token-box">
-                <span id="tokenText" class="me-2">SISWA123</span>
-                <button onclick="copyToken()" class="copy-btn">
-                    <i class="bi bi-clipboard"></i>
-                </button>
-                <!-- POPUP -->
-                <div id="copyPopup" class="copy-popup">
-                    ✔ Token berhasil disalin!
+<div class="p-4 mb-4" style="background: var(--c3); border-radius: 12px;">
+
+    <div class="welcome-content">
+
+        <!-- TEXT -->
+        <div class="welcome-text">
+
+            <h2 class="fw-bold">SELAMAT DATANG,</h2>
+
+            <h4>{{ auth()->user()->name }}</h4>
+
+            <br>
+
+            <div class="mt-2 d-flex align-items-center gap-2 position-relative flex-wrap">
+
+                <span class="fw-semibold">
+                    Token Kelas:
+                </span>
+
+                <div class="token-box">
+
+                    <span id="tokenText" class="me-2">
+                        SISWA123
+                    </span>
+
+                    <button onclick="copyToken()" class="copy-btn">
+                        <i class="bi bi-clipboard"></i>
+                    </button>
+
+                    <!-- POPUP -->
+                    <div id="copyPopup" class="copy-popup">
+                        ✔ Token berhasil disalin!
+                    </div>
+
                 </div>
+
             </div>
+
         </div>
+
+        <!-- IMAGE -->
+        <div class="welcome-img">
+
+            <img src="{{ asset('img/selamat_datang.png') }}"
+                 alt="Selamat Datang">
+
         </div>
-        <img src="{{ asset('img/selamat_datang.png') }}"
-             style="height: 200px; width: 200px; border-radius: 50%; object-fit: cover;">
+
     </div>
+
 </div>
 
 
