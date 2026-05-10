@@ -73,3 +73,13 @@ $notifCount = $notifQuery->count();
 </a>
 
 </div>
+
+<script>
+
+const sidebar = document.getElementById("sidebar");
+
+if (window.innerWidth <= 768) {
+    sidebar.classList.add("collapsed");
+}
+
+</script>
