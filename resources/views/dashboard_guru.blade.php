@@ -79,10 +79,11 @@
         <!-- IMAGE -->
         <div class="welcome-img">
 
-            <img src="{{ asset('img/selamat_datang.png') }}"
-                 alt="Selamat Datang">
+    <img src="{{ asset('img/selamat_datang.png') }}"
+         class="welcome-photo"
+         alt="Selamat Datang">
 
-        </div>
+</div>
 
     </div>
 
