@@ -73,13 +73,26 @@ $notifCount = $notifQuery->count();
 </a>
 
 </div>
-
 <script>
 
 const sidebar = document.getElementById("sidebar");
+const toggle = document.getElementById("sidebarToggle");
+const mainContent = document.querySelector(".main-content");
 
+/* AUTO COLLAPSE SAAT HP */
 if (window.innerWidth <= 768) {
+
     sidebar.classList.add("collapsed");
+    mainContent.classList.add("expanded");
 }
+
+/* TOGGLE */
+toggle.addEventListener("click", () => {
+
+    sidebar.classList.toggle("collapsed");
+
+    mainContent.classList.toggle("expanded");
+
+});
 
 </script>
