@@ -36,20 +36,25 @@
                 box-shadow: 0 6px 20px rgba(0, 0, 0, 0.20);
             ">
                 <!-- Welcome Box -->
-<div class="p-4 mb-4" style="background: var(--c3); border-radius: 12px;">
+<div class="p-4 mb-4"
+     style="background: var(--c3); border-radius: 12px;">
 
-    <div class="welcome-content">
+    <div class="welcome-box guru-welcome d-flex justify-content-between align-items-center">
 
-        <!-- TEXT -->
-        <div class="welcome-text">
+        <!-- KIRI -->
+        <div>
 
-            <h2 class="fw-bold">SELAMAT DATANG,</h2>
+            <h2 class="fw-bold">
+                SELAMAT DATANG,
+            </h2>
 
-            <h4>{{ auth()->user()->name }}</h4>
+            <h4>
+                {{ auth()->user()->name }}
+            </h4>
 
             <br>
 
-            <div class="mt-2 d-flex align-items-center gap-2 position-relative flex-wrap">
+            <div class="mt-2 d-flex align-items-center gap-2 position-relative token-wrapper">
 
                 <span class="fw-semibold">
                     Token Kelas:
@@ -76,14 +81,10 @@
 
         </div>
 
-        <!-- IMAGE -->
-        <div class="welcome-img">
-
-    <img src="{{ asset('img/selamat_datang.png') }}"
-         class="welcome-photo"
-         alt="Selamat Datang">
-
-</div>
+        <!-- KANAN -->
+        <img src="{{ asset('img/selamat_datang.png') }}"
+             class="guru-welcome-img"
+             alt="Selamat Datang">
 
     </div>
 

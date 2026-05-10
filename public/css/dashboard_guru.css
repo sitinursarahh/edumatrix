@@ -186,6 +186,7 @@ canvas {
     position: relative;
     z-index: 1;
 }
+/* ================================================================== */
 /* ===============================
    🔥 WRAPPER UTAMA
    =============================== */
@@ -195,121 +196,116 @@ canvas {
     justify-content: space-between;
     gap: 12px;
 
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* 🔥 WAJIB */
 }
 
 /* ===============================
    🔥 BAGIAN TEKS
    =============================== */
 .welcome-text {
-    flex: 1;
+    flex: 1 1 180px;
+    min-width: 0;
+}
+
+/* ===============================
+   🔥 TOKEN BOX (INI BIANG MASALAH)
+   =============================== */
+.token-box {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    max-width: 100%;
+    flex-wrap: wrap; /* 🔥 BIAR TURUN */
+    word-break: break-all; /* 🔥 BIAR TIDAK MAKSA LEBAR */
+}
+
+/* TEXT TOKEN */
+.token-box span {
+    font-size: 14px;
 }
 
 /* ===============================
    🔥 GAMBAR
    =============================== */
 .welcome-img {
-    width: 220px; /* 🔥 BESAR DI LAPTOP */
-    flex-shrink: 0;
+    flex: 0 1 120px; /* 🔥 boleh mengecil */
+    max-width: 120px;
+    width: 100%;
 }
 
 .welcome-img img {
     width: 100%;
     height: auto;
-
     display: block;
-
-    object-fit: contain;
 }
 
 /* ===============================
-   🔥 MOBILE
+   🔥 MOBILE FIX TOTAL
    =============================== */
 @media (max-width: 768px) {
     .welcome-content {
         flex-direction: column;
-
-        align-items: center;
-
-        text-align: center;
-
-        gap: 0; /* 🔥 hilangkan jarak */
+        align-items: flex-start;
     }
 
-    .welcome-text {
-        width: 100%;
+    /* 🔥 TOKEN DIPERKECIL */
+    .token-box {
+        font-size: 12px;
+        padding: 4px 8px;
     }
 
-    /* TOKEN */
-    .welcome-text .mt-2 {
-        justify-content: center;
-
-        margin-top: 2px !important;
-        margin-bottom: 0 !important;
-    }
-
-    /* GAMBAR */
+    /* 🔥 GAMBAR DIPERKECIL */
     .welcome-img {
-        width: 220px;
-
-        margin-top: -6px; /* 🔥 makin dekat */
-
-        margin-bottom: -18px;
-    }
-
-    /* JUDUL */
-    .welcome-text h2 {
-        margin-bottom: 0;
-    }
-
-    .welcome-text h4 {
-        margin-bottom: 0;
-    }
-
-    /* HAPUS JARAK BR */
-    .welcome-text br {
-        display: none;
+        max-width: 90px;
+        align-self: center;
     }
 }
-/* HP KECIL */
+
 @media (max-width: 480px) {
+    .token-box {
+        font-size: 11px;
+        padding: 3px 6px;
+    }
+
     .welcome-img {
-        width: 180px;
+        max-width: 70px;
     }
 }
-/* ===============================
-   DESKTOP
-=============================== */
-.welcome-photo {
+/* =========================
+   DASHBOARD GURU RESPONSIVE
+   ========================= */
+.guru-welcome-img {
     width: 220px;
     height: 220px;
 
     object-fit: contain;
 
-    display: block;
+    flex-shrink: 0;
 }
 
-/* ===============================
-   MOBILE
-=============================== */
+/* MOBILE */
 @media (max-width: 768px) {
-    .welcome-photo {
-        width: 260px; /* 🔥 BESAR */
+    .guru-welcome {
+        flex-direction: column !important;
 
-        height: auto;
+        text-align: center;
 
-        margin: 0 auto;
-
-        display: block;
+        gap: 4px;
     }
 
-    .welcome-img {
-        width: 100%;
-
-        display: flex;
-
+    .token-wrapper {
         justify-content: center;
+    }
+
+    .guru-welcome-img {
+        width: 220px !important;
+        height: 220px !important;
 
         margin-top: -10px;
+    }
+
+    .guru-welcome br {
+        display: none;
     }
 }
