@@ -707,7 +707,7 @@
 </div> <!-- end sidebar_materi -->
 
 <!-- Client-side JS: toggle sidebar + buka/tutup submenus -->
-<script>
+<!-- <script>
 (function(){
   // toggle collapse sidebar (tambah class pada body untuk kompatibilitas)
   const btn = document.getElementById('sidebarToggle');
@@ -764,4 +764,115 @@
 })();
 
 
+</script> -->
+
+<script>
+(function(){
+
+  // toggle collapse sidebar
+  const btn = document.getElementById('sidebarToggle');
+  const sidebar = document.getElementById('sidebar_materi');
+  const main = document.querySelector('.main-content');
+
+  /* =========================================
+     AUTO COLLAPSE SAAT HALAMAN DIBUKA
+  ========================================= */
+  if (window.innerWidth <= 768) {
+
+    sidebar.classList.add('collapsed');
+
+    document.body.classList.add('sidebar-collapsed');
+
+    if(main){
+      main.classList.add('expanded');
+    }
+  }
+
+  /* =========================================
+     TOGGLE SIDEBAR
+  ========================================= */
+  btn?.addEventListener('click', function(e){
+
+    e.preventDefault();
+
+    sidebar.classList.toggle('collapsed');
+
+    document.body.classList.toggle('sidebar-collapsed');
+
+    if(main){
+      main.classList.toggle('expanded');
+    }
+  });
+
+  /* =========================================
+     BUKA / TUTUP SUBMENU
+  ========================================= */
+  document.querySelectorAll('#sidebar_materi .sidebar-link.has-sub')
+  .forEach(btn => {
+
+    btn.addEventListener('click', function(e){
+
+      const targetId = btn.getAttribute('data-target');
+
+      if(!targetId) return;
+
+      const submenu = document.getElementById(targetId);
+
+      // toggle class open
+      const open = submenu.classList.toggle('open');
+
+      btn.setAttribute(
+        'aria-expanded',
+        open ? 'true' : 'false'
+      );
+
+      // ubah icon chevron
+      const chev = btn.querySelector('.chev i');
+
+      if(chev){
+
+        if(open){
+
+          chev.classList.remove('bi-chevron-down');
+          chev.classList.add('bi-chevron-up');
+
+        } else {
+
+          chev.classList.remove('bi-chevron-up');
+          chev.classList.add('bi-chevron-down');
+        }
+      }
+    });
+  });
+
+  /* =========================================
+     FALLBACK ACTIVE SUBMENU
+  ========================================= */
+  document.querySelectorAll('#sidebar_materi .sidebar-submenu')
+  .forEach(sm => {
+
+    if(sm.querySelector('.sidebar-sublink.active')) {
+
+      sm.classList.add('open');
+
+      const btn = document.querySelector(
+        `#sidebar_materi .sidebar-link.has-sub[data-target="${sm.id}"]`
+      );
+
+      if(btn){
+
+        btn.setAttribute('aria-expanded','true');
+
+        const chev = btn.querySelector('.chev i');
+
+        if(chev){
+
+          chev.classList.remove('bi-chevron-down');
+          chev.classList.add('bi-chevron-up');
+        }
+      }
+    }
+  });
+
+})();
 </script>
