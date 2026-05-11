@@ -2355,9 +2355,10 @@ body.sidebar-collapsed #sidebar_materi {
 }
 
 .cayley-image {
-    /* flex: 1; */
-    max-width: 280px;
-    flex: 0 0 280px;
+    max-width: 220px;
+    flex: 0 0 220px;
+
+    margin: 0 auto;
 }
 
 .cayley-text {
@@ -3246,5 +3247,82 @@ math-field {
     [data-section="mari-mencoba"] .quiz-buttons button {
         width: auto !important; /* jangan full */
         min-width: 120px;
+    }
+}
+
+/* ===============================
+   CAYLEY SLIDER
+=============================== */
+
+.cayley-slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px; /* diperkecil */
+    width: 100%;
+    max-width: 280px; /* diperkecil */
+    margin: 0 auto;
+}
+
+/* gambar */
+.cayley-slider img {
+    width: 100%;
+    max-width: 180px; /* diperkecil agar tombol masuk */
+    border-radius: 12px;
+    display: block;
+}
+
+/* tombol panah */
+.cayley-arrow {
+    width: 28px;
+    height: 28px;
+
+    min-width: 28px;
+    min-height: 28px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #9a3f3f;
+    color: #fff;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+}
+
+.cayley-arrow:hover {
+    background: #7f2f2f;
+    transform: scale(1.06);
+}
+
+/* HP */
+@media (max-width: 768px) {
+    .cayley-slider {
+        gap: 4px;
+        max-width: 240px;
+    }
+
+    .cayley-slider img {
+        max-width: 150px;
+    }
+
+    .cayley-arrow {
+        width: 24px;
+        height: 24px;
+
+        min-width: 24px;
+        min-height: 24px;
+
+        font-size: 14px;
     }
 }

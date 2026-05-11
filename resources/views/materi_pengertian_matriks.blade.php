@@ -189,33 +189,69 @@
 
                 {{-- Gambar Rak Telur --}}
 
-                <div class="cayley-wrapper">
+                {{-- Gambar Matriks Interaktif --}}
+<div class="cayley-wrapper">
 
-    <!-- KIRI (GAMBAR) -->
+    <!-- KIRI -->
     <div class="cayley-image">
-        <img src="{{ asset('img/telur22.jpg') }}" alt="Rak Telur">
-        <p class="image-caption">Gambar 3. Telur</p>
+
+        <div class="cayley-slider">
+
+    <!-- tombol kiri -->
+    <button class="cayley-arrow" onclick="prevCayleyImage()">
+        &#10094;
+    </button>
+
+    <!-- gambar -->
+    <img id="cayleyImg"
+         src="{{ asset('img/telur22.jpg') }}"
+         alt="Contoh Matriks">
+
+    <!-- tombol kanan -->
+    <button class="cayley-arrow" onclick="nextCayleyImage()">
+        &#10095;
+    </button>
+
+</div>
+
+        <p class="image-caption" id="cayleyCaption">
+            Gambar 3. Telur
+        </p>
+
     </div>
 
-    <!-- KANAN (TEKS) -->
+    <!-- KANAN -->
     <div class="cayley-text">
-        <p class="paragraf-indent">
-                        Coba kamu perhatikan susunan benda-benda di sekitar kamu! Sebagai contoh, susunan kursi di ruang kelas, kursi di
-                        dalam bioskop, posisi siswa berbaris di lapangan, susunan keramik lantai, dan lain-lain. Disamping ini
-                        adalah contoh rak telur yang merepresentasikan matriks.
-                        Kamu tentu dapat melihat bahwa susunan-susunan tersebut membentuk pola baris dan kolom. Susunan dalam bentuk
-                        baris dan kolom inilah yang menjadi dasar dari konsep matriks yang akan kita pelajari.
-        </p>
-        <p class="paragraf-indent">
-                        Dalam matematika <strong>Matriks merupakan susunan bilangan atau fungsi yang disajikan dalam baris dan
-                        kolom serta diapit oleh dua tanda kurung siku.</strong> Bilangan atau fungsi yang terdapat di dalam matriks disebut sebagai
-                        entri atau elemen matriks. Penamaan matriks biasanya menggunakan huruf kapital dari \( A \) sampai \( Z \), sedangkan elemen-elemennya dinyatakan
-                        dengan huruf kecil. Secara umum, matriks berfungsi sebagai alat yang sangat efektif untuk menyelesaikan berbagai
-                        permasalahan. Dengan menggunakan matriks, kita dapat lebih mudah melakukan analisis yang melibatkan hubungan antar
-                        variabel dalam suatu persoalan.
+
+        <!-- PARAGRAF 1 -->
+        <p class="paragraf-indent" id="cayleyParagraph1">
+
+            Coba kamu perhatikan susunan benda-benda di sekitar kamu!
+            Sebagai contoh, susunan kursi di ruang kelas, kursi di
+            dalam bioskop, posisi siswa berbaris di lapangan,
+            susunan keramik lantai, dan lain-lain. Disamping ini
+            adalah contoh rak telur yang merepresentasikan matriks.
+            Kamu tentu dapat melihat bahwa susunan-susunan tersebut
+            membentuk pola baris dan kolom. Susunan dalam bentuk
+            baris dan kolom inilah yang menjadi dasar dari konsep
+            matriks yang akan kita pelajari.
+
         </p>
 
+        <!-- PARAGRAF 2 -->
+        <p class="paragraf-indent">
 
+            Dalam matematika <strong>Matriks merupakan susunan bilangan atau fungsi
+            yang disajikan dalam baris dan kolom serta diapit oleh dua tanda kurung siku.</strong>
+            Bilangan atau fungsi yang terdapat di dalam matriks disebut sebagai
+            entri atau elemen matriks. Penamaan matriks biasanya menggunakan huruf kapital
+            dari \( A \) sampai \( Z \), sedangkan elemen-elemennya dinyatakan
+            dengan huruf kecil. Secara umum, matriks berfungsi sebagai alat yang sangat efektif
+            untuk menyelesaikan berbagai permasalahan. Dengan menggunakan matriks,
+            kita dapat lebih mudah melakukan analisis yang melibatkan hubungan antar
+            variabel dalam suatu persoalan.
+
+        </p>
 
     </div>
 
@@ -4159,6 +4195,100 @@ document.addEventListener("DOMContentLoaded", function () {
 function closePopup() {
     document.getElementById("lockedPopup").style.display = "none";
 }
+</script>
+
+<script>
+
+const cayleyData = [
+
+    {
+        image: "{{ asset('img/telur22.jpg') }}",
+        caption: "Gambar 3. Telur",
+
+        text: `
+        Coba kamu perhatikan susunan benda-benda di sekitar kamu!
+        Sebagai contoh, susunan kursi di ruang kelas, kursi di
+        dalam bioskop, posisi siswa berbaris di lapangan,
+        susunan keramik lantai, dan lain-lain. Disamping ini
+        adalah contoh rak telur yang merepresentasikan matriks.
+        Kamu tentu dapat melihat bahwa susunan-susunan tersebut
+        membentuk pola baris dan kolom. Susunan dalam bentuk
+        baris dan kolom inilah yang menjadi dasar dari konsep
+        matriks yang akan kita pelajari.
+        `
+    },
+
+    {
+        image: "{{ asset('img/keramik.jpeg') }}",
+        caption: "Gambar 4. Keramik",
+
+        text: `
+        Foto di samping juga menunjukkan susunan keramik yang
+        tersusun rapi membentuk pola baris dan kolom.
+        Susunan tersebut dapat direpresentasikan sebagai matriks
+        karena setiap keramik berada pada posisi tertentu secara
+        teratur dalam baris horizontal dan kolom vertikal,
+        sehingga menjadi contoh sederhana penerapan konsep matriks
+        dalam kehidupan sehari-hari.
+        `
+    },
+
+    {
+        image: "{{ asset('img/bioskop.jpg') }}",
+        caption: "Gambar 5. Kursi Bioskop",
+
+        text: `
+        Selain rak telur, susunan kursi pada aplikasi pemesanan
+        tiket bioskop juga dapat merepresentasikan matriks karena
+        kursi-kursi tersebut tersusun secara teratur dalam baris
+        dan kolom. Setiap kursi memiliki kode dan posisi tertentu,
+        seperti A1, A2, B1, dan seterusnya, sehingga membentuk pola
+        yang sistematis menyerupai matriks. Dalam susunan tersebut,
+        huruf menunjukkan baris kursi, sedangkan angka menunjukkan
+        kolom kursi. Oleh karena itu, tampilan kursi pada aplikasi
+        pemesanan tiket bioskop menjadi salah satu contoh sederhana
+        penerapan konsep matriks dalam kehidupan sehari-hari.
+        `
+    }
+
+];
+
+let cayleyIndex = 0;
+
+function updateCayley(){
+
+    document.getElementById("cayleyImg").src =
+        cayleyData[cayleyIndex].image;
+
+    document.getElementById("cayleyCaption").innerHTML =
+        cayleyData[cayleyIndex].caption;
+
+    document.getElementById("cayleyParagraph1").innerHTML =
+        cayleyData[cayleyIndex].text;
+}
+
+function nextCayleyImage(){
+
+    cayleyIndex++;
+
+    if(cayleyIndex >= cayleyData.length){
+        cayleyIndex = 0;
+    }
+
+    updateCayley();
+}
+
+function prevCayleyImage(){
+
+    cayleyIndex--;
+
+    if(cayleyIndex < 0){
+        cayleyIndex = cayleyData.length - 1;
+    }
+
+    updateCayley();
+}
+
 </script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </body>
