@@ -183,7 +183,7 @@ Route::post('/register', [AuthController::class, 'register'])
 
 
 Route::get('/dashboard_guru', [DashboardGuruController::class, 'index'])
-    ->middleware('auth')
+    ->middleware(['auth', 'role:guru'])
     ->name('dashboard_guru');
 
 // use App\Http\Controllers\MateriPengertianMatriksController;
@@ -244,21 +244,30 @@ Route::post('/profil/update', [ProfileController::class, 'update'])->name('profi
 
 // PEMBERITAHUAN
 
-Route::middleware(['auth'])->group(function () {
+// ======================= GURU =======================
+Route::middleware(['auth', 'role:guru'])->group(function () {
 
-    // Guru
     Route::get('/pemberitahuan_guru', [PemberitahuanController::class, 'indexGuru']);
+
     Route::post('/pemberitahuan', [PemberitahuanController::class, 'store']);
+
     Route::put('/pemberitahuan/{id}', [PemberitahuanController::class, 'update']);
+
     Route::delete('/pemberitahuan/{id}', [PemberitahuanController::class, 'destroy']);
 
-    // Siswa
+});
+
+
+// ======================= SISWA =======================
+Route::middleware(['auth', 'role:siswa'])->group(function () {
+
     Route::get('/pemberitahuan', [PemberitahuanController::class, 'indexSiswa']);
+
 });
 
 // ======================= KELOLA SOAL =======================
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'role:guru'])->group(function () {
 
     // Halaman daftar quiz
     Route::get('/kelola_soal', [KelolaSoalController::class, 'index'])
@@ -288,19 +297,24 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // DATA SISWA
-Route::get('/data_siswa', [DashboardGuruController::class, 'dataSiswa'])
-    ->name('data_siswa');
-Route::get('/data_siswa/{id}/edit', [DashboardGuruController::class, 'edit'])
-    ->name('data_siswa.edit');
+Route::middleware(['auth', 'role:guru'])->group(function () {
 
-Route::put('/data_siswa/{id}', [DashboardGuruController::class, 'update'])
-    ->name('data_siswa.update');
+    Route::get('/data_siswa', [DashboardGuruController::class, 'dataSiswa'])
+        ->name('data_siswa');
 
-Route::delete('/data_siswa/{id}', [DashboardGuruController::class, 'destroy'])
-    ->name('data_siswa.destroy');
+    Route::get('/data_siswa/{id}/edit', [DashboardGuruController::class, 'edit'])
+        ->name('data_siswa.edit');
+
+    Route::put('/data_siswa/{id}', [DashboardGuruController::class, 'update'])
+        ->name('data_siswa.update');
+
+    Route::delete('/data_siswa/{id}', [DashboardGuruController::class, 'destroy'])
+        ->name('data_siswa.destroy');
+
+});
 // DATA NILAI
 Route::get('/data_nilai', [DashboardGuruController::class, 'dataNilai'])
-    ->middleware('auth')
+    ->middleware(['auth', 'role:guru'])
     ->name('data_nilai');
 
 Route::post('/data-nilai/update', [DashboardGuruController::class, 'updateNilai'])
@@ -383,26 +397,34 @@ Route::get('/hasil-kuis/{id}', function ($id) {
 })->name('hasil.kuis');
 
 Route::get('/refleksi_guru', [RefleksiGuruController::class, 'index'])
+    ->middleware(['auth', 'role:guru'])
     ->name('refleksi.guru');
     
 Route::get('/refleksi', [RefleksiController::class, 'create'])
     ->name('refleksi.index'); 
 
 Route::get('/refleksi/{materi}', [RefleksiGuruController::class, 'show'])
+    ->middleware(['auth', 'role:guru'])
     ->name('refleksi.show');
 
 Route::get('/refleksi-semua', [RefleksiGuruController::class, 'semua'])
+    ->middleware(['auth', 'role:guru'])
     ->name('refleksi.semua');
 
 Route::get('/refleksi/export-excel/{materi}', 
     [RefleksiGuruController::class, 'exportExcel']
-)->name('refleksi.export.excel');
+)
+->middleware(['auth', 'role:guru'])
+->name('refleksi.export.excel');
 
 Route::get('/refleksi/export-pdf/{materi}', 
     [RefleksiGuruController::class, 'exportPDF']
-)->name('refleksi.export.pdf');
+)
+->middleware(['auth', 'role:guru'])
+->name('refleksi.export.pdf');
 
 Route::get('/refleksi-export-semua', [RefleksiGuruController::class, 'exportPDFSemua'])
+    ->middleware(['auth', 'role:guru'])
     ->name('refleksi.export.semua.pdf');
 
 Route::post('/refleksi/submit', [RefleksiController::class, 'submit'])->name('refleksi.submit');
