@@ -250,6 +250,18 @@ function togglePassword(inputId, el) {
     }
 }
 </script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if(session('success'))
+<script>
+Swal.fire({
+    icon: 'success',
+    title: 'Berhasil',
+    text: '{{ session('success') }}',
+    confirmButtonText: 'OK'
+});
+</script>
+@endif
 </body>
 </html>
 <!-- created by badr aouragh or boss.exe -->

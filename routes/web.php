@@ -401,7 +401,7 @@ Route::get('/refleksi_guru', [RefleksiGuruController::class, 'index'])
     ->name('refleksi.guru');
     
 Route::get('/refleksi', [RefleksiController::class, 'create'])
-    ->name('refleksi.index'); 
+    ->name('refleksi.index');
 
 Route::get('/refleksi/{materi}', [RefleksiGuruController::class, 'show'])
     ->middleware(['auth', 'role:guru'])
