@@ -1979,30 +1979,8 @@ if(q.type === 'matrix2d'){
     // 3. SOAL TERAKHIR (SELESAI)
     // ===============================
     completed = questions.length;
-    updateQuizProgress();
+updateQuizProgress();
 
-// 🔥 SIMPAN KE DATABASE
-fetch('/progress/complete', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-    },
-    body: JSON.stringify({
-        materi_slug: 'pengenalan_matriks',
-        sub_materi_slug: 'mari-mencoba-1'
-    })
-})
-.then(res => res.json())
-.then(() => {
-
-    // 🔥 INI YANG PALING PENTING
-    const btn = document.querySelector('.btn-next-slide[data-check="mari-mencoba-1"]');
-    if(btn){
-        btn.dataset.allowed = "1";
-    }
-
-});
     function isEqualFlexible(a, b){
     const n1 = Number(String(a).replace(/[.\s]/g,''));
     const n2 = Number(String(b).replace(/[.\s]/g,''));
@@ -2044,19 +2022,62 @@ fetch('/progress/complete', {
 
     // ⏳ tunggu agar progress 100% terlihat
     setTimeout(() => {
-        showPopup(
-  `<b>Quiz selesai!</b><br>Jawaban benar: <b>${score}</b> / ${questions.length}`,
-  () => {
-    idx = 0;
-    completed = 0;
-    user = Array(questions.length).fill(null);
-    render(idx);
-  },
-  '🎉'
-);
 
-        
-    }, 300);
+    // ✅ semua soal benar
+    if(score === questions.length){
+
+        fetch('/progress/complete', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({
+                materi_slug: 'pengenalan_matriks',
+                sub_materi_slug: 'mari-mencoba-1'
+            })
+        })
+        .then(res => res.json())
+        .then(() => {
+
+            const btn = document.querySelector(
+                '.btn-next-slide[data-check="mari-mencoba-1"]'
+            );
+
+            if(btn){
+                btn.dataset.allowed = "1";
+            }
+
+            showPopup(
+                `<b>Luar Biasa! 🎉</b><br>
+                Semua jawaban benar (${score}/${questions.length}).<br>
+                Tombol Selanjutnya telah dibuka.`,
+                () => {
+                    idx = 0;
+                    completed = 0;
+                    user = Array(questions.length).fill(null);
+                    render(idx);
+                }
+            );
+
+        });
+
+    } else {
+
+        showPopup(
+            `<b>Jawaban benar: ${score}/${questions.length}</b><br>
+            Semua soal harus benar terlebih dahulu untuk membuka halaman selanjutnya.`,
+            () => {
+                idx = 0;
+                completed = 0;
+                user = Array(questions.length).fill(null);
+                render(idx);
+            }
+        );
+
+    }
+
+}, 300);
 }
 
 
@@ -2998,29 +3019,7 @@ btnReset.onclick = () => {
   }
 
   completed = soal.length;
-  updateQuizProgress();
-fetch('/progress/complete', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-    },
-    body: JSON.stringify({
-        materi_slug: 'pengenalan_matriks',
-        sub_materi_slug: 'mari-mencoba-ke2'
-    })
-})
-.then(res => res.json())
-.then(data => {
-    console.log('SUCCESS:', data);
-
-    // 🔥 PENTING: update tombol langsung
-    const btn = document.querySelector(".btn-next-slide[data-check='mari-mencoba-2']");
-    if(btn){
-        btn.dataset.allowed = "1";
-    }
-})
-.catch(err => console.error('ERROR:', err));
+updateQuizProgress();
 
   let score = 0;
 
@@ -3065,26 +3064,86 @@ if (
 
   setTimeout(() => {
 
+    // ✅ Semua soal benar
+    if (score === soal.length) {
+
+        fetch('/progress/complete', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({
+                materi_slug: 'pengenalan_matriks',
+                sub_materi_slug: 'mari-mencoba-ke2'
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+
+            console.log('SUCCESS:', data);
+
+            const btn = document.querySelector(
+                ".btn-next-slide[data-check='mari-mencoba-2']"
+            );
+
+            if(btn){
+                btn.dataset.allowed = "1";
+            }
+
+            showPopup(
+                `<b>Luar Biasa! 🎉</b><br>
+                Semua jawaban benar: <b>${score}/${soal.length}</b><br>
+                Tombol Selanjutnya telah dibuka.`,
+                () => {
+                    idx = 0;
+                    completed = 0;
+
+                    userAnswer[0] = { ordoRow:'', ordoCol:'', a23:'' };
+                    userAnswer[1] = { name:'', matrix:{}, ordoRow:'', ordoCol:'' };
+                    userAnswer[2] = { drop:{} };
+                    userAnswer[3] = { tf:'' };
+                    userAnswer[4] = { a22:'', a41:'', a53:'', a32:'' };
+
+                    renderSoal();
+                    updateQuizProgress();
+                },
+                '🎉'
+            );
+
+        });
+
+    }
+    // ❌ Masih ada jawaban salah
+    else {
+
     showPopup(
-      `<b>Quiz selesai!</b><br>
-       Jawaban benar: <b>${score}</b> / ${soal.length}`,
-      () => {
-        idx = 0;
-        completed = 0;
+        `<b>Jawaban benar: ${score}/${soal.length}</b><br>
+        Semua soal harus benar terlebih dahulu untuk membuka halaman selanjutnya.`,
+        () => {
 
-        userAnswer[0] = { ordoRow:'', ordoCol:'', a23:'' };
-        userAnswer[1] = { name:'', matrix:{}, ordoRow:'', ordoCol:'' };
-        userAnswer[2] = { drop:{} };
-        userAnswer[3] = { tf:'' };
-        userAnswer[4] = { a22:'', a41:'', a53:'', a32:'' };
+            // 🔥 reset ke soal pertama
+            idx = 0;
+            completed = 0;
 
-        renderSoal();
-        updateQuizProgress();
-      },
-      '🎉'
+            // 🔥 reset semua jawaban
+            userAnswer[0] = { ordoRow:'', ordoCol:'', a23:'' };
+            userAnswer[1] = { name:'', matrix:{}, ordoRow:'', ordoCol:'' };
+            userAnswer[2] = { drop:{} };
+            userAnswer[3] = { tf:'' };
+            userAnswer[4] = { a22:'', a41:'', a53:'', a32:'' };
+
+            // 🔥 render ulang
+            renderSoal();
+            updateQuizProgress();
+
+        },
+        '⚠️'
     );
 
-  }, 300);
+}
+
+}, 300);
 };
 
 
