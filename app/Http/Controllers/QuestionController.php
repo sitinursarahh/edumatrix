@@ -144,10 +144,12 @@ private function convertToLatexMatrix($text)
 }
 
     public function destroy(Question $question)
-    {
-        $question->delete();
-        return back()->with('success', 'Soal berhasil dihapus');
-    }
+{
+    $question->options()->delete(); // hapus pilihan jawaban
+    $question->delete();            // hapus soal
+
+    return back()->with('success', 'Soal berhasil dihapus');
+}
 
     private function cleanDisplayText($text)
 {

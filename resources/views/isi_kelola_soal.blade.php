@@ -87,11 +87,20 @@
                                     Edit
                                 </a>
 
-                                <button type="button"
-                                        class="btn btn-danger btn-sm btn-delete d-flex align-items-center gap-1">
-                                    <i class="bi bi-trash"></i>
-                                    Hapus
-                                </button>
+                                <form action="{{ route('questions.destroy', $question->id) }}"
+      method="POST"
+      class="delete-form d-inline">
+
+    @csrf
+    @method('DELETE')
+
+    <button type="button"
+            class="btn btn-danger btn-sm btn-delete d-flex align-items-center gap-1">
+        <i class="bi bi-trash"></i>
+        Hapus
+    </button>
+
+</form>
 
                             </div>
                         </td>
