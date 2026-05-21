@@ -1294,53 +1294,93 @@ soal.forEach(s => {
   if (s.isCorrect) score++;
 });
 
-fetch('/progress/complete', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-    },
-    body: JSON.stringify({
-        materi_slug: 'kesamaan_matriks',
-        sub_materi_slug: 'mari-mencoba-kesamaan-matriks'
-    })
-})
-.then(res => res.json())
-.then(() => {
 
-    const btn = document.querySelector('.btn-next-slide[data-check="mari-mencoba-kesamaan-matriks"]');
-    if(btn){
-        btn.dataset.allowed = "1";
-    }
-
-});
 
 // ⏳ tunggu progress tampil
 setTimeout(() => {
 
-  showPopup(
-  `<b>Quiz selesai!</b><br>
-   Jawaban benar: <b>${score}</b> / ${soal.length}`,
-  () => {
-    soal.forEach(s => {
-      delete s.isChecked;
-      delete s.isCorrect;
-    });
+    // ✅ Semua soal benar
+    if (score === soal.length) {
 
-    userAnswer[0] = { drop:{} };
-    userAnswer[1] = { a:'', b:'', c:'' };
-    userAnswer[2] = { x:'', y:'', z:'' };
+        fetch('/progress/complete', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({
+                materi_slug: 'kesamaan_matriks',
+                sub_materi_slug: 'mari-mencoba-kesamaan-matriks'
+            })
+        })
+        .then(res => res.json())
+        .then(() => {
 
-    idx = 0;
-    completed = 0;
+            const btn = document.querySelector(
+                '.btn-next-slide[data-check="mari-mencoba-kesamaan-matriks"]'
+            );
 
-    renderSoal();
-    updateQuizProgress();
-  },
-  '🎉'
-);
+            if(btn){
+                btn.dataset.allowed = "1";
+            }
 
-}, 300); // ⬅️ setTimeout SELESAI
+            showPopup(
+                `<b>Luar Biasa! 🎉</b><br>
+                Semua jawaban benar: <b>${score}/${soal.length}</b><br>
+                Tombol Selanjutnya telah dibuka.`,
+                () => {
+
+                    soal.forEach(s => {
+                        delete s.isChecked;
+                        delete s.isCorrect;
+                    });
+
+                    userAnswer[0] = { drop:{} };
+                    userAnswer[1] = { a:'', b:'', c:'' };
+                    userAnswer[2] = { x:'', y:'', z:'' };
+
+                    idx = 0;
+                    completed = 0;
+
+                    renderSoal();
+                    updateQuizProgress();
+                },
+                '🎉'
+            );
+
+        });
+
+    }
+
+    // ❌ Masih ada jawaban salah
+    else {
+
+        showPopup(
+            `<b>Jawaban benar: ${score}/${soal.length}</b><br>
+            Semua soal harus benar terlebih dahulu untuk membuka halaman selanjutnya.`,
+            () => {
+
+                soal.forEach(s => {
+                    delete s.isChecked;
+                    delete s.isCorrect;
+                });
+
+                userAnswer[0] = { drop:{} };
+                userAnswer[1] = { a:'', b:'', c:'' };
+                userAnswer[2] = { x:'', y:'', z:'' };
+
+                idx = 0;
+                completed = 0;
+
+                renderSoal();
+                updateQuizProgress();
+            },
+            '⚠️'
+        );
+
+    }
+
+}, 300);
 
 }; // ⬅️⬅️⬅️ INI WAJIB ADA (MENUTUP btnNext.onclick)
 

@@ -3251,72 +3251,97 @@ document.addEventListener("DOMContentLoaded", () => {
         userAnswer[2].benar3c
     ) score++;
 
-fetch('/progress/complete', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-    },
-    body: JSON.stringify({
-        materi_slug: 'jenis_matriks',
-        sub_materi_slug: 'mari-mencoba-jenis-matriks'
-    })
-})
-.then(res => res.json())
-.then(() => {
 
-    // 🔥 unlock tombol
-    const btn = document.querySelector('.btn-next-slide[data-check="mari-mencoba-jenis-matriks"]');
-    if(btn){
-        btn.dataset.allowed = "1";
+        setTimeout(() => {
+
+    // ✅ Semua soal benar
+    if (score === soal.length) {
+
+        fetch('/progress/complete', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({
+                materi_slug: 'jenis_matriks',
+                sub_materi_slug: 'mari-mencoba-jenis-matriks'
+            })
+        })
+        .then(res => res.json())
+        .then(() => {
+
+            const btn = document.querySelector(
+                '.btn-next-slide[data-check="mari-mencoba-jenis-matriks"]'
+            );
+
+            if(btn){
+                btn.dataset.allowed = "1";
+            }
+
+            showPopup(
+                `<b>Luar Biasa! 🎉</b><br>
+                Semua jawaban benar: <b>${score}/${soal.length}</b><br>
+                Tombol Selanjutnya telah dibuka.`,
+                () => {
+
+                    userAnswer[0] = { drop:{} };
+                    userAnswer[1] = { drop:{} };
+                    userAnswer[2] = {
+                        matrix: {},
+                        tf: '',
+                        check3c: [],
+                        benar3a: false,
+                        benar3b: false,
+                        benar3c: false
+                    };
+
+                    idx = 0;
+                    subIdx = 0;
+                    completed = 0;
+
+                    renderSoal();
+                    updateQuizProgress();
+                },
+                '🎉'
+            );
+
+        });
+
     }
 
-});
-        setTimeout(() => {
-           showPopup(
-  `<b>Quiz selesai!</b><br>
-   Jawaban benar: <b>${score}</b> / ${soal.length}`,
-  () => {
-    userAnswer[0] = { drop:{} };
-    userAnswer[1] = { drop:{} };
-    userAnswer[2] = {
-      matrix: {},
-      tf: '',
-      check3c: [],
-      benar3a: false,
-      benar3b: false,
-      benar3c: false
-    };
+    // ❌ Masih ada jawaban salah
+    else {
 
-    idx = 0;
-    subIdx = 0;
-    completed = 0;
+        showPopup(
+            `<b>Jawaban benar: ${score}/${soal.length}</b><br>
+            Semua soal harus benar terlebih dahulu untuk membuka halaman selanjutnya.`,
+            () => {
 
-    renderSoal();
-    updateQuizProgress();
-  },
-  '🎉'
-);
+                userAnswer[0] = { drop:{} };
+                userAnswer[1] = { drop:{} };
+                userAnswer[2] = {
+                    matrix: {},
+                    tf: '',
+                    check3c: [],
+                    benar3a: false,
+                    benar3b: false,
+                    benar3c: false
+                };
 
-            // RESET
-            userAnswer[0] = { drop:{} };
-            userAnswer[1] = { drop:{} };
-            userAnswer[2] = {
-    matrix: {},
-    tf: '',
-    check3c: [],
-    benar3a: false,
-    benar3b: false,
-    benar3c: false
-    };
+                idx = 0;
+                subIdx = 0;
+                completed = 0;
 
-            idx = 0;
-            subIdx = 0;
-            completed = 0;
+                renderSoal();
+                updateQuizProgress();
+            },
+            '⚠️'
+        );
 
-            renderSoal();
-            updateQuizProgress();
-        }, 300);
+    }
+
+}, 300);
     };
 
 
