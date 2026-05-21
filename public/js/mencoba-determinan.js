@@ -198,7 +198,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 userAnswer[1].det = document
                     .getElementById("s2-det")
                     .value.trim();
-                return userAnswer[1].det === "1";
+                return userAnswer[1].det === "-4";
             },
 
             reset: () => {
@@ -424,33 +424,6 @@ A =
         updateQuizProgress();
 
         // 🔥 SIMPAN KE DATABASE (TARUH DI SINI)
-        fetch("/progress/complete", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRF-TOKEN": document.querySelector(
-                    'meta[name="csrf-token"]',
-                ).content,
-            },
-            body: JSON.stringify({
-                materi_slug: "determinan_invers_matriks",
-                sub_materi_slug: "mari-mencoba-determinan-invers-matriks",
-            }),
-        })
-            .then((res) => {
-                if (!res.ok) throw new Error("Gagal simpan progress");
-                return res.json();
-            })
-            .then(() => {
-                const btn = document.querySelector(
-                    '.btn-next-slide[data-check="mari-mencoba-determinan-invers-matriks"]',
-                );
-
-                if (btn) btn.dataset.allowed = "1";
-            })
-            .catch((err) => {
-                console.error("ERROR SIMPAN:", err);
-            });
 
         // HITUNG JUMLAH JAWABAN BENAR
         let score = 0;
@@ -459,31 +432,91 @@ A =
         });
 
         // TAMPILAN AKHIR (SESUAI MARI MENCOBA PERKALIAN MATRIKS)
-        showPopup(
-            `
-    <h3 style="margin-bottom:8px;">Quiz selesai!</h3>
-    <p style="margin:0;">Jawaban benar: <b>${score}</b> / ${soal.length}</p>
-    `,
-            () => {
-                // reset state setelah klik OK
-                idx = 0;
-                completed = 0;
+        if (score === soal.length) {
+            fetch("/progress/complete", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": document.querySelector(
+                        'meta[name="csrf-token"]',
+                    ).content,
+                },
+                body: JSON.stringify({
+                    materi_slug: "determinan_invers_matriks",
+                    sub_materi_slug: "mari-mencoba-determinan-invers-matriks",
+                }),
+            })
+                .then((res) => {
+                    if (!res.ok) throw new Error("Gagal simpan progress");
+                    return res.json();
+                })
+                .then(() => {
+                    const btn = document.querySelector(
+                        '.btn-next-slide[data-check="mari-mencoba-determinan-invers-matriks"]',
+                    );
 
-                userAnswer[0] = { value: "" };
-                userAnswer[1] = { det: "" };
-                userAnswer[2] = {
-                    "s3-00": "",
-                    "s3-01": "",
-                    "s3-10": "",
-                    "s3-11": "",
-                };
+                    if (btn) {
+                        btn.dataset.allowed = "1";
+                    }
 
-                renderSoal();
-                updateQuizProgress();
-                hasil.textContent = "";
-            },
-            "🎉",
-        );
+                    showPopup(
+                        `<b>Luar Biasa! 🎉</b><br>
+            Semua jawaban benar: <b>${score}/${soal.length}</b><br>
+            Tombol Selanjutnya telah dibuka.`,
+                        () => {
+                            idx = 0;
+                            completed = 0;
+
+                            userAnswer[0] = { value: "" };
+                            userAnswer[1] = { det: "" };
+                            userAnswer[2] = {
+                                "s3-00": "",
+                                "s3-01": "",
+                                "s3-10": "",
+                                "s3-11": "",
+                            };
+
+                            soal.forEach((s) => {
+                                delete s.isChecked;
+                                delete s.isCorrect;
+                            });
+
+                            renderSoal();
+                            updateQuizProgress();
+                            hasil.textContent = "";
+                        },
+                        "🎉",
+                    );
+                });
+        } else {
+            showPopup(
+                `<b>Jawaban benar: ${score}/${soal.length}</b><br>
+        Semua soal harus benar terlebih dahulu untuk membuka halaman selanjutnya.`,
+                () => {
+                    idx = 0;
+                    completed = 0;
+
+                    userAnswer[0] = { value: "" };
+                    userAnswer[1] = { det: "" };
+                    userAnswer[2] = {
+                        "s3-00": "",
+                        "s3-01": "",
+                        "s3-10": "",
+                        "s3-11": "",
+                    };
+
+                    soal.forEach((s) => {
+                        delete s.isChecked;
+                        delete s.isCorrect;
+                    });
+
+                    renderSoal();
+                    updateQuizProgress();
+                    hasil.textContent = "";
+                },
+                "⚠️",
+            );
+        }
     };
 
     /* =====================================================

@@ -2896,34 +2896,83 @@ if (
 
             const score = hitungSkor();
 
-            // 🔥 UNLOCK
-            fetch('/progress/complete', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+setTimeout(() => {
+
+    // ✅ semua soal benar
+    if (score === soal.length) {
+
+        fetch('/progress/complete', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({
+                materi_slug: 'penjumlahan_pengurangan_matriks',
+                sub_materi_slug: 'mari-mencoba-jumlahkurang-matriks'
+            })
+        })
+        .then(() => {
+
+            const btn = document.querySelector(
+                '.btn-next-slide[data-check="mari-mencoba-jumlahkurang-matriks"]'
+            );
+
+            if (btn) {
+                btn.dataset.allowed = "1";
+            }
+
+            showPopup(
+                `<b>Luar Biasa! 🎉</b><br>
+                Semua jawaban benar: <b>${score}/${soal.length}</b><br>
+                Tombol Selanjutnya telah dibuka.`,
+                () => {
+
+                    userAnswer[0] = {};
+                    userAnswer[1] = {};
+                    userAnswer[2] = {};
+
+                    idx = 0;
+                    subIdx = 0;
+                    completed = 0;
+
+                    renderSoal();
+                    updateQuizProgress();
                 },
-                body: JSON.stringify({
-                    materi_slug: 'penjumlahan_pengurangan_matriks',
-                    sub_materi_slug: 'mari-mencoba-jumlahkurang-matriks'
-                })
-            }).then(() => {
-                const btn = document.querySelector(
-                    '.btn-next-slide[data-check="mari-mencoba-jumlahkurang-matriks"]'
-                );
-                if (btn) btn.dataset.allowed = "1";
-            });
+                '🎉'
+            );
 
-            setTimeout(() => {
-                showPopup(
-  `<b>Quiz selesai!</b><br>
-  Jawaban benar: <b>${score}</b> / ${soal.length}`,
-  null,
-  '🎉'
-);
-            }, 300);
+        });
 
-            return;
+    }
+
+    // ❌ masih ada jawaban salah
+    else {
+
+        showPopup(
+            `<b>Jawaban benar: ${score}/${soal.length}</b><br>
+            Semua soal harus benar terlebih dahulu untuk membuka halaman selanjutnya.`,
+            () => {
+
+                userAnswer[0] = {};
+                userAnswer[1] = {};
+                userAnswer[2] = {};
+
+                idx = 0;
+                subIdx = 0;
+                completed = 0;
+
+                renderSoal();
+                updateQuizProgress();
+            },
+            '⚠️'
+        );
+
+    }
+
+}, 300);
+
+return;
         }
     }
 
