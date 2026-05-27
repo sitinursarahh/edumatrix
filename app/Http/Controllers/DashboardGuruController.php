@@ -157,34 +157,35 @@ foreach ($siswa as $item) {
     public function dataSiswa()
 {
     $ujiSlug = 'uji-kompetensi';
-    $totalSubMateri = 70; // 🔥 TOTAL FIX
+    $totalSubMateri = 70;
+
+    $perPage = request('per_page', 10);
 
     $siswa = User::where('role', 'siswa')
         ->orderByRaw('LOWER(name) ASC')
-        ->get();
+        ->paginate($perPage)
+        ->withQueryString();
 
     foreach ($siswa as $item) {
 
-        // 🔹 ambil hanya yang selesai
         $progress = UserProgress::where('user_id', $item->id)
             ->pluck('sub_materi_slug')
             ->unique()
             ->toArray();
 
-        // 🔹 hitung materi selesai (tanpa uji)
         $materiSelesai = collect($progress)
             ->filter(fn($slug) => $slug !== $ujiSlug)
             ->count();
 
-        // 🔹 progress materi (70%)
         $progressMateri = ($materiSelesai / $totalSubMateri) * 70;
 
-        // 🔹 uji kompetensi (30%)
         $ujiSelesai = in_array($ujiSlug, $progress);
         $progressUji = $ujiSelesai ? 30 : 0;
 
-        // 🔹 final progress
-        $item->progress_percent = min(100, round($progressMateri + $progressUji));
+        $item->progress_percent = min(
+            100,
+            round($progressMateri + $progressUji)
+        );
     }
 
     return view('data_siswa', compact('siswa'));
@@ -259,27 +260,31 @@ foreach ($siswa as $item) {
     |--------------------------------------------------------------------------
     */
     public function dataNilai()
-    {
-        $quizzes = Quiz::orderBy('id')->get();
+{
+    $quizzes = Quiz::orderBy('id')->get();
 
-        $siswa = User::where('role', 'siswa')
-            ->orderBy('name', 'asc')
-            ->get();
+    $perPage = request('per_page', 10);
 
-        foreach ($siswa as $item) {
-            foreach ($quizzes as $quiz) {
+    $siswa = User::where('role', 'siswa')
+        ->orderBy('name', 'asc')
+        ->paginate($perPage)
+        ->withQueryString();
 
-                $nilai = DB::table('hasil_kuis')
-                    ->where('id_user', $item->id)
-                    ->where('id_kuis', $quiz->id)
-                    ->max('nilai');
+    foreach ($siswa as $item) {
 
-                $item->{'kuis_'.$quiz->id} = $nilai ?? '-';
-            }
+        foreach ($quizzes as $quiz) {
+
+            $nilai = DB::table('hasil_kuis')
+                ->where('id_user', $item->id)
+                ->where('id_kuis', $quiz->id)
+                ->max('nilai');
+
+            $item->{'kuis_'.$quiz->id} = $nilai ?? '-';
         }
-
-        return view('data_nilai', compact('siswa', 'quizzes'));
     }
+
+    return view('data_nilai', compact('siswa', 'quizzes'));
+}
 
 
     /*

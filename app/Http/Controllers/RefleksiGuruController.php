@@ -19,10 +19,13 @@ class RefleksiGuruController extends Controller
     // 🔹 Halaman detail berdasarkan materi
     public function show($materi)
     {
-        $data = Refleksi::with('user')
-            ->where('materi_kode', $materi)
-            ->latest()
-            ->get();
+        $perPage = request('per_page', 10);
+
+$data = Refleksi::with('user')
+    ->where('materi_kode', $materi)
+    ->latest()
+    ->paginate($perPage)
+    ->withQueryString();
 
 
         $soalMapping = [
@@ -78,10 +81,13 @@ class RefleksiGuruController extends Controller
     // 🔹 Halaman semua data refleksi
     public function semua()
 {
-    $data = Refleksi::with('user')
-        ->where('materi_kode', 'global') // 🔥 INI KUNCI NYA
-        ->latest()
-        ->get();
+    $perPage = request('per_page', 10);
+
+$data = Refleksi::with('user')
+    ->where('materi_kode', 'global')
+    ->latest()
+    ->paginate($perPage)
+    ->withQueryString();
 
     $materi = null;
 

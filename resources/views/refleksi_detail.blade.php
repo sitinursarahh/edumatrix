@@ -81,6 +81,31 @@
     $totalKolom = 3 + ($materi ? count($soal) : count($pertanyaanGlobal));
 @endphp
 
+<div class="d-flex justify-content-between align-items-center mb-3">
+
+    <form method="GET" class="d-flex align-items-center gap-2">
+
+        <label class="mb-0">Tampilkan</label>
+
+        <select name="per_page"
+                class="form-select form-select-sm"
+                style="width:100px"
+                onchange="this.form.submit()">
+
+            <option value="10" {{ request('per_page',10)==10 ? 'selected' : '' }}>10</option>
+            <option value="20" {{ request('per_page')==20 ? 'selected' : '' }}>20</option>
+            <option value="30" {{ request('per_page')==30 ? 'selected' : '' }}>30</option>
+            <option value="50" {{ request('per_page')==50 ? 'selected' : '' }}>50</option>
+            <option value="100" {{ request('per_page')==100 ? 'selected' : '' }}>100</option>
+
+        </select>
+
+        <span>data</span>
+
+    </form>
+
+</div>
+
 <div class="table-responsive-custom {{ $totalKolom > 7 ? 'table-scroll' : 'table-normal' }}">
     <table class="table table-bordered text-center align-middle">
 
@@ -105,7 +130,9 @@
         <tbody>
         @forelse($data as $i => $item)
             <tr>
-                <td>{{ $i+1 }}</td>
+                <td>
+    {{ ($data->currentPage() - 1) * $data->perPage() + $i + 1 }}
+</td>
                 <td>{{ $item->user->name ?? '-' }}</td>
                 <td>
     @php
@@ -145,6 +172,9 @@
         </tbody>
 
     </table>
+    <div class="d-flex justify-content-center mt-4">
+    {{ $data->links('pagination::bootstrap-5') }}
+</div>
 </div>
 <div class="mt-3 text-start">
     <a href="{{ url()->previous() }}" class="btn btn-secondary">
@@ -191,29 +221,30 @@
         
     </script>
 
-    <!-- FILTERING -->
     <script>
 const searchInput = document.getElementById("searchInput");
 const filterKelas = document.getElementById("filterKelas");
-const tableRows = document.querySelectorAll("tbody tr");
 
 function filterTable() {
-    const searchValue = searchInput.value.toLowerCase();
-    const kelasValue = filterKelas.value;
 
-    tableRows.forEach(row => {
-        const nama = row.children[1].textContent.toLowerCase();
-        const kelas = row.children[2].textContent;
-        const email = row.children[3].textContent.toLowerCase();
+    const searchValue = searchInput.value.toLowerCase().trim();
+    const kelasValue = filterKelas.value.trim();
 
-        const matchSearch = nama.includes(searchValue) || email.includes(searchValue);
-        const matchKelas = kelasValue === "" || kelas === kelasValue;
+    document.querySelectorAll("tbody tr").forEach(row => {
 
-        if (matchSearch && matchKelas) {
-            row.style.display = "";
-        } else {
-            row.style.display = "none";
-        }
+        const nama = row.children[1].textContent.toLowerCase().trim();
+        const kelas = row.children[2].textContent.trim();
+
+        const matchSearch = nama.includes(searchValue);
+
+        const matchKelas =
+            kelasValue === "" ||
+            kelas === kelasValue;
+
+        row.style.display =
+            (matchSearch && matchKelas)
+                ? ""
+                : "none";
     });
 }
 
