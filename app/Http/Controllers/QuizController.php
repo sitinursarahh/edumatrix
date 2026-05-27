@@ -25,55 +25,72 @@ class QuizController extends Controller
     };
 }
 
+private function getJudulKuis($quiz_id)
+{
+    return match ((int) $quiz_id) {
+        1 => 'Kuis Materi Pengenalan Matriks',
+        2 => 'Kuis Materi Jenis-Jenis Matriks',
+        3 => 'Kuis Materi Kesamaan Dua Matriks',
+        4 => 'Kuis Materi Penjumlahan dan Pengurangan Matriks',
+        5 => 'Kuis Materi Perkalian Matriks',
+        6 => 'Kuis Materi Determinan dan Invers Matriks',
+        7 => 'Uji Kompetensi Matriks',
+        default => 'Kuis Matriks',
+    };
+}
 
     /**
      * Menampilkan halaman kuis
      */
     public function show($quiz_id)
-    {
-        // Simpan waktu mulai dan durasi kuis ke session
-        session([
-            'waktu_mulai_kuis' => Carbon::now(),
-            'durasi_kuis' => $this->getDurasiKuis($quiz_id),
-        ]);
+{
+    // Simpan waktu mulai dan durasi kuis ke session
+    session([
+        'waktu_mulai_kuis' => Carbon::now(),
+        'durasi_kuis' => $this->getDurasiKuis($quiz_id),
+    ]);
 
-        $rawData = DB::table('questions')
-            ->join('options', 'questions.id', '=', 'options.question_id')
-            ->where('questions.quiz_id', $quiz_id)
-            ->select(
-                'questions.id as question_id',
-                'questions.question_text',
-                'options.id as option_id',
-                'options.option_text'
-            )
-            ->orderBy('questions.id')
-            ->get();
+    $rawData = DB::table('questions')
+        ->join('options', 'questions.id', '=', 'options.question_id')
+        ->where('questions.quiz_id', $quiz_id)
+        ->select(
+            'questions.id as question_id',
+            'questions.question_text',
+            'options.id as option_id',
+            'options.option_text'
+        )
+        ->orderBy('questions.id')
+        ->get();
 
-        $questions = [];
+    $questions = [];
 
-        foreach ($rawData as $row) {
-            if (!isset($questions[$row->question_id])) {
-                $questions[$row->question_id] = [
-                    'text' => $row->question_text,
-                    'options' => []
-                ];
-            }
+    foreach ($rawData as $row) {
 
-            $questions[$row->question_id]['options'][] = [
-                'id' => $row->option_id,
-                'text' => $row->option_text
+        if (!isset($questions[$row->question_id])) {
+            $questions[$row->question_id] = [
+                'text' => $row->question_text,
+                'options' => []
             ];
         }
 
-        $durasi = $this->getDurasiKuis($quiz_id);
-
-        return view('kuis_pengertian_matriks', compact(
-            'questions',
-            'quiz_id',
-            'durasi'
-        ));
-
+        $questions[$row->question_id]['options'][] = [
+            'id' => $row->option_id,
+            'text' => $row->option_text
+        ];
     }
+
+    $durasi = $this->getDurasiKuis($quiz_id);
+
+    // 🔥 Judul kuis dinamis
+    $judulKuis = $this->getJudulKuis($quiz_id);
+
+    return view('kuis_pengertian_matriks', compact(
+        'questions',
+        'quiz_id',
+        'durasi',
+        'judulKuis'
+    ));
+}
 
     /**
      * Memproses submit jawaban kuis

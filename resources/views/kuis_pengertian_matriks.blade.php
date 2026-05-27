@@ -213,10 +213,16 @@ body{
 
 
         <div class="quiz-header">
-            <h3 id="questionTitle">Soal No. 1</h3>
-            <div class="timer" id="timer">--:--</div>
+    <div>
+        <h2 style="margin:0 0 8px 0; color:#9a3f3f;">
+            {{ $judulKuis }}
+        </h2>
 
-        </div>
+        <h3 id="questionTitle">Soal No. 1</h3>
+    </div>
+
+    <div class="timer" id="timer">--:--</div>
+</div>
 
         <div class="question-box" id="questionBox"></div>
 
