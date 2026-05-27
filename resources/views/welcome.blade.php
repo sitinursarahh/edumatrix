@@ -136,6 +136,30 @@
     animation: floatSmooth 5s ease-in-out infinite;
     will-change: transform; /* biar render lebih halus */
 }
+
+.fitur-title{
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--c1);
+}
+
+.fitur-desc{
+    display: block;
+    color: #555;
+    line-height: 1.5;
+    padding: 0 15px;
+}
+
+.fitur-title,
+.fitur-desc {
+    transition: color 0.2s ease;
+}
+
+.fitur-link:hover .fitur-title,
+.fitur-link:hover .fitur-desc {
+    color: #fff;
+}
     </style>
 </head>
 <body>
@@ -177,9 +201,9 @@
         <div class="col-md-6 d-flex align-items-center">  <!-- Tambahkan d-flex align-items-center untuk centering -->
             <div>
                 <h2 style="color: var(--c1); font-weight:bold;">Media Pembelajaran Matriks</h2>
-                <p>
-                    Mudah, interaktif, dan menyenangkan untuk memahami operasi matriks
-                    seperti penjumlahan, pengurangan, perkalian, determinan, hingga invers matriks.
+                <p>EduMatrix merupakan
+                    media pembelajaran interaktif berbasis web yang dikembangkan untuk peserta didik kelas XI SMA/MA
+                    pada materi matriks. Media ini membantu peserta didik mempelajari konsep dan operasi matriks secara mudah, interaktif, dan menyenangkan.
                 </p>
                 <!-- Tombol Mulai Belajar -->
                 <a href="/login" class="btn btn-belajar"
@@ -203,53 +227,58 @@
     <div class="row g-4">
 
         <!-- Materi Interaktif -->
-        <div class="col-md-4">
-            <a class="fitur-link">
-                <div class="fitur-box">
-                    <div class="fitur-gambar">
-                        <!-- Masukkan gambar materi -->
-                        <img src="{{ asset('img/logo_materi.png') }}"
-                             alt="Materi"
-                             style="width: 100%; height: 100%; object-fit: contain;">
-                    </div>
+<div class="col-md-4">
+    <a class="fitur-link">
+        <div class="fitur-box">
+            <div class="fitur-gambar">
+                <img src="{{ asset('img/logo_materi.png') }}"
+                     alt="Materi"
+                     style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
 
-                    <p>Materi Interaktif</p>
-                </div>
-            </a>
+            <p class="fitur-title">Materi Interaktif</p>
+            <small class="fitur-desc">
+                Pelajari konsep dan operasi matriks melalui materi yang disajikan secara bertahap, disertai contoh dan ilustrasi yang mudah dipahami.
+            </small>
         </div>
+    </a>
+</div>
 
-        <!-- Chat -->
-        <div class="col-md-4">
-            <a class="fitur-link">
-                <div class="fitur-box">
-                    <div class="fitur-gambar">
-                        <!-- Masukkan gambar latihan -->
-                        <img src="{{ asset('img/chattt.png') }}"
-                             alt="Latihan"
-                             style="width: 100%; height: 100%; object-fit: contain;">
-                    </div>
+<!-- Chat -->
+<div class="col-md-4">
+    <a class="fitur-link">
+        <div class="fitur-box">
+            <div class="fitur-gambar">
+                <img src="{{ asset('img/chattt.png') }}"
+                     alt="Chat"
+                     style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
 
-                    <p>Chat</p>
-                </div>
-            </a>
+            <p class="fitur-title">Chat</p>
+            <small class="fitur-desc">
+                Memfasilitasi diskusi terkait materi matriks sehingga peserta didik dapat bertanya serta berbagi pendapat.
+            </small>
         </div>
-        
+    </a>
+</div>
 
-        <!-- Leaderboard -->
-        <div class="col-md-4">
-            <a class="fitur-link">
-                <div class="fitur-box">
-                    <div class="fitur-gambar">
-                        <!-- Masukkan gambar kuis -->
-                        <img src="{{ asset('img/leaderboard_biru.png') }}"
-                             alt="Kuis"
-                             style="width: 100%; height: 100%; object-fit: contain;">
-                    </div>
+<!-- Leaderboard -->
+<div class="col-md-4">
+    <a class="fitur-link">
+        <div class="fitur-box">
+            <div class="fitur-gambar">
+                <img src="{{ asset('img/leaderboard_biru.png') }}"
+                     alt="Leaderboard"
+                     style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
 
-                    <p>Leaderboard</p>
-                </div>
-            </a>
+            <p class="fitur-title">Leaderboard</p>
+            <small class="fitur-desc">
+                Lihat peringkat berdasarkan poin yang diperoleh selama pembelajaran untuk meningkatkan motivasi dan semangat belajar.
+            </small>
         </div>
+    </a>
+</div>
 
     </div>
 </div>
