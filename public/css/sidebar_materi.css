@@ -460,3 +460,38 @@ body {
 #sidebar_materi .sidebar-scroll {
     padding-bottom: 40px;
 }
+
+/* ===============================
+   AUTO COLLAPSE MOBILE TANPA FLASH
+================================ */
+@media (max-width: 768px) {
+    #sidebar_materi {
+        width: 76px !important;
+        padding-left: 6px !important;
+        padding-right: 6px !important;
+        overflow: hidden !important;
+    }
+
+    #sidebar_materi .sidebar-label,
+    #sidebar_materi .chev,
+    #sidebar_materi .sidebar-submenu {
+        display: none !important;
+    }
+
+    #sidebar_materi .sidebar-link {
+        justify-content: center !important;
+        padding: 10px 0 !important;
+        gap: 0 !important;
+    }
+
+    #sidebar_materi .sidebar-link > i {
+        margin: 0 !important;
+        width: 24px;
+        text-align: center;
+    }
+
+    .main-content {
+        margin-left: 76px !important;
+        width: calc(100% - 76px) !important;
+    }
+}

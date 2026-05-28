@@ -882,12 +882,7 @@ window.addEventListener('load', function () {
   // =========================================
   // AUTO COLLAPSE MOBILE
   // =========================================
-  if (window.innerWidth <= 768) {
-
-    sidebar.classList.add('collapsed');
-
-    document.body.classList.add('sidebar-collapsed');
-  }
+  
 
   // =========================================
   // TOGGLE SIDEBAR
