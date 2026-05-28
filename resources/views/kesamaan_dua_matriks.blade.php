@@ -112,7 +112,7 @@
                     <br>
                     <p><strong>Alternatif Penyelesaian :</strong></p>
                     <p>
-                      Matriks A dan B memiliki ordo yang sama, yaitu 2 × 2. Artinya, syarat pertama kesamaan dua matriks telah terpenuhi.
+                      Matriks \(A\) dan \(B\) memiliki ordo yang sama, yaitu 2 × 2. Artinya, syarat pertama kesamaan dua matriks telah terpenuhi.
                       Selanjutnya, syarat kedua adalah setiap elemen yang seletak pada kedua matriks harus memiliki nilai yang sama.
                     </p>
                     <p>Mari kita bandingkan elemen-elemen matriks \(A\) dan \(B\):</p>
@@ -2229,3 +2229,36 @@ function closePopup() {
 }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    const profileToggle = document.getElementById('profileToggle');
+    const profileMenu = document.getElementById('profileMenu');
+
+    if (!profileToggle || !profileMenu) return;
+
+    profileToggle.addEventListener('click', function (e) {
+
+        e.stopPropagation();
+
+        profileMenu.style.display =
+            profileMenu.style.display === 'block'
+            ? 'none'
+            : 'block';
+    });
+
+    document.addEventListener('click', function (e) {
+
+        if (
+            !profileToggle.contains(e.target) &&
+            !profileMenu.contains(e.target)
+        ) {
+
+            profileMenu.style.display = 'none';
+        }
+    });
+
+});
+
+</script>

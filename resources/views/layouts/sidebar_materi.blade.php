@@ -27,8 +27,54 @@
     }
 @endphp
 
+@php
+$user = auth()->user();
+
+# =============================
+# HITUNG NOTIF CHAT
+# =============================
+$lastSeen = $user->last_seen_chat_at;
+
+$unreadQuery = \App\Models\Message::where('class_id', $user->class_id)
+    ->where('user_id', '!=', $user->id);
+
+if ($lastSeen) {
+    $unreadQuery->where('created_at', '>', $lastSeen);
+}
+
+$unreadCount = $unreadQuery->count();
+
+
+# =============================
+# HITUNG NOTIF PEMBERITAHUAN
+# =============================
+$notifQuery = \App\Models\Pemberitahuan::query();
+
+if ($user->last_seen_notification_at) {
+    $notifQuery->where('created_at', '>', $user->last_seen_notification_at);
+}
+
+$notifCount = $notifQuery->count();
+
+@endphp
+
 
 <div id="sidebar_materi" class="sidebar">
+
+  <!-- ================= HEADER ================= -->
+<div class="sidebar-top">
+
+    <button id="sidebarToggle" class="btn-toggle" type="button">
+      &#9776;
+    </button>
+
+</div>
+<div class="sidebar-scroll">
+<div class="sidebar-title-menu">
+    Menu
+</div>
+
+
 
   <!-- ================= DASHBOARD ================= -->
   <a class="sidebar-link {{ request()->is('dashboard') ? 'active' : '' }}"
@@ -37,13 +83,45 @@
      <span class="sidebar-label">Dashboard</span>
   </a>
 
-  <!-- ================= HEADER ================= -->
-  <div class="sidebar-top">
-    <button id="sidebarToggle" class="btn-toggle" type="button">&#9776;</button>
-    <div class="sidebar-title">Materi</div>
-  </div>
+  <!-- ================= INFORMASI MEDIA ================= -->
+  <a class="sidebar-link {{ Request::is('informasi_media') ? 'active' : '' }}"
+     href="/informasi_media">
 
-  <div class="sidebar-scroll">
+     <i class="bi bi-info-circle"></i>
+     <span class="sidebar-label">Informasi Media</span>
+  </a>
+
+  <!-- ================= PEMBERITAHUAN ================= -->
+  <a class="sidebar-link {{ Request::is('pemberitahuan') ? 'active' : '' }}"
+     href="/pemberitahuan">
+
+     <i class="bi bi-megaphone"></i>
+     <span class="sidebar-label">Pemberitahuan</span>
+
+     @if($notifCount > 0 && !Request::is('pemberitahuan'))
+         <span class="chat-badge">{{ $notifCount }}</span>
+     @endif
+  </a>
+
+  <!-- ================= CHAT ================= -->
+  <a class="sidebar-link {{ Request::is('chat*') ? 'active' : '' }}"
+     href="/chat/{{ $user->class_id }}">
+
+     <i class="bi bi-chat-dots"></i>
+     <span class="sidebar-label">Chat</span>
+
+     @if($unreadCount > 0 && !Request::is('chat/*'))
+         <span class="chat-badge">{{ $unreadCount }}</span>
+     @endif
+  </a>
+
+  <!-- ================= TITLE MATERI ================= -->
+   <br>
+<div class="sidebar-title-menu">
+    Materi
+</div>
+
+  <!-- <div class="sidebar-scroll"> -->
 
     <!-- ==================================================
          PENGENALAN MATRIKS
@@ -67,17 +145,24 @@
 
     <div id="sub-pengenalan" class="sidebar-submenu {{ $openPengenalan ? 'open' : '' }}">
 
-      @php $slug = 'pengertian-matriks'; @endphp
+      @php
+    $slug = 'pengertian-matriks';
+
+    $isFirstUnlocked =
+        isUnlocked($allProgress, 'pengenalan_matriks', $slug)
+        || $allProgress->count() == 0;
+@endphp
+
 <a class="sidebar-sublink 
-    {{ !isUnlocked($allProgress, 'pengenalan_matriks', $slug) ? 'locked' : '' }}"
-   href="{{ isUnlocked($allProgress, 'pengenalan_matriks', $slug) 
-        ? '/materi_pengertian_matriks#'.$slug 
+    {{ !$isFirstUnlocked ? 'locked' : '' }}"
+   href="{{ $isFirstUnlocked
+        ? '/materi_pengertian_matriks#'.$slug
         : '#' }}"
    data-section="{{ $slug }}">
 
    Pengertian Matriks
 
-   @if(!isUnlocked($allProgress, 'pengenalan_matriks', $slug))
+   @if(!$isFirstUnlocked)
        <i class="bi bi-lock-fill ms-2"></i>
    @endif
 </a>
@@ -694,7 +779,7 @@
 </a>
 
     <!-- UJI KOMPETENSI (link biasa) -->
-    <a class="sidebar-link 
+    <!-- <a class="sidebar-link 
     {{ $isUjiUnlocked ? '' : 'locked' }} 
     {{ Request::is('uji-kompetensi') ? 'active' : '' }}"
     href="{{ $isUjiUnlocked ? route('kuis.show', ['quiz_id' => 7]) : '#' }}"
@@ -702,6 +787,20 @@
     {{ $isUjiUnlocked ? '' : 'onclick=return false;' }}>
     <i class="bi bi-journal-text"></i>
     Uji Kompetensi
+</a> -->
+<a class="sidebar-link 
+    {{ $isUjiUnlocked ? '' : 'locked' }} 
+    {{ Request::is('uji-kompetensi') ? 'active' : '' }}"
+    href="{{ $isUjiUnlocked ? route('kuis.show', ['quiz_id' => 7]) : '#' }}"
+    
+    {{ $isUjiUnlocked ? '' : 'onclick=return false;' }}>
+
+    <i class="bi bi-journal-text"></i>
+
+    <span class="sidebar-label">
+        Uji Kompetensi
+    </span>
+
 </a>
   </div> <!-- end sidebar-scroll -->
 </div> <!-- end sidebar_materi -->
@@ -765,107 +864,106 @@
 
 
 </script> -->
-
 <script>
-(function(){
 
-  // toggle collapse sidebar
+window.addEventListener('load', function () {
+
+  // =========================================
+  // ELEMENT
+  // =========================================
   const btn = document.getElementById('sidebarToggle');
   const sidebar = document.getElementById('sidebar_materi');
-  const main = document.querySelector('.main-content');
 
-  /* =========================================
-     AUTO COLLAPSE SAAT HALAMAN DIBUKA
-  ========================================= */
+  // =========================================
+  // VALIDASI
+  // =========================================
+  if (!btn || !sidebar) return;
+
+  // =========================================
+  // AUTO COLLAPSE MOBILE
+  // =========================================
   if (window.innerWidth <= 768) {
 
     sidebar.classList.add('collapsed');
 
     document.body.classList.add('sidebar-collapsed');
-
-    if(main){
-      main.classList.add('expanded');
-    }
   }
 
-  /* =========================================
-     TOGGLE SIDEBAR
-  ========================================= */
-  btn?.addEventListener('click', function(e){
+  // =========================================
+  // TOGGLE SIDEBAR
+  // =========================================
+  btn.addEventListener('click', function (e) {
 
     e.preventDefault();
+    e.stopPropagation();
 
     sidebar.classList.toggle('collapsed');
 
     document.body.classList.toggle('sidebar-collapsed');
-
-    if(main){
-      main.classList.toggle('expanded');
-    }
   });
 
-  /* =========================================
-     BUKA / TUTUP SUBMENU
-  ========================================= */
-  document.querySelectorAll('#sidebar_materi .sidebar-link.has-sub')
-  .forEach(btn => {
+  // =========================================
+  // SUBMENU TOGGLE
+  // =========================================
+  document.querySelectorAll(
+    '#sidebar_materi .sidebar-link.has-sub'
+  ).forEach(menuBtn => {
 
-    btn.addEventListener('click', function(e){
+    menuBtn.addEventListener('click', function () {
 
-      const targetId = btn.getAttribute('data-target');
+      // kalau sidebar collapse jangan buka submenu
+      if (sidebar.classList.contains('collapsed')) return;
 
-      if(!targetId) return;
+      const targetId = menuBtn.getAttribute('data-target');
+
+      if (!targetId) return;
 
       const submenu = document.getElementById(targetId);
 
-      // toggle class open
+      if (!submenu) return;
+
+      // toggle submenu
       const open = submenu.classList.toggle('open');
 
-      btn.setAttribute(
+      // aria
+      menuBtn.setAttribute(
         'aria-expanded',
         open ? 'true' : 'false'
       );
 
-      // ubah icon chevron
-      const chev = btn.querySelector('.chev i');
+      // chevron
+      const chev = menuBtn.querySelector('.chev i');
 
-      if(chev){
+      if (chev) {
 
-        if(open){
-
-          chev.classList.remove('bi-chevron-down');
-          chev.classList.add('bi-chevron-up');
-
-        } else {
-
-          chev.classList.remove('bi-chevron-up');
-          chev.classList.add('bi-chevron-down');
-        }
+        chev.classList.toggle('bi-chevron-up', open);
+        chev.classList.toggle('bi-chevron-down', !open);
       }
     });
   });
 
-  /* =========================================
-     FALLBACK ACTIVE SUBMENU
-  ========================================= */
-  document.querySelectorAll('#sidebar_materi .sidebar-submenu')
-  .forEach(sm => {
+  // =========================================
+  // FALLBACK ACTIVE SUBMENU
+  // =========================================
+  document.querySelectorAll(
+    '#sidebar_materi .sidebar-submenu'
+  ).forEach(sm => {
 
-    if(sm.querySelector('.sidebar-sublink.active')) {
+    if (sm.querySelector('.sidebar-sublink.active')) {
 
       sm.classList.add('open');
 
-      const btn = document.querySelector(
+      const parentBtn = document.querySelector(
         `#sidebar_materi .sidebar-link.has-sub[data-target="${sm.id}"]`
       );
 
-      if(btn){
+      if (parentBtn) {
 
-        btn.setAttribute('aria-expanded','true');
+        parentBtn.setAttribute('aria-expanded', 'true');
 
-        const chev = btn.querySelector('.chev i');
+        const chev = parentBtn.querySelector('.chev i');
 
-        if(chev){
+        if (chev) {
 
           chev.classList.remove('bi-chevron-down');
           chev.classList.add('bi-chevron-up');
@@ -874,5 +972,34 @@
     }
   });
 
-})();
+});
+
+</script>
+
+<script>
+
+window.addEventListener('load', function () {
+
+    // cari menu aktif
+    const activeMenu = document.querySelector(
+        '#sidebar_materi .sidebar-link.has-sub.active'
+    );
+
+    // area scroll sidebar
+    const sidebarScroll = document.querySelector(
+        '#sidebar_materi .sidebar-scroll'
+    );
+
+    // jika ada menu aktif
+    if (activeMenu && sidebarScroll) {
+
+        // scroll otomatis ke posisi menu aktif
+        sidebarScroll.scrollTo({
+            top: activeMenu.offsetTop - 120,
+            behavior: 'smooth'
+        });
+    }
+
+});
+
 </script>

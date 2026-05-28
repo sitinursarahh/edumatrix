@@ -6,6 +6,7 @@
     <title>Tentang Media Pembelajaran Matriks</title>
     <link rel="stylesheet" href="{{ asset('css/informasi_media.css') }}"> <!-- Link ke file CSS untuk halaman ini -->
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}"> <!-- Link ke file CSS untuk navbar & sidebar -->
+    <link rel="stylesheet" href="{{ asset('css/sidebar_materi.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <!-- Tambahkan link FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -19,7 +20,7 @@
 
     <div class="d-flex">
         {{-- SIDEBAR --}}
-        @include('layouts.sidebar') <!-- Menambahkan sidebar -->
+        @include('layouts.sidebar_materi') <!-- Menambahkan sidebar -->
 
         <!-- JUDUL INFORMASI MEDIA -->
         <!-- <div class="info-media-header">
@@ -107,7 +108,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script> -->
 
     <!-- JavaScript untuk toggle sidebar -->
-    <script>
+    <!-- <script>
         /* SIDEBAR TOGGLE */
         const sidebar = document.getElementById('sidebar');
         const content = document.querySelector('.main-content');
@@ -133,7 +134,7 @@
         });
 
         
-    </script>
+    </script> -->
 
 </body>
 </html>

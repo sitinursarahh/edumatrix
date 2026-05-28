@@ -5326,5 +5326,41 @@ function closePopup() {
     }
 });
 </script>
+
+
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    const profileToggle = document.getElementById('profileToggle');
+    const profileMenu = document.getElementById('profileMenu');
+
+    if (!profileToggle || !profileMenu) return;
+
+    profileToggle.addEventListener('click', function (e) {
+
+        e.stopPropagation();
+
+        profileMenu.style.display =
+            profileMenu.style.display === 'block'
+            ? 'none'
+            : 'block';
+    });
+
+    document.addEventListener('click', function (e) {
+
+        if (
+            !profileToggle.contains(e.target) &&
+            !profileMenu.contains(e.target)
+        ) {
+
+            profileMenu.style.display = 'none';
+        }
+    });
+
+});
+
+</script>
 </body>
 </html>

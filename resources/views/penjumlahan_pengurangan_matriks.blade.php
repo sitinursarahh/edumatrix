@@ -1925,8 +1925,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     <p><strong>Berapakah hasil dari \\( E + F \\)?</strong></p>
 
-    <p>Jawaban:</p>
 
+    <p>Jawaban:</p>
+    <p style="font-size:14px; color:#666;">
+          Klik icon ☰, lalu pilih dan klik insert matriks, kemudian arahkan kursor dan tentukan jumlah baris dan kolomnya.
+        </p>
     <math-field id="matrixInput1"
       style="
         font-size: 28px;
@@ -2478,13 +2481,18 @@ function renderSoal2b() {
 
     <!-- JAWABAN SATU BARIS -->
     <div class="c21-inline">
-      <span class="c21-text">\\( C_{21} = \\)</span>
-      <input class="quiz-input input-mini" id="c21a">
-      <span class="c21-operator">+</span>
-      <input class="quiz-input input-mini" id="c21b">
-      <span class="c21-operator">\\( = \\)</span>
-      <input class="quiz-input input-mini" id="c21">
-    </div>
+  <span class="c21-text">\\( C_{21} = \\)</span>
+
+  <input class="quiz-input input-mini" id="c21a" placeholder="...">
+
+  <span class="c21-operator">+</span>
+
+  <input class="quiz-input input-mini" id="c21b" placeholder="...">
+
+  <span class="c21-operator">\\( = \\)</span>
+
+  <input class="quiz-input input-mini" id="c21" placeholder="...">
+</div>
   `;
 }
 
@@ -3283,6 +3291,42 @@ function toggleBukti(id) {
 
     box.classList.toggle('show');
 }
+</script>
+
+
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    const profileToggle = document.getElementById('profileToggle');
+    const profileMenu = document.getElementById('profileMenu');
+
+    if (!profileToggle || !profileMenu) return;
+
+    profileToggle.addEventListener('click', function (e) {
+
+        e.stopPropagation();
+
+        profileMenu.style.display =
+            profileMenu.style.display === 'block'
+            ? 'none'
+            : 'block';
+    });
+
+    document.addEventListener('click', function (e) {
+
+        if (
+            !profileToggle.contains(e.target) &&
+            !profileMenu.contains(e.target)
+        ) {
+
+            profileMenu.style.display = 'none';
+        }
+    });
+
+});
+
 </script>
 </body>
 </html>

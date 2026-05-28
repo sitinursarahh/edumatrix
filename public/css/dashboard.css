@@ -33,47 +33,22 @@ body {
 
 .sidebar {
     width: 240px;
+    flex-shrink: 0;
+
     background: var(--c1);
     min-height: 100vh;
     color: white;
+
     padding: 20px;
-    transition: 0.3s;
 
-    position: fixed; /* Menempel di kiri */
-    top: 60px; /* Geser ke bawah setinggi navbar */
+    transition: all 0.3s ease;
+
+    position: fixed;
+    top: 60px;
     left: 0;
-}
 
-/* COLLAPSED MODE */
-.sidebar.collapsed {
-    width: 80px;
-    padding: 20px 0;
-}
-
-/* Reset total padding & gap saat collapse */
-.sidebar.collapsed .sidebar-link {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 12px 0 !important; /* HILANGKAN padding kiri kanan */
-    gap: 0 !important; /* HILANGKAN jarak icon-teks */
-    font-size: 0; /* sembunyikan teks */
-}
-
-/* Paksa icon benar-benar center */
-.sidebar.collapsed .sidebar-link i {
-    font-size: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-
-/* Active tetap full width */
-.sidebar.collapsed .sidebar-link.active,
-.sidebar.collapsed .sidebar-link:hover {
-    background: var(--c2);
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .sidebar-link {
@@ -513,4 +488,71 @@ body {
         width: 140px !important;
         height: 140px !important;
     }
+}
+
+/* =====================================
+   SIDEBAR MATERI COLLAPSE FIX
+===================================== */
+
+/* sembunyikan teks saat collapse */
+.sidebar.collapsed .sidebar-label,
+.sidebar.collapsed .sidebar-title,
+.sidebar.collapsed .chev {
+    display: none;
+}
+
+/* center icon */
+.sidebar.collapsed .sidebar-link,
+.sidebar.collapsed .has-sub {
+    justify-content: center;
+    padding: 12px 0 !important;
+}
+
+/* icon center */
+.sidebar.collapsed .sidebar-link i {
+    margin: 0 !important;
+}
+
+/* sembunyikan submenu materi */
+.sidebar.collapsed .sidebar-submenu {
+    display: none !important;
+}
+
+/* tombol toggle tetap center */
+.sidebar.collapsed .sidebar-top {
+    justify-content: center;
+}
+
+/* scroll area aman */
+.sidebar-scroll {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* ===============================
+   FIX PROFILE DROPDOWN
+================================ */
+
+/* header tetap fixed */
+.header {
+    z-index: 99999 !important;
+}
+
+/* sidebar di bawah navbar */
+#sidebar_materi,
+.sidebar {
+    z-index: 1000;
+}
+
+/* tombol profil */
+#profileToggle {
+    cursor: pointer;
+    position: relative;
+    z-index: 100000 !important;
+}
+
+/* dropdown menu */
+#profileMenu {
+    position: absolute;
+    z-index: 100001 !important;
 }

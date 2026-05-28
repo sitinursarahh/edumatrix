@@ -10,6 +10,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sidebar_materi.css') }}">
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
@@ -21,7 +22,7 @@
 
 
         <div class="d-flex">
-            @include('layouts.sidebar')
+            @include('layouts.sidebar_materi')
 
 
 
@@ -246,37 +247,18 @@
         }
     });
 </script> -->
-
 <script>
 
-    const sidebar = document.getElementById('sidebar');
-    const content = document.querySelector('.main-content');
+window.addEventListener('load', function () {
 
-    /* AUTO COLLAPSE MOBILE */
-    if (window.innerWidth <= 768) {
-
-        sidebar.classList.add('collapsed');
-        content.classList.add('expanded');
-    }
-
-</script>
-
-<script>
-
-    /* SIDEBAR TOGGLE */
-    const toggleSidebar = document.getElementById('sidebarToggle');
-
-    toggleSidebar.addEventListener('click', () => {
-
-        sidebar.classList.toggle('collapsed');
-        content.classList.toggle('expanded');
-    });
-
-    /* PROFILE DROPDOWN */
     const profileToggle = document.getElementById('profileToggle');
     const profileMenu = document.getElementById('profileMenu');
 
-    profileToggle.addEventListener('click', () => {
+    if (!profileToggle || !profileMenu) return;
+
+    profileToggle.addEventListener('click', function (e) {
+
+        e.stopPropagation();
 
         profileMenu.style.display =
             profileMenu.style.display === 'block'
@@ -284,8 +266,7 @@
             : 'block';
     });
 
-    /* TUTUP DROPDOWN SAAT KLIK LUAR */
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
 
         if (
             !profileToggle.contains(e.target) &&
@@ -296,7 +277,10 @@
         }
     });
 
+});
+
 </script>
+
 
 </body>
 </html>

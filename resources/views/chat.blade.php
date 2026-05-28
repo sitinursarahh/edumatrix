@@ -6,6 +6,7 @@
     <title>pemberitahuan</title>
     <link rel="stylesheet" href="{{ asset('css/pemberitahuan.css') }}"> <!-- Link ke file CSS untuk halaman ini -->
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}"> <!-- Link ke file CSS untuk navbar & sidebar -->
+    <link rel="stylesheet" href="{{ asset('css/sidebar_materi.css') }}">
     <link rel="stylesheet" href="{{ asset('css/chat.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <!-- Tambahkan link FontAwesome -->
@@ -20,7 +21,7 @@
 
     <div class="d-flex" style="height: calc(100vh - 10px); overflow: hidden;">
         {{-- SIDEBAR --}}
-        @include('layouts.sidebar') <!-- Menambahkan sidebar -->
+        @include('layouts.sidebar_materi') <!-- Menambahkan sidebar -->
 
         <!-- JUDUL INFORMASI MEDIA -->
         <!-- <div class="info-media-header">
@@ -166,32 +167,38 @@
 
             <!-- JavaScript untuk toggle sidebar -->
     <script>
-        /* SIDEBAR TOGGLE */
-        const sidebar = document.getElementById('sidebar');
-        const content = document.querySelector('.main-content');
-        const toggleSidebar = document.getElementById('sidebarToggle');
 
-        toggleSidebar.addEventListener('click', () => {
-            sidebar.classList.toggle('collapsed');
-            content.classList.toggle('expanded');
-        });
+window.addEventListener('load', function () {
 
-        /* PROFILE DROPDOWN */
-        const profileToggle = document.getElementById('profileToggle');
-        const profileMenu = document.getElementById('profileMenu');
+    const profileToggle = document.getElementById('profileToggle');
+    const profileMenu = document.getElementById('profileMenu');
 
-        profileToggle.addEventListener('click', () => {
-            profileMenu.style.display = profileMenu.style.display === 'block' ? 'none' : 'block';
-        });
+    if (!profileToggle || !profileMenu) return;
 
-        document.addEventListener('click', function(e) {
-            if (!profileToggle.contains(e.target) && !profileMenu.contains(e.target)) {
-                profileMenu.style.display = 'none';
-            }
-        });
+    profileToggle.addEventListener('click', function (e) {
 
-        
-    </script>
+        e.stopPropagation();
+
+        profileMenu.style.display =
+            profileMenu.style.display === 'block'
+            ? 'none'
+            : 'block';
+    });
+
+    document.addEventListener('click', function (e) {
+
+        if (
+            !profileToggle.contains(e.target) &&
+            !profileMenu.contains(e.target)
+        ) {
+
+            profileMenu.style.display = 'none';
+        }
+    });
+
+});
+
+</script>
 
 <script>
     window.classId = {{ $classId ?? 'null' }};

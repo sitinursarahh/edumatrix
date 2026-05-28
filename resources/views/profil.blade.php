@@ -13,6 +13,7 @@
 
     <!-- CSS Profil -->
     <link rel="stylesheet" href="{{ asset('css/profil.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sidebar_materi.css') }}">
 </head>
 
 <body style="background: var(--c4);">
@@ -23,7 +24,7 @@
     <div class="d-flex">
 
         {{-- SIDEBAR --}}
-        @include('layouts.sidebar')
+        @include('layouts.sidebar_materi')
 
         {{-- MAIN CONTENT --}}
         <div class="main-content flex-grow-1 p-4">
@@ -283,34 +284,38 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
 
     <script>
-        /* SIDEBAR */
-        const sidebar = document.getElementById('sidebar');
-        const content = document.querySelector('.main-content');
-        const toggleSidebar = document.getElementById('sidebarToggle');
 
-        toggleSidebar?.addEventListener('click', () => {
-            sidebar.classList.toggle('collapsed');
-            content.classList.toggle('expanded');
-        });
+window.addEventListener('load', function () {
 
-        /* PROFILE DROPDOWN */
-        const profileToggle = document.getElementById('profileToggle');
-        const profileMenu = document.getElementById('profileMenu');
+    const profileToggle = document.getElementById('profileToggle');
+    const profileMenu = document.getElementById('profileMenu');
 
-        profileToggle?.addEventListener('click', () => {
-            profileMenu.style.display =
-                profileMenu.style.display === 'block' ? 'none' : 'block';
-        });
+    if (!profileToggle || !profileMenu) return;
 
-        document.addEventListener('click', (e) => {
-            if (!profileToggle?.contains(e.target) &&
-                !profileMenu?.contains(e.target)) {
-                profileMenu.style.display = 'none';
-            }
-            
-        });
+    profileToggle.addEventListener('click', function (e) {
 
-    </script>
+        e.stopPropagation();
+
+        profileMenu.style.display =
+            profileMenu.style.display === 'block'
+            ? 'none'
+            : 'block';
+    });
+
+    document.addEventListener('click', function (e) {
+
+        if (
+            !profileToggle.contains(e.target) &&
+            !profileMenu.contains(e.target)
+        ) {
+
+            profileMenu.style.display = 'none';
+        }
+    });
+
+});
+
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
