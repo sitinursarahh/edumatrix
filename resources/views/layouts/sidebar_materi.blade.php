@@ -887,15 +887,7 @@ window.addEventListener('load', function () {
     sidebar.classList.add('collapsed');
 
     document.body.classList.add('sidebar-collapsed');
-
-    sidebar.style.transition = 'none';
-
-    requestAnimationFrame(() => {
-
-        sidebar.style.transition = '';
-
-    });
-}
+  }
 
   // =========================================
   // TOGGLE SIDEBAR
