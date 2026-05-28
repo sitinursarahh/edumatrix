@@ -59,7 +59,8 @@ $notifCount = $notifQuery->count();
 @endphp
 
 
-<div id="sidebar_materi" class="sidebar">
+<div id="sidebar_materi"
+     class="sidebar {{ request()->header('User-Agent') && preg_match('/Mobile|Android|iPhone/i', request()->header('User-Agent')) ? 'collapsed' : '' }}">
 
   <!-- ================= HEADER ================= -->
 <div class="sidebar-top">
@@ -882,12 +883,7 @@ window.addEventListener('load', function () {
   // =========================================
   // AUTO COLLAPSE MOBILE
   // =========================================
-  if (window.innerWidth <= 768) {
-
-    sidebar.classList.add('collapsed');
-
-    document.body.classList.add('sidebar-collapsed');
-  }
+  
 
   // =========================================
   // TOGGLE SIDEBAR
