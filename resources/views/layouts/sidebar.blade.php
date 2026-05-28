@@ -37,15 +37,16 @@ $notifCount = $notifQuery->count();
     </div>
 
     <a class="sidebar-link 
-      {{ Request::is('dashboard') || Request::is('informasi_media') ? 'active' : '' }}"
-      href="/dashboard">
-      <i class="bi bi-house-door"></i> Dashboard
-   </a>
+   {{ Request::is('dashboard') ? 'active' : '' }}"
+   href="/dashboard">
 
-    <a class="sidebar-link {{ Request::is('profil') ? 'active' : '' }}"
-       href="/profil">
-       <i class="bi bi-person"></i> Profil
-    </a>
+   <i class="bi bi-house-door"></i> Dashboard
+</a>
+
+    <a class="sidebar-link {{ Request::is('informasi_media') ? 'active' : '' }}"
+   href="/informasi_media">
+   <i class="bi bi-info-circle"></i> Informasi Media
+</a>
 
     <a class="sidebar-link {{ Request::is('pemberitahuan') ? 'active' : '' }}"
    href="/pemberitahuan">
