@@ -53,53 +53,7 @@
 </div>
 
 
-        <!-- Media Pembelajaran Matriks BOX -->
-        <div class="p-4" style="background: var(--c4); border-radius: 12px;">
-
-            <h3 class="text-center fw-bold mb-4" style="color: var(--c1);">
-                Media Pembelajaran Matriks
-            </h3>
-
-            <div class="row g-4 mt-2 text-center justify-content-center">
-
-                <!-- CARD 1 -->
-                <div class="col-md-4">
-                    <a href="{{ route('informasi_media') }}" class="text-decoration-none">
-                        <div class="card-outer">
-                            <div class="card-inner">
-                                <img src="{{ asset('img/informasi_media.png') }}" alt="">
-                            </div>
-                            <p class="card-title-custom">Informasi Media</p>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- CARD 2 -->
-                <div class="col-md-4">
-                    <a href="{{ route('materi_pengertian_matriks') }}" class="text-decoration-none text-dark">
-
-                        <div class="card-outer">
-                            <div class="card-inner">
-                                <img src="{{ asset('img/materi_dashboard.png') }}" alt="">
-                            </div>
-                            <p class="card-title-custom">Materi</p>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- CARD 3 -->
-                <!-- <div class="col-md-4">
-                    <div class="card-outer">
-                        <div class="card-inner">
-                            <img src="{{ asset('img/leaderboard.png') }}" alt="">
-                        </div>
-                        <p class="card-title-custom">Leaderboard</p>
-                    </div>
-                </div> -->
-
-            </div>
-
-        </div> <!-- END BOX -->
+        
 
 
         <!-- ================= TOTAL STARS RANK ================= -->

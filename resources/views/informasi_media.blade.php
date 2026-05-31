@@ -41,9 +41,9 @@
 
                 <!-- Kotak div untuk judul dan penjelasan -->
                 <div class="media-info-box">
-                    <h1 class="title">Tentang Media Pembelajaran Matriks</h1>
+                    <h1 class="title">Tentang EduMatrix</h1>
                     <p class="explanation">
-                        Media Pembelajaran Matriks adalah aplikasi pembelajaran interaktif yang dirancang untuk membantu siswa memahami materi Matriks dengan cara yang lebih mudah dan menarik. Aplikasi ini menyediakan materi, contoh soal, latihan interaktif, serta fitur tambahan seperti leaderboard, chat, dan notifikasi untuk meningkatkan motivasi belajar. Dengan antarmuka yang sederhana dan ramah pengguna, aplikasi ini dapat digunakan sebagai pendamping belajar di kelas maupun secara mandiri.
+                        EduMatrix adalah aplikasi pembelajaran interaktif yang dirancang untuk membantu siswa memahami materi Matriks dengan cara yang lebih mudah dan menarik. Aplikasi ini menyediakan materi, contoh soal, latihan interaktif, serta fitur tambahan seperti leaderboard, chat, dan notifikasi untuk meningkatkan motivasi belajar. Dengan antarmuka yang sederhana dan ramah pengguna, aplikasi ini dapat digunakan sebagai pendamping belajar di kelas maupun secara mandiri.
                     </p>
                     <h2 class="sub-title">Tujuan Pengembangan</h2>
                     <ul class="goals">

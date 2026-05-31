@@ -839,8 +839,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 <table class="tabel-soal">
                     <tr>
-                        <th>Syarat Kesamaan Matriks</th>
-                        <th>Jawaban</th>
+                        <th style="text-align:center;">Syarat Kesamaan Matriks</th>
+<th style="text-align:center;">Jawaban</th>
                     </tr>
                     <tr>
                         <td>a. Kedua matriks harus memiliki ....</td>
