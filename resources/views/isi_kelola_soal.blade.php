@@ -218,6 +218,27 @@ Swal.fire({
 </script>
 @endif
 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const btn = document.getElementById('sidebarToggle');
+    const sidebar = document.getElementById('sidebar');
+    const content = document.querySelector('.main-content');
+
+    if (!btn || !sidebar) return;
+
+    btn.addEventListener('click', function () {
+
+        sidebar.classList.toggle('collapsed');
+
+        if (content) {
+            content.classList.toggle('expanded');
+        }
+
+    });
+
+});
+</script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </body>
 </html>

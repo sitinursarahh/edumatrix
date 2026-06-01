@@ -29,9 +29,12 @@ if ($user && $user->role == 'guru') {
 <div class="sidebar p-3" id="sidebar">
 
     <!-- Tombol strip 3 di dalam sidebar -->
-    <div id="sidebarToggle" class="mb-3" style="cursor: pointer; font-size: 24px;">
-        &#9776;
-    </div>
+    <div id="sidebarToggle"
+     onclick="toggleSidebarGuru()"
+     class="mb-3"
+     style="cursor:pointer;font-size:24px;">
+    &#9776;
+</div>
 
     <a class="sidebar-link {{ Request::is('dashboard_guru') ? 'active' : '' }}"
        href="/dashboard_guru">
@@ -75,3 +78,38 @@ if ($user && $user->role == 'guru') {
 
 
 </div>
+
+
+<script>
+function toggleSidebarGuru() {
+
+    const sidebar = document.getElementById('sidebar');
+    const content = document.querySelector('.main-content');
+
+    sidebar.classList.toggle('collapsed');
+
+    if (content) {
+        content.classList.toggle('expanded');
+    }
+
+    localStorage.setItem(
+        'sidebarGuruCollapsed',
+        sidebar.classList.contains('collapsed')
+    );
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    const sidebar = document.getElementById('sidebar');
+    const content = document.querySelector('.main-content');
+
+    if (localStorage.getItem('sidebarGuruCollapsed') === 'true') {
+
+        sidebar.classList.add('collapsed');
+
+        if (content) {
+            content.classList.add('expanded');
+        }
+    }
+});
+</script>

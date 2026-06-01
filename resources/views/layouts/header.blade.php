@@ -69,31 +69,47 @@
         min-width: 160px;
      ">
 
-    <!-- MENU PROFIL -->
-    <a href="{{ url('/profil') }}"
-       class="dropdown-item-custom text-dark text-decoration-none mb-2">
+    @if(auth()->user()->role == 'guru')
 
-        <i class="bi bi-person-circle me-2"></i>
-        Profil
-    </a>
+        <!-- LANGSUNG LOGOUT -->
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
 
-    <hr class="my-2">
+            <button type="submit"
+                    class="dropdown-item-custom logout-btn">
 
-    <!-- LOGOUT -->
-    <form method="POST" action="{{ route('logout') }}">
-        @csrf
+                <i class="bi bi-box-arrow-right me-2"></i>
+                Logout
+            </button>
+        </form>
 
-        <button type="submit"
-                class="dropdown-item-custom logout-btn">
+    @else
 
-            <i class="bi bi-box-arrow-right me-2"></i>
-            Logout
-        </button>
-    </form>
+        <!-- MENU PROFIL -->
+        <a href="{{ url('/profil') }}"
+           class="dropdown-item-custom text-dark text-decoration-none mb-2">
+
+            <i class="bi bi-person-circle me-2"></i>
+            Profil
+        </a>
+
+        <hr class="my-2">
+
+        <!-- LOGOUT -->
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+
+            <button type="submit"
+                    class="dropdown-item-custom logout-btn">
+
+                <i class="bi bi-box-arrow-right me-2"></i>
+                Logout
+            </button>
+        </form>
+
+    @endif
 
 </div>
-
-        </div>
         @endauth
 
     </div>

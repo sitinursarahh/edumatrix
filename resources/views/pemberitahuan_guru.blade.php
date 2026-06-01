@@ -239,5 +239,26 @@ document.getElementById('confirmDeleteBtn')
         }
     });
 </script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const btn = document.getElementById('sidebarToggle');
+    const sidebar = document.getElementById('sidebar');
+    const content = document.querySelector('.main-content');
+
+    if (!btn || !sidebar) return;
+
+    btn.addEventListener('click', function () {
+
+        sidebar.classList.toggle('collapsed');
+
+        if (content) {
+            content.classList.toggle('expanded');
+        }
+
+    });
+
+});
+</script>
 </body>
 </html>

@@ -556,3 +556,35 @@ body {
     position: absolute;
     z-index: 100001 !important;
 }
+/* =====================================
+   SIDEBAR GURU COLLAPSE
+===================================== */
+
+.sidebar.collapsed {
+    width: 80px !important;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    overflow: hidden;
+}
+
+/* sembunyikan teks menu */
+.sidebar.collapsed .sidebar-link {
+    font-size: 0;
+}
+
+/* tampilkan icon tetap */
+.sidebar.collapsed .sidebar-link i {
+    font-size: 20px !important;
+    margin: 0 !important;
+}
+
+/* center icon */
+.sidebar.collapsed .sidebar-link {
+    justify-content: center;
+}
+
+/* geser konten */
+.main-content.expanded {
+    margin-left: 80px !important;
+    width: calc(100% - 80px) !important;
+}
