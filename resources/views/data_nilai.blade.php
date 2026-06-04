@@ -96,6 +96,8 @@
                 @foreach($quizzes as $quiz)
                     <th>{{ $quiz->title }}</th>
                 @endforeach
+
+                <th>Total Nilai</th>
             </tr>
         </thead>
 
@@ -128,6 +130,10 @@
                     </div>
                 </td>
                 @endforeach
+
+                <td>
+    <strong>{{ $item->total_nilai }}</strong>
+</td>
 
             </tr>
             @endforeach

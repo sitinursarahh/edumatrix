@@ -272,16 +272,25 @@ foreach ($siswa as $item) {
 
     foreach ($siswa as $item) {
 
-        foreach ($quizzes as $quiz) {
+    $totalNilai = 0;
 
-            $nilai = DB::table('hasil_kuis')
-                ->where('id_user', $item->id)
-                ->where('id_kuis', $quiz->id)
-                ->max('nilai');
+    foreach ($quizzes as $quiz) {
 
-            $item->{'kuis_'.$quiz->id} = $nilai ?? '-';
-        }
+        $nilai = DB::table('hasil_kuis')
+            ->where('id_user', $item->id)
+            ->where('id_kuis', $quiz->id)
+            ->max('nilai');
+
+        $item->{'kuis_'.$quiz->id} = $nilai ?? '-';
+
+        // jika belum mengerjakan dianggap 0
+        $totalNilai += ($nilai ?? 0);
     }
+
+    $item->total_nilai = count($quizzes) > 0
+        ? round($totalNilai / count($quizzes), 1)
+        : '-';
+}
 
     return view('data_nilai', compact('siswa', 'quizzes'));
 }
@@ -304,17 +313,26 @@ foreach ($siswa as $item) {
         $siswa = $query->orderBy('name')->get();
 
         foreach ($siswa as $item) {
-            foreach ($quizzes as $quiz) {
 
-                $nilai = DB::table('hasil_kuis')
-                    ->where('id_user', $item->id)
-                    ->where('id_kuis', $quiz->id)
-                    ->max('nilai');
+    $totalNilai = 0;
 
-                $item->{'kuis_'.$quiz->id} = $nilai ?? '-';
-            }
-        }
+    foreach ($quizzes as $quiz) {
 
+        $nilai = DB::table('hasil_kuis')
+            ->where('id_user', $item->id)
+            ->where('id_kuis', $quiz->id)
+            ->max('nilai');
+
+        $item->{'kuis_'.$quiz->id} = $nilai ?? '-';
+
+        // jika belum mengerjakan dianggap 0
+        $totalNilai += ($nilai ?? 0);
+    }
+
+    $item->total_nilai = count($quizzes) > 0
+        ? round($totalNilai / count($quizzes), 1)
+        : '-';
+}
         $pdf = Pdf::loadView('exports.data_nilai_pdf', compact('siswa', 'quizzes'));
 
         return $pdf->download('data_nilai.pdf');

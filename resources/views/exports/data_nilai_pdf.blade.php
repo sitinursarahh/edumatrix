@@ -61,6 +61,7 @@
     @foreach($quizzes as $quiz)
         <th>{{ $quiz->title }}</th>
     @endforeach
+    <th>Total Nilai</th>
 </tr>
 
     @foreach($siswa as $index => $item)
@@ -76,6 +77,9 @@
             {{ $item->{'kuis_'.$quiz->id} }}
         </td>
     @endforeach
+    <td class="nilai">
+    {{ $item->total_nilai }}
+</td>
 </tr>
 @endforeach
 </table>

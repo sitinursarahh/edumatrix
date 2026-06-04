@@ -35,23 +35,33 @@ class DataNilaiExport implements FromCollection, WithHeadings
 
         foreach ($siswa as $item) {
 
-            $row = [
-                $item->name,
-                $kelasMap[$item->class_id] ?? '-',
-            ];
+    $row = [
+        $item->name,
+        $kelasMap[$item->class_id] ?? '-',
+    ];
 
-            foreach ($quizzes as $quiz) {
+    $totalNilai = 0;
 
-                $nilai = DB::table('hasil_kuis')
-                    ->where('id_user', $item->id)
-                    ->where('id_kuis', $quiz->id)
-                    ->max('nilai');
+    foreach ($quizzes as $quiz) {
 
-                $row[] = $nilai ?? '-';
-            }
+        $nilai = DB::table('hasil_kuis')
+            ->where('id_user', $item->id)
+            ->where('id_kuis', $quiz->id)
+            ->max('nilai');
 
-            $data[] = $row;
-        }
+        $row[] = $nilai ?? '-';
+
+        $totalNilai += ($nilai ?? 0);
+    }
+
+    $rataRata = count($quizzes) > 0
+        ? round($totalNilai / count($quizzes), 1)
+        : '-';
+
+    $row[] = $rataRata;
+
+    $data[] = $row;
+}
 
         return collect($data);
     }
@@ -66,9 +76,11 @@ class DataNilaiExport implements FromCollection, WithHeadings
         ];
 
         foreach ($quizzes as $quiz) {
-            $headings[] = $quiz->title;
-        }
+    $headings[] = $quiz->title;
+}
 
-        return $headings;
+$headings[] = 'Total Nilai';
+
+return $headings;
     }
 }
