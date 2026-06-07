@@ -1323,30 +1323,3 @@ textarea {
         justify-content: center;
     }
 }
-.navbar,
-.topbar,
-.header,
-#content-wrapper {
-    position: relative;
-    z-index: 9999 !important;
-}
-.sidebar-toggle,
-#sidebarToggleTop {
-    position: relative;
-    z-index: 10000 !important;
-    pointer-events: auto !important;
-}
-@media (max-width: 768px) {
-    html,
-    body {
-        overflow-x: hidden !important;
-    }
-
-    .main-content {
-        overflow-x: hidden !important;
-    }
-
-    * {
-        max-width: 100%;
-    }
-}

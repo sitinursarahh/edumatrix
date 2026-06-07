@@ -1876,14 +1876,14 @@ if (!in_array('matriks-baris', $unlocked)) {
 /* ======================================================
    SIDEBAR TOGGLE
 ====================================================== */
-const sidebar = document.getElementById('sidebar_materi');
-const content = document.querySelector('.main-content');
-const toggleSidebar = document.getElementById('sidebarToggle');
+// const sidebar = document.getElementById('sidebar_materi');
+// const content = document.querySelector('.main-content');
+// const toggleSidebar = document.getElementById('sidebarToggle');
 
-toggleSidebar?.addEventListener('click', () => {
-    sidebar.classList.toggle('collapsed');
-    content.classList.toggle('expanded');
-});
+// toggleSidebar?.addEventListener('click', () => {
+//     sidebar.classList.toggle('collapsed');
+//     content.classList.toggle('expanded');
+// });
 
 /* ======================================================
    PROFILE DROPDOWN
