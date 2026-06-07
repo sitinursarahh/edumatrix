@@ -389,14 +389,13 @@
                         </div>
 
                         <div class="quiz-nav">
-    <button type="button" id="btn-prev">
-        <span><i class="bi bi-arrow-left"></i> Sebelumnya</span>
-    </button>
-
-    <button type="button" id="btn-next">
-        <span>Berikutnya <i class="bi bi-arrow-right"></i></span>
-    </button>
-</div>
+                            <button type="button" id="btn-prev">
+                                <i class="bi bi-arrow-left me-2"></i>Sebelumnya
+                            </button>
+                            <button type="button" id="btn-next">
+                                Berikutnya <i class="bi bi-arrow-right ms-2"></i>
+                            </button>
+                        </div>
 
                         <p id="hasil-jawaban"></p>
                     </div>
