@@ -621,3 +621,8 @@ mjx-container {
     -webkit-user-select: none;
     user-select: none;
 }
+@media (max-width: 600px) {
+    .matrix-center mjx-container[jax="CHTML"] {
+        font-size: clamp(10px, 2.8vw, 16px) !important;
+    }
+}
