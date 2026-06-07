@@ -1881,9 +1881,6 @@ const content = document.querySelector('.main-content');
 const toggleSidebar = document.getElementById('sidebarToggle');
 
 toggleSidebar?.addEventListener('click', () => {
-
-    alert('toggle diklik');
-
     sidebar.classList.toggle('collapsed');
     content.classList.toggle('expanded');
 });
@@ -4277,29 +4274,30 @@ document.querySelectorAll('#sidebar_materi .sidebar-sublink')
             s => s.dataset.section === section
         );
 
+        // Kalau slide ada di halaman ini → cek lock
         if (targetSlide) {
 
             e.preventDefault();
 
-            const slideIndex = slides.findIndex(
+            // jika section tidak unlocked dan bukan slide pertama → blok
+            if (!unlockedFromDB.includes(section) && idx !== 0) return;
+
+            const idx = slides.findIndex(
                 s => s.dataset.section === section
             );
 
-            // jika section tidak unlocked dan bukan slide pertama → blok
-            if (
-                !unlockedFromDB.includes(section) &&
-                slideIndex !== 0
-            ) {
-                return;
-            }
+            if (idx !== -1) {
+    window.location.hash = section; // kirim hash
+    showSlide(idx);
+}
 
-            if (slideIndex !== -1) {
-                window.location.hash = section;
-                showSlide(slideIndex);
-            }
         }
+
+        // Kalau bukan slide di halaman ini → biarkan pindah halaman normal
     });
+
 });
+
 
 
     /* =========================
@@ -4490,8 +4488,7 @@ function paksaFixPrev() {
 }
 
 // 🔥 PAKSA JALAN TERUS
-//setInterval(paksaFixPrev, 50);
-setInterval(paksaFixPrev, 500);
+setInterval(paksaFixPrev, 50);
 </script>
 </body>
 </html>

@@ -1323,3 +1323,16 @@ textarea {
         justify-content: center;
     }
 }
+.navbar,
+.topbar,
+.header,
+#content-wrapper {
+    position: relative;
+    z-index: 9999 !important;
+}
+.sidebar-toggle,
+#sidebarToggleTop {
+    position: relative;
+    z-index: 10000 !important;
+    pointer-events: auto !important;
+}
