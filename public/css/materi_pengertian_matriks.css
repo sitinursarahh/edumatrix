@@ -3326,3 +3326,19 @@ math-field {
         font-size: 14px;
     }
 }
+@media (max-width: 600px) {
+    .quiz-nav button {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+    }
+
+    .quiz-nav button i {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+        vertical-align: middle;
+    }
+}
