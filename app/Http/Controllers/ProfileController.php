@@ -72,7 +72,7 @@ public function update(Request $request)
         'name' => 'required|string|max:255',
         'email' => 'required|email',
         'kelas' => 'nullable|string|max:255', // 🔥 GANTI
-        'photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+        'photo' => 'nullable|image|mimes:jpg,jpeg,png,webp,avif|max:10240'
     ]);
 
     $user->name = $request->name;
