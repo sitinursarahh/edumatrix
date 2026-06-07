@@ -169,7 +169,7 @@ if (!in_array('matriks-baris', $unlocked)) {
                                 Ayo Kita Coba
                             </div>
                             <div class="quiz-question">
-                                <br>
+                                <br><br>
                                 Perhatikan matriks berikut:
                                 <br><br>
                                 <div class="text-center my-3 matrix-display-big">
@@ -458,6 +458,7 @@ if (!in_array('matriks-baris', $unlocked)) {
                             <!-- SOAL 1 -->
                             <!-- ===================== -->
                             <div class="quiz-question">
+                                <br>
                                 1. Perhatikan matriks di bawah ini!
                             </div>
                             <div class="text-center my-3 matrix-display-big">
@@ -691,7 +692,7 @@ if (!in_array('matriks-baris', $unlocked)) {
                             <!-- SOAL 1 -->
                             <!-- ===================== -->
                             <div class="quiz-question">
-                                <br>
+                                <br><br>
                                 1. Hubungan baris dan kolom pada <b>matriks datar</b> adalah
                                 <br>
                                 Tuliskan menggunakan simbol: &lt;, &gt;, &lt;=, &gt;=, atau =.
@@ -1119,7 +1120,7 @@ if (!in_array('matriks-baris', $unlocked)) {
                             Ayo Kita Coba
                         </div>
                         <div class="quiz-question">
-                            <br>
+                            <br><br>
                             Klik semua pernyataan yang benar mengenai <b>matriks identitas</b>:
                         </div>
                         <label>
