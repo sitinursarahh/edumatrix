@@ -1881,6 +1881,9 @@ const content = document.querySelector('.main-content');
 const toggleSidebar = document.getElementById('sidebarToggle');
 
 toggleSidebar?.addEventListener('click', () => {
+
+    alert('toggle diklik');
+
     sidebar.classList.toggle('collapsed');
     content.classList.toggle('expanded');
 });
