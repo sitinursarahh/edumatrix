@@ -540,30 +540,31 @@ mjx-container {
 @media (max-width: 600px) {
     .quiz-nav {
         display: flex;
-        flex-direction: row !important;
-        justify-content: space-between;
+        justify-content: flex-end;
         align-items: center;
-        gap: 12px;
         width: 100%;
     }
 
-    #btn-prev-2,
     #btn-next-2 {
-        flex: 1;
-
-        display: flex !important;
+        display: inline-flex !important;
         align-items: center;
         justify-content: center;
+        gap: 5px;
 
-        padding: 8px 12px !important; /* lebih pendek */
-        min-height: 40px; /* sebelumnya 48px */
+        padding: 7px 10px; /* 🔥 ini yang bikin pas (tidak kepanjangan) */
+        font-size: 13px;
+        border-radius: 8px;
 
-        font-size: 14px;
-        white-space: nowrap;
+        width: auto !important;
+        max-width: none; /* 🔥 HAPUS batas lebar sebelumnya */
+
+        white-space: nowrap; /* 🔥 biar panah tidak turun */
+        line-height: 1.2;
+
+        margin-left: auto;
     }
 
-    #btn-next-2 i,
-    #btn-prev-2 i {
+    #btn-next-2 i {
         font-size: 12px;
     }
 }
