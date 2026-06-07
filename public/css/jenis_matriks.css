@@ -1336,3 +1336,17 @@ textarea {
     z-index: 10000 !important;
     pointer-events: auto !important;
 }
+@media (max-width: 768px) {
+    html,
+    body {
+        overflow-x: hidden !important;
+    }
+
+    .main-content {
+        overflow-x: hidden !important;
+    }
+
+    * {
+        max-width: 100%;
+    }
+}
