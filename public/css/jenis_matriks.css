@@ -1323,7 +1323,3 @@ textarea {
         justify-content: center;
     }
 }
-#sidebarToggle {
-    position: relative !important;
-    z-index: 99999 !important;
-}
