@@ -3329,16 +3329,21 @@ math-field {
 @media (max-width: 600px) {
     .quiz-nav button {
         display: flex !important;
-        align-items: center;
-        justify-content: center;
+        align-items: center !important;
+        justify-content: center !important;
         gap: 6px;
     }
 
     .quiz-nav button i {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        line-height: 1;
-        vertical-align: middle;
+        display: inline-block !important;
+        line-height: 1 !important;
+        vertical-align: middle !important;
+        position: relative;
+        top: -1px;
+    }
+
+    .quiz-nav button span {
+        display: inline-block;
+        line-height: 1.2;
     }
 }
