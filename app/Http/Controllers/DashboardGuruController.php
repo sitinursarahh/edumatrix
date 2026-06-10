@@ -39,35 +39,21 @@ class DashboardguruController extends Controller
 // 🔥 HITUNG SISWA SELESAI (FIX)
 // ==============================
 $jumlahSelesai = 0;
-$ujiSlug = 'uji-kompetensi';
-$totalSubMateri = 70; // 🔥 TOTAL FIX
+$totalSubMateri = 70;
 
 foreach ($siswa as $item) {
 
-    // 🔹 ambil progress selesai
     $progress = UserProgress::where('user_id', $item->id)
         ->pluck('sub_materi_slug')
         ->unique()
-        ->toArray();
-
-        dd($progress);
-    // 🔹 hitung materi selesai (tanpa uji)
-    $materiSelesai = collect($progress)
-        ->filter(fn($slug) => $slug !== $ujiSlug)
         ->count();
 
-    // 🔹 progress materi (70%)
-    $progressMateri = ($materiSelesai / $totalSubMateri) * 70;
+    $progressPercent = min(
+        100,
+        round(($progress / $totalSubMateri) * 100)
+    );
 
-    // 🔹 uji kompetensi (30%)
-    $ujiSelesai = in_array($ujiSlug, $progress);
-    $progressUji = $ujiSelesai ? 30 : 0;
-
-    // 🔹 final progress
-    $progressPercent = min(100, round($progressMateri + $progressUji));
-
-    // 🔹 hitung yang sudah 100%
-    if ($progressPercent === 100) {
+    if ($progressPercent >= 100) {
         $jumlahSelesai++;
     }
 }
