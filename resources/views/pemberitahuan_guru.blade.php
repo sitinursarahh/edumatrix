@@ -136,6 +136,7 @@
 
 <script>
 function toggleForm() {
+    // Mengambil elemen form.
     const box = document.getElementById("formBox");
     box.style.display = box.style.display === "none" ? "block" : "none";
 }

@@ -65,6 +65,7 @@ foreach ($siswa as $item) {
     // 🔹 final progress
     $progressPercent = min(100, round($progressMateri + $progressUji));
 
+    echo $item->name . ' => ' . $progressPercent . '<br>';
     // 🔹 hitung yang sudah 100%
     if ($progressPercent === 100) {
         $jumlahSelesai++;
