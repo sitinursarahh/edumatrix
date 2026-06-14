@@ -274,9 +274,15 @@ foreach ($siswa as $item) {
         $totalNilai += ($nilai ?? 0);
     }
 
-    $item->total_nilai = count($quizzes) > 0
-        ? round($totalNilai / count($quizzes), 1)
-        : '-';
+    $rataNilai = count($quizzes) > 0
+    ? round($totalNilai / count($quizzes), 1)
+    : 0;
+
+$item->total_nilai = $rataNilai;
+
+if ($item->nilai_keaktifan !== null) {
+    $item->total_nilai += $item->nilai_keaktifan;
+}
 }
 
     return view('data_nilai', compact('siswa', 'quizzes'));
@@ -316,9 +322,15 @@ foreach ($siswa as $item) {
         $totalNilai += ($nilai ?? 0);
     }
 
-    $item->total_nilai = count($quizzes) > 0
-        ? round($totalNilai / count($quizzes), 1)
-        : '-';
+    $rataNilai = count($quizzes) > 0
+    ? round($totalNilai / count($quizzes), 1)
+    : 0;
+
+$item->total_nilai = $rataNilai;
+
+if ($item->nilai_keaktifan !== null) {
+    $item->total_nilai += $item->nilai_keaktifan;
+}
 }
         $pdf = Pdf::loadView('exports.data_nilai_pdf', compact('siswa', 'quizzes'));
 
@@ -343,20 +355,17 @@ foreach ($siswa as $item) {
 {
     $request->validate([
         'user_id' => 'required',
-        'quiz_id' => 'required',
-        'nilai' => 'required|numeric|min:0|max:100'
+        'nilai_keaktifan' => 'nullable|numeric|min:0|max:100'
     ]);
 
-    DB::table('hasil_kuis')
-        ->where('id_user', $request->user_id)
-        ->where('id_kuis', $request->quiz_id)
+    User::where('id', $request->user_id)
         ->update([
-            'nilai' => $request->nilai
+            'nilai_keaktifan' => $request->nilai_keaktifan
         ]);
 
     return response()->json([
         'success' => true,
-        'message' => 'Nilai berhasil diupdate'
+        'message' => 'Nilai keaktifan berhasil diupdate'
     ]);
 }
 

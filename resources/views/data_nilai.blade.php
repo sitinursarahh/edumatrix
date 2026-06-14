@@ -94,10 +94,11 @@
                 <th>Kelas</th>
 
                 @foreach($quizzes as $quiz)
-                    <th>{{ $quiz->title }}</th>
-                @endforeach
+    <th>{{ $quiz->title }}</th>
+@endforeach
 
-                <th>Total Nilai</th>
+<th>Nilai Keaktifan</th>
+<th>Total Nilai</th>
             </tr>
         </thead>
 
@@ -113,28 +114,35 @@
 </td>
 
                 @foreach($quizzes as $quiz)
-                <td>
-                    <div class="edit-wrapper">
-                        <input 
-                            type="number" 
-                            class="form-control nilai-input" 
-                            value="{{ $item->{'kuis_'.$quiz->id} }}"
-                            data-user="{{ $item->id }}"
-                            data-quiz="{{ $quiz->id }}"
-                            readonly
-                        >
+<td>
+    <input
+        type="number"
+        class="form-control"
+        value="{{ $item->{'kuis_'.$quiz->id} }}"
+        readonly
+    >
+</td>
+@endforeach
 
-                        <button class="btn-edit">
-                            <i class="fas fa-pen"></i>
-                        </button>
-                    </div>
-                </td>
-                @endforeach
+<td>
+    <div class="edit-wrapper">
+        <input
+            type="number"
+            class="form-control keaktifan-input"
+            value="{{ $item->nilai_keaktifan }}"
+            data-user="{{ $item->id }}"
+            readonly
+        >
 
-                <td>
-    <strong>{{ $item->total_nilai }}</strong>
+        <button class="btn-edit-keaktifan">
+            <i class="fas fa-pen"></i>
+        </button>
+    </div>
 </td>
 
+<td>
+    <strong>{{ $item->total_nilai }}</strong>
+</td>
             </tr>
             @endforeach
         </tbody>
@@ -231,7 +239,7 @@ filterKelas.addEventListener("change", updateExportLinks);
 </script>
 
 
-<script>
+<!-- <script>
 document.querySelectorAll('.nilai-input').forEach(input => {
     input.addEventListener('change', function () {
 
@@ -246,10 +254,9 @@ document.querySelectorAll('.nilai-input').forEach(input => {
                 "X-CSRF-TOKEN": "{{ csrf_token() }}"
             },
             body: JSON.stringify({
-                user_id: userId,
-                quiz_id: quizId,
-                nilai: nilai
-            })
+    user_id: userId,
+    nilai_keaktifan: nilai
+})
         })
         .then(res => res.json())
         .then(data => {
@@ -262,16 +269,16 @@ document.querySelectorAll('.nilai-input').forEach(input => {
 
     });
 });
-</script>
+</script> -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-  document.querySelectorAll(".btn-edit").forEach(button => {
+  document.querySelectorAll(".btn-edit-keaktifan").forEach(button => {
 
     button.addEventListener("click", async function () {
 
       const wrapper = this.closest(".edit-wrapper");
-      const input = wrapper.querySelector(".nilai-input");
+      const input = wrapper.querySelector(".keaktifan-input");
       const icon = this.querySelector("i");
 
       // MODE EDIT
@@ -283,21 +290,19 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       const userId = input.dataset.user;
-      const quizId = input.dataset.quiz;
       const nilai = input.value;
 
       try {
-        await fetch("/update-nilai", {
+        await fetch("/data-nilai/update", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             "X-CSRF-TOKEN": "{{ csrf_token() }}"
           },
           body: JSON.stringify({
-            user_id: userId,
-            quiz_id: quizId,
-            nilai: nilai
-          })
+    user_id: userId,
+    nilai_keaktifan: nilai
+})
         });
 
         // 🔥 LANGSUNG ANGAP SUKSES
@@ -305,6 +310,10 @@ document.addEventListener("DOMContentLoaded", function () {
         icon.classList.replace("fa-paper-plane", "fa-pen");
 
         showPopup("Nilai berhasil diupdate", false);
+
+setTimeout(() => {
+    location.reload();
+}, 1000);
 
       } catch (error) {
         console.error("ERROR:", error);

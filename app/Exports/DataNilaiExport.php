@@ -55,12 +55,21 @@ class DataNilaiExport implements FromCollection, WithHeadings
     }
 
     $rataRata = count($quizzes) > 0
-        ? round($totalNilai / count($quizzes), 1)
-        : '-';
+    ? round($totalNilai / count($quizzes), 1)
+    : 0;
 
-    $row[] = $rataRata;
+    $nilaiKeaktifan = $item->nilai_keaktifan;
 
-    $data[] = $row;
+if ($nilaiKeaktifan !== null) {
+    $totalAkhir = $rataRata + $nilaiKeaktifan;
+} else {
+    $totalAkhir = $rataRata;
+}
+
+$row[] = $nilaiKeaktifan ?? '-';
+$row[] = $totalAkhir;
+
+$data[] = $row;
 }
 
         return collect($data);
@@ -79,6 +88,7 @@ class DataNilaiExport implements FromCollection, WithHeadings
     $headings[] = $quiz->title;
 }
 
+$headings[] = 'Nilai Keaktifan';
 $headings[] = 'Total Nilai';
 
 return $headings;
