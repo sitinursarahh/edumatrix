@@ -59,9 +59,11 @@
     <th class="col-nama">Nama</th>
     <th class="col-kelas">Kelas</th>
     @foreach($quizzes as $quiz)
-        <th>{{ $quiz->title }}</th>
-    @endforeach
-    <th>Total Nilai</th>
+    <th>{{ $quiz->title }}</th>
+@endforeach
+
+<th>Nilai Keaktifan</th>
+<th>Total Nilai</th>
 </tr>
 
     @foreach($siswa as $index => $item)
@@ -73,11 +75,16 @@
 </td>
 
     @foreach($quizzes as $quiz)
-        <td class="nilai">
-            {{ $item->{'kuis_'.$quiz->id} }}
-        </td>
-    @endforeach
     <td class="nilai">
+        {{ $item->{'kuis_'.$quiz->id} }}
+    </td>
+@endforeach
+
+<td class="nilai">
+    {{ $item->nilai_keaktifan ?? '-' }}
+</td>
+
+<td class="nilai">
     {{ $item->total_nilai }}
 </td>
 </tr>
