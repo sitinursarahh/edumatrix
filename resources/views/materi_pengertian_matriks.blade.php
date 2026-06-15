@@ -1557,7 +1557,11 @@ function showPopup(message, onClose = null, icon = '') {
         else if(q.type === 'dragdrop'){
             const imgs = q.images.map(im => `
             <div class="drag-item" draggable="true" id="${im.id}" data-id="${im.id}" style="margin:8px">
-                <img src="${im.src}" alt="">
+                <img
+    src="${im.src}"
+    alt=""
+    draggable="false"
+>
             </div>
             `).join('');
             let slotsHtml = '';
@@ -1669,9 +1673,89 @@ function showPopup(message, onClose = null, icon = '') {
     function attachDragHandlers(){
         const source = document.querySelector('.source-images');
         document.querySelectorAll('.drag-item').forEach(it => {
-            it.ondragstart = e => { e.dataTransfer.setData('text/plain', it.dataset.id); it.classList.add('dragging'); };
-            it.ondragend = () => it.classList.remove('dragging');
-        });
+
+    // DESKTOP
+    it.ondragstart = e => {
+        e.dataTransfer.setData('text/plain', it.dataset.id);
+        it.classList.add('dragging');
+    };
+
+    it.ondragend = () => {
+        it.classList.remove('dragging');
+    };
+
+    // MOBILE ANDROID
+    it.addEventListener('touchstart', function(e){
+        this.classList.add('dragging');
+    }, { passive:false });
+
+    it.addEventListener('touchmove', function(e){
+
+        e.preventDefault();
+
+        const touch = e.touches[0];
+
+        this.style.position = 'fixed';
+        this.style.left =
+            (touch.clientX - this.offsetWidth/2) + 'px';
+
+        this.style.top =
+            (touch.clientY - this.offsetHeight/2) + 'px';
+
+        this.style.zIndex = '9999';
+        this.style.pointerEvents = 'none';
+
+    }, { passive:false });
+
+    it.addEventListener('touchend', function(e){
+
+        const touch = e.changedTouches[0];
+
+        const target =
+            document.elementFromPoint(
+                touch.clientX,
+                touch.clientY
+            );
+
+        const slot = target?.closest('.drop-slot');
+
+        if(slot){
+
+            const existing =
+                slot.querySelector('.drag-item');
+
+            if(existing && existing !== this){
+                source.appendChild(existing);
+            }
+
+            const oldParent = this.parentElement;
+
+            if(
+                oldParent &&
+                oldParent.classList.contains('drop-slot')
+            ){
+                setSlotPlaceholder(oldParent);
+            }
+
+            slot.innerHTML = '';
+            slot.appendChild(this);
+            slot.classList.add('occupied');
+
+            saveDragState();
+
+        }
+
+        this.style.position = '';
+        this.style.left = '';
+        this.style.top = '';
+        this.style.zIndex = '';
+        this.style.pointerEvents = '';
+
+        this.classList.remove('dragging');
+
+    });
+
+});
 
         document.querySelectorAll('.drop-slot').forEach(slot => {
             slot.ondragover = e => { e.preventDefault(); slot.style.background = '#e9f0ff'; };
