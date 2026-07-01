@@ -1325,28 +1325,46 @@ setTimeout(() => {
             }
 
             showPopup(
-                `<b>Luar Biasa! 🎉</b><br>
-                Semua jawaban benar: <b>${score}/${soal.length}</b><br>
-                Tombol Selanjutnya telah dibuka.`,
-                () => {
+    `<b>Luar Biasa! 🎉</b><br>
+    Semua jawaban benar: <b>${score}/${soal.length}</b><br>
+    Tombol Selanjutnya telah dibuka.`,
+    () => {
 
-                    soal.forEach(s => {
-                        delete s.isChecked;
-                        delete s.isCorrect;
-                    });
+        // buka tombol Selanjutnya
+        const btn = document.querySelector(
+            '.btn-next-slide[data-check="mari-mencoba-kesamaan-matriks"]'
+        );
 
-                    userAnswer[0] = { drop:{} };
-                    userAnswer[1] = { a:'', b:'', c:'' };
-                    userAnswer[2] = { x:'', y:'', z:'' };
+        if(btn){
+            btn.dataset.allowed = "1";
+        }
 
-                    idx = 0;
-                    completed = 0;
+        // reset quiz
+        soal.forEach(s => {
+            delete s.isChecked;
+            delete s.isCorrect;
+        });
 
-                    renderSoal();
-                    updateQuizProgress();
-                },
-                '🎉'
-            );
+        userAnswer[0] = { drop:{} };
+        userAnswer[1] = { a:'', b:'', c:'' };
+        userAnswer[2] = { x:'', y:'', z:'' };
+
+        idx = 0;
+        completed = 0;
+
+        renderSoal();
+        updateQuizProgress();
+
+        // otomatis pindah ke halaman berikutnya
+        setTimeout(() => {
+            document
+                .querySelector('.btn-next-slide[data-check="mari-mencoba-kesamaan-matriks"]')
+                ?.click();
+        }, 100);
+
+    },
+    '🎉'
+);
 
         });
 

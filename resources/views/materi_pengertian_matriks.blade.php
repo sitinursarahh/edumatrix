@@ -1625,8 +1625,8 @@ function showPopup(message, onClose = null, icon = '') {
             // Pisahkan prompt menjadi dua bagian:
             // Bagian 1: sebelum tabel
             // Bagian 2: instruksi setelah tabel
-            const promptAtas = q.prompt.replace('Buat ke dalam bentuk matriks:', '').trim();
-            const promptBawah = 'Buat ke dalam bentuk matriks:';
+            const promptAtas = q.prompt.replace('Buat ke dalam bentuk matriks di bawah ini:', '').trim();
+            const promptBawah = 'Buat ke dalam bentuk matriks di bawah ini:';
 
             $q.innerHTML = `
                 <div class="prompt">${promptAtas}</div>
@@ -2133,16 +2133,35 @@ updateQuizProgress();
             }
 
             showPopup(
-                `<b>Luar Biasa! 🎉</b><br>
-                Semua jawaban benar (${score}/${questions.length}).<br>
-                Tombol Selanjutnya telah dibuka.`,
-                () => {
-                    idx = 0;
-                    completed = 0;
-                    user = Array(questions.length).fill(null);
-                    render(idx);
-                }
-            );
+    `<b>Luar Biasa! 🎉</b><br>
+    Semua jawaban benar (${score}/${questions.length}).<br>
+    Tombol Selanjutnya telah dibuka.`,
+    () => {
+
+        // buka tombol
+        const btn = document.querySelector(
+            '.btn-next-slide[data-check="mari-mencoba-1"]'
+        );
+
+        if(btn){
+            btn.dataset.allowed = "1";
+        }
+
+        // reset quiz
+        idx = 0;
+        completed = 0;
+        user = Array(questions.length).fill(null);
+        render(idx);
+
+        // pindah otomatis ke slide berikutnya
+        setTimeout(() => {
+    document
+        .querySelector('.btn-next-slide[data-check="mari-mencoba-1"]')
+        ?.click();
+}, 100);
+    },
+    "🎉"
+);
 
         });
 
@@ -3176,24 +3195,43 @@ if (
             }
 
             showPopup(
-                `<b>Luar Biasa! 🎉</b><br>
-                Semua jawaban benar: <b>${score}/${soal.length}</b><br>
-                Tombol Selanjutnya telah dibuka.`,
-                () => {
-                    idx = 0;
-                    completed = 0;
+    `<b>Luar Biasa! 🎉</b><br>
+    Semua jawaban benar: <b>${score}/${soal.length}</b><br>
+    Tombol Selanjutnya telah dibuka.`,
+    () => {
 
-                    userAnswer[0] = { ordoRow:'', ordoCol:'', a23:'' };
-                    userAnswer[1] = { name:'', matrix:{}, ordoRow:'', ordoCol:'' };
-                    userAnswer[2] = { drop:{} };
-                    userAnswer[3] = { tf:'' };
-                    userAnswer[4] = { a22:'', a41:'', a53:'', a32:'' };
+        // buka tombol selanjutnya
+        const btn = document.querySelector(
+            '.btn-next-slide[data-check="mari-mencoba-2"]'
+        );
 
-                    renderSoal();
-                    updateQuizProgress();
-                },
-                '🎉'
-            );
+        if(btn){
+            btn.dataset.allowed = "1";
+        }
+
+        // reset quiz
+        idx = 0;
+        completed = 0;
+
+        userAnswer[0] = { ordoRow:'', ordoCol:'', a23:'' };
+        userAnswer[1] = { name:'', matrix:{}, ordoRow:'', ordoCol:'' };
+        userAnswer[2] = { drop:{} };
+        userAnswer[3] = { tf:'' };
+        userAnswer[4] = { a22:'', a41:'', a53:'', a32:'' };
+
+        renderSoal();
+        updateQuizProgress();
+
+        // otomatis pindah ke halaman berikutnya
+        setTimeout(() => {
+            document
+                .querySelector('.btn-next-slide[data-check="mari-mencoba-2"]')
+                ?.click();
+        }, 100);
+
+    },
+    '🎉'
+);
 
         });
 

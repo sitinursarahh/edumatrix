@@ -3281,31 +3281,49 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             showPopup(
-                `<b>Luar Biasa! 🎉</b><br>
-                Semua jawaban benar: <b>${score}/${soal.length}</b><br>
-                Tombol Selanjutnya telah dibuka.`,
-                () => {
+    `<b>Luar Biasa! 🎉</b><br>
+    Semua jawaban benar: <b>${score}/${soal.length}</b><br>
+    Tombol Selanjutnya telah dibuka.`,
+    () => {
 
-                    userAnswer[0] = { drop:{} };
-                    userAnswer[1] = { drop:{} };
-                    userAnswer[2] = {
-                        matrix: {},
-                        tf: '',
-                        check3c: [],
-                        benar3a: false,
-                        benar3b: false,
-                        benar3c: false
-                    };
+        // buka tombol Selanjutnya
+        const btn = document.querySelector(
+            '.btn-next-slide[data-check="mari-mencoba-jenis-matriks"]'
+        );
 
-                    idx = 0;
-                    subIdx = 0;
-                    completed = 0;
+        if(btn){
+            btn.dataset.allowed = "1";
+        }
 
-                    renderSoal();
-                    updateQuizProgress();
-                },
-                '🎉'
-            );
+        // reset quiz
+        userAnswer[0] = { drop:{} };
+        userAnswer[1] = { drop:{} };
+        userAnswer[2] = {
+            matrix: {},
+            tf: '',
+            check3c: [],
+            benar3a: false,
+            benar3b: false,
+            benar3c: false
+        };
+
+        idx = 0;
+        subIdx = 0;
+        completed = 0;
+
+        renderSoal();
+        updateQuizProgress();
+
+        // otomatis pindah ke halaman berikutnya
+        setTimeout(() => {
+            document
+                .querySelector('.btn-next-slide[data-check="mari-mencoba-jenis-matriks"]')
+                ?.click();
+        }, 100);
+
+    },
+    '🎉'
+);
 
         });
 
