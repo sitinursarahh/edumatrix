@@ -724,6 +724,26 @@ Selanjutnya
                           <div class="quiz-header">
                             Mari Mencoba <i class="bi bi-pen"></i>
                           </div>
+                          <!-- ===== PETUNJUK PENGERJAAN ===== -->
+<p class="mb-2">
+    <a href="javascript:void(0)"
+       id="togglePetunjuk"
+       class="fw-bold text-decoration-none">
+        <i class="bi bi-info-circle"></i>
+        Petunjuk Pengerjaan
+        <i class="bi bi-chevron-down" id="iconPetunjuk"></i>
+    </a>
+</p>
+
+<div id="petunjukMariMencoba"
+     style="display:none; text-align:justify; line-height:1.7; margin-bottom:15px;">
+    Kerjakan setiap soal sesuai instruksi pada masing-masing soal.
+    Bentuk soal dapat berupa pilihan ganda,
+    <i>drag and drop</i>, isian singkat, maupun bentuk interaktif lainnya.
+    Gunakan tombol <strong>Periksa Jawaban</strong> untuk mengecek jawaban.
+    Apabila jawaban telah benar, lanjutkan ke soal berikutnya hingga seluruh
+    soal selesai. Halaman berikutnya akan terbuka jika semua jawaban benar.
+</div>
                           <!-- PROGRESS -->
                           <div class="quiz-progress-wrapper">
                             <div class="quiz-progress-bar">
@@ -2396,31 +2416,47 @@ reset: () => {
             }
 
             showPopup(
-                `<b>Luar Biasa! 🎉</b><br>
-                Semua jawaban benar: <b>${score}/${soal.length}</b><br>
-                Tombol Selanjutnya telah dibuka.`,
-                () => {
+    `<b>Luar Biasa! 🎉</b><br>
+    Semua jawaban benar: <b>${score}/${soal.length}</b><br>
+    Tombol Selanjutnya telah dibuka.`,
+    () => {
 
-                    soal.forEach(s => {
-                        delete s.isChecked;
-                        delete s.isCorrect;
-                    });
+        // buka tombol Selanjutnya
+        const btn = document.querySelector(
+            '.btn-next-slide[data-check="mari-mencoba-perkalian-matriks"]'
+        );
 
-                    userAnswer[0] = { drop:{} };
-                    userAnswer[1] = {
-                        r11:'', r12:'',
-                        r21:'', r22:''
-                    };
-                    userAnswer[2] = { x:'', y:'', z:'' };
+        if (btn) {
+            btn.dataset.allowed = "1";
+        }
 
-                    idx = 0;
-                    completed = 0;
+        // reset status soal
+        soal.forEach(s => {
+            delete s.isChecked;
+            delete s.isCorrect;
+        });
 
-                    renderSoal();
-                    updateQuizProgress();
-                },
-                '🎉'
-            );
+        // reset jawaban
+        userAnswer[0] = { drop:{} };
+        userAnswer[1] = {};
+        userAnswer[2] = {};
+
+        idx = 0;
+        completed = 0;
+
+        renderSoal();
+        updateQuizProgress();
+
+        // otomatis pindah ke slide berikutnya
+        setTimeout(() => {
+            document
+                .querySelector('.btn-next-slide[data-check="mari-mencoba-perkalian-matriks"]')
+                ?.click();
+        }, 100);
+
+    },
+    '🎉'
+);
 
         });
 
@@ -2793,6 +2829,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+    const btn = document.getElementById("togglePetunjuk");
+    const box = document.getElementById("petunjukMariMencoba");
+    const icon = document.getElementById("iconPetunjuk");
+
+    btn.addEventListener("click", function () {
+
+        if (box.style.display === "none" || box.style.display === "") {
+            box.style.display = "block";
+            icon.classList.remove("bi-chevron-down");
+            icon.classList.add("bi-chevron-up");
+        } else {
+            box.style.display = "none";
+            icon.classList.remove("bi-chevron-up");
+            icon.classList.add("bi-chevron-down");
+        }
+
+    });
+
+});
 </script>
 </body>
 </html>

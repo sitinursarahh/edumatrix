@@ -34,6 +34,7 @@ if (!in_array('matriks-baris', $unlocked)) {
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('css/materi_pengertian_matriks.css') }}">
@@ -168,8 +169,14 @@ if (!in_array('matriks-baris', $unlocked)) {
                             <div class="quiz-header">
                                 Ayo Kita Coba
                             </div>
+                            <!-- Instruksi -->
+<div class="quiz-instruction">
+    <strong>Petunjuk:</strong>
+    Jawablah setiap pertanyaan pada kolom yang tersedia, kemudian klik tombol
+    <strong>"Periksa Jawaban"</strong>.
+</div>
                             <div class="quiz-question">
-                                <br><br>
+                                <!-- <br><br> -->
                                 Perhatikan matriks berikut:
                                 <br><br>
                                 <div class="text-center my-3 matrix-display-big">
@@ -244,11 +251,17 @@ if (!in_array('matriks-baris', $unlocked)) {
                         <div class="quiz-header">
                             Ayo Kita Simpulkan
                         </div>
+                        <!-- Instruksi -->
+<div class="quiz-instruction">
+    <strong>Petunjuk:</strong>
+    Jawablah setiap pertanyaan pada kolom yang tersedia, kemudian klik tombol
+    <strong>"Periksa Jawaban"</strong>.
+</div>
                         <!-- ===================== -->
                         <!-- SOAL 1 -->
                         <!-- ===================== -->
                         <div class="quiz-question">
-                            <br>
+                            <!-- <br> -->
                             1. Berdasarkan contoh-contoh di atas, apa yang dapat kamu simpulkan mengenai <b>matriks baris</b>?
                         </div>
                         <div class="quiz-question">Jawab:</div>
@@ -453,12 +466,18 @@ if (!in_array('matriks-baris', $unlocked)) {
                             <div class="quiz-header">
                                 Ayo Kita Coba
                             </div>
-                            <br>
+                            <!-- Instruksi -->
+<div class="quiz-instruction">
+    <strong>Petunjuk:</strong>
+    Jawablah setiap soal dengan memilih jawaban yang benar atau mengisi jawaban pada kolom yang tersedia, kemudian klik tombol
+    <strong>"Periksa Jawaban"</strong>.
+</div>
+                            <!-- <br> -->
                             <!-- ===================== -->
                             <!-- SOAL 1 -->
                             <!-- ===================== -->
                             <div class="quiz-question">
-                                <br>
+                                <!-- <br> -->
                                 1. Perhatikan matriks di bawah ini!
                             </div>
                             <div class="text-center my-3 matrix-display-big">
@@ -688,11 +707,17 @@ if (!in_array('matriks-baris', $unlocked)) {
                             <div class="quiz-header">
                                 Ayo Kita Coba
                             </div>
+                            <!-- Instruksi -->
+<div class="quiz-instruction">
+    <strong>Petunjuk:</strong>
+    Jawablah setiap pertanyaan pada kolom yang tersedia, kemudian klik tombol
+    <strong>"Periksa Jawaban"</strong>.
+</div>
                             <!-- ===================== -->
                             <!-- SOAL 1 -->
                             <!-- ===================== -->
                             <div class="quiz-question">
-                                <br><br>
+                                <!-- <br><br> -->
                                 1. Hubungan baris dan kolom pada <b>matriks datar</b> adalah
                                 <br>
                                 Tuliskan menggunakan simbol: &lt;, &gt;, &lt;=, &gt;=, atau =.
@@ -739,11 +764,17 @@ if (!in_array('matriks-baris', $unlocked)) {
                             <div class="quiz-header">
                                 Ayo Kita Simpulkan
                             </div>
+                            <!-- Instruksi -->
+<div class="quiz-instruction">
+    <strong>Petunjuk:</strong>
+    Jawablah setiap pertanyaan pada kolom yang tersedia, kemudian klik tombol
+    <strong>"Periksa Jawaban"</strong>.
+</div>
                             <!-- ===================== -->
                             <!-- SOAL 1 -->
                             <!-- ===================== -->
                             <div class="quiz-question">
-                                <br>
+                                <!-- <br> -->
                                 1. Berdasarkan contoh-contoh di atas, apa yang dapat kamu simpulkan mengenai <b>matriks datar</b>?
                             </div>
                             <div class="quiz-question">Jawab:</div>
@@ -1119,8 +1150,14 @@ if (!in_array('matriks-baris', $unlocked)) {
                         <div class="quiz-header">
                             Ayo Kita Coba
                         </div>
+                        <!-- Instruksi -->
+<div class="quiz-instruction">
+    <strong>Petunjuk:</strong>
+    Jawablah setiap soal dengan memilih jawaban yang benar, kemudian klik tombol
+    <strong>"Periksa Jawaban"</strong>.
+</div>
                         <div class="quiz-question">
-                            <br><br>
+                            <!-- <br><br> -->
                             Klik semua pernyataan yang benar mengenai <b>matriks identitas</b>:
                         </div>
                         <label>
@@ -1154,8 +1191,15 @@ if (!in_array('matriks-baris', $unlocked)) {
                 Ayo Kita Simpulkan
             </div>
 
+            <!-- Instruksi -->
+<div class="quiz-instruction">
+    <strong>Petunjuk:</strong>
+    Jawablah setiap pertanyaan pada kolom yang tersedia, kemudian klik tombol
+    <strong>"Periksa Jawaban"</strong>.
+</div>
+
             <div class="quiz-question">
-                <br>
+                <!-- <br> -->
                 Berdasarkan contoh-contoh di atas apa yang dapat kamu simpulkan mengenai <b>matriks identitas</b>?
             </div>
 
@@ -1296,8 +1340,14 @@ if (!in_array('matriks-baris', $unlocked)) {
                                 <div class="quiz-header">
                                     Ayo Kita Simpulkan
                                 </div>
+                                <!-- Instruksi -->
+<div class="quiz-instruction">
+    <strong>Petunjuk:</strong>
+    Jawablah setiap pertanyaan pada kolom yang tersedia, kemudian klik tombol
+    <strong>"Periksa Jawaban"</strong>.
+</div>
                                 <div class="quiz-question">
-                                    <br>
+                                    <!-- <br> -->
                                     Berdasarkan contoh-contoh di atas apa yang dapat kamu simpulkan mengenai <b>matriks nol</b>?
                                 </div>
                                 <div class="quiz-question">Jawab:</div>
@@ -1732,6 +1782,26 @@ if (!in_array('matriks-baris', $unlocked)) {
                                 Mari Mencoba <i class="bi bi-pen"></i>
                             </div>
 
+                            <!-- ===== PETUNJUK PENGERJAAN ===== -->
+<p class="mb-2">
+    <a href="javascript:void(0)"
+       id="togglePetunjuk"
+       class="fw-bold text-decoration-none">
+        <i class="bi bi-info-circle"></i>
+        Petunjuk Pengerjaan
+        <i class="bi bi-chevron-down" id="iconPetunjuk"></i>
+    </a>
+</p>
+
+<div id="petunjukMariMencoba"
+     style="display:none; text-align:justify; line-height:1.7; margin-bottom:15px;">
+    Kerjakan setiap soal sesuai instruksi pada masing-masing soal.
+    Bentuk soal dapat berupa pilihan ganda,
+    <i>drag and drop</i>, isian singkat, maupun bentuk interaktif lainnya.
+    Gunakan tombol <strong>Periksa Jawaban</strong> untuk mengecek jawaban.
+    Apabila jawaban telah benar, lanjutkan ke soal berikutnya hingga seluruh
+    soal selesai. Halaman berikutnya akan terbuka jika semua jawaban benar.
+</div>
                             <!-- ===== PROGRESS QUIZ ===== -->
                             <div class="quiz-progress-wrapper">
                                 <div class="quiz-progress-bar">
@@ -4508,6 +4578,30 @@ function paksaFixPrev() {
 
 // 🔥 PAKSA JALAN TERUS
 setInterval(paksaFixPrev, 50);
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+    const btn = document.getElementById("togglePetunjuk");
+    const box = document.getElementById("petunjukMariMencoba");
+    const icon = document.getElementById("iconPetunjuk");
+
+    btn.addEventListener("click", function () {
+
+        if (box.style.display === "none" || box.style.display === "") {
+            box.style.display = "block";
+            icon.classList.remove("bi-chevron-down");
+            icon.classList.add("bi-chevron-up");
+        } else {
+            box.style.display = "none";
+            icon.classList.remove("bi-chevron-up");
+            icon.classList.add("bi-chevron-down");
+        }
+
+    });
+
+});
 </script>
 </body>
 </html>

@@ -461,9 +461,10 @@ A =
 
                     showPopup(
                         `<b>Luar Biasa! 🎉</b><br>
-            Semua jawaban benar: <b>${score}/${soal.length}</b><br>
-            Tombol Selanjutnya telah dibuka.`,
+    Semua jawaban benar: <b>${score}/${soal.length}</b><br>
+    Tombol Selanjutnya telah dibuka.`,
                         () => {
+                            // reset quiz
                             idx = 0;
                             completed = 0;
 
@@ -484,6 +485,34 @@ A =
                             renderSoal();
                             updateQuizProgress();
                             hasil.textContent = "";
+
+                            // ============================
+                            // PINDAH OTOMATIS KE HALAMAN BERIKUTNYA
+                            // ============================
+                            const btn = document.querySelector(
+                                '.btn-next-slide[data-check="mari-mencoba-determinan-invers-matriks"]',
+                            );
+
+                            if (btn) {
+                                const unlockTarget = btn.dataset.unlock;
+
+                                if (unlockTarget) {
+                                    unlockMateri(unlockTarget);
+                                }
+
+                                const slides = [
+                                    ...document.querySelectorAll(
+                                        ".materi-slide",
+                                    ),
+                                ];
+                                const currentIndex = slides.findIndex((s) =>
+                                    s.classList.contains("active"),
+                                );
+
+                                if (currentIndex !== -1) {
+                                    showSlide(currentIndex + 1);
+                                }
+                            }
                         },
                         "🎉",
                     );
